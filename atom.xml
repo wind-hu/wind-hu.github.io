@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>WindH</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://huleilei0906.github.io/"/>
+  <updated>2020-11-28T17:00:51.724Z</updated>
+  <id>https://huleilei0906.github.io/</id>
+  
+  <author>
+    <name>WindH</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx负载均衡配置</title>
+    <link href="https://huleilei0906.github.io/2020/11/28/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/"/>
+    <id>https://huleilei0906.github.io/2020/11/28/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/</id>
+    <published>2020-11-28T12:41:30.000Z</published>
+    <updated>2020-11-28T17:00:51.724Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/p&gt;
+&lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://huleilei0906.github.io/categories/nginx/"/>
+    
+      <category term="负载均衡" scheme="https://huleilei0906.github.io/categories/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    
+      <category term="分布式" scheme="https://huleilei0906.github.io/categories/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="nginx" scheme="https://huleilei0906.github.io/tags/nginx/"/>
+    
+      <category term="负载均衡" scheme="https://huleilei0906.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Quartz的使用</title>
+    <link href="https://huleilei0906.github.io/2020/06/28/Quartz%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://huleilei0906.github.io/2020/06/28/Quartz%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-06-28T11:49:28.000Z</published>
+    <updated>2020-11-28T17:00:51.425Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/p&gt;
+&lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+    
+      <category term="Quartz" scheme="https://huleilei0906.github.io/categories/Java/Quartz/"/>
+    
+    
+      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
+    
+      <category term="Quartz" scheme="https://huleilei0906.github.io/tags/Quartz/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBootBuild</title>
+    <link href="https://huleilei0906.github.io/2020/05/27/SpringBootBuild/"/>
+    <id>https://huleilei0906.github.io/2020/05/27/SpringBootBuild/</id>
+    <published>2020-05-27T15:11:37.000Z</published>
+    <updated>2020-11-28T17:00:51.706Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+    
+      <category term="SpringBoot" scheme="https://huleilei0906.github.io/categories/JAVA/SpringBoot/"/>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+    
+      <category term="Spring" scheme="https://huleilei0906.github.io/tags/Spring/"/>
+    
+      <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AOP实战-AspectJ</title>
+    <link href="https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/"/>
+    <id>https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</id>
+    <published>2020-05-27T10:27:30.000Z</published>
+    <updated>2020-11-28T17:00:51.423Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+    
+      <category term="AOP" scheme="https://huleilei0906.github.io/categories/JAVA/AOP/"/>
+    
+      <category term="AspectJ" scheme="https://huleilei0906.github.io/categories/JAVA/AOP/AspectJ/"/>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+    
+      <category term="AOP" scheme="https://huleilei0906.github.io/tags/AOP/"/>
+    
+      <category term="AspectJ" scheme="https://huleilei0906.github.io/tags/AspectJ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分布式锁-Redis篇</title>
+    <link href="https://huleilei0906.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/"/>
+    <id>https://huleilei0906.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/</id>
+    <published>2020-05-27T05:19:09.000Z</published>
+    <updated>2020-11-28T17:00:51.725Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/p&gt;
+&lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+    
+      <category term="Redis" scheme="https://huleilei0906.github.io/categories/JAVA/Redis/"/>
+    
+      <category term="分布式" scheme="https://huleilei0906.github.io/categories/JAVA/Redis/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+    
+      <category term="Redis" scheme="https://huleilei0906.github.io/tags/Redis/"/>
+    
+      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArrayList扩容机制</title>
+    <link href="https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/"/>
+    <id>https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</id>
+    <published>2020-05-26T15:10:37.000Z</published>
+    <updated>2020-11-28T17:00:51.424Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot; title=&quot;一、背景&quot;&gt;&lt;/a&gt;一、背景&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;面试的时候问到过ArrayList的扩容机制以及HashMap的扩容机制，今天来讲讲ArrayList的扩容机制。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;二、环境&quot;&gt;&lt;a href=&quot;#二、环境&quot; class=&quot;headerlink&quot; title=&quot;二、环境&quot;&gt;&lt;/a&gt;二、环境&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;JDK1.8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;三、详解&quot;&gt;&lt;a href=&quot;#三、详解&quot; class=&quot;headerlink&quot; title=&quot;三、详解&quot;&gt;&lt;/a&gt;三、详解&lt;/h3&gt;&lt;p&gt;1.ArrayList若未指定长度默认空间长度为10，可见ArrayList中&lt;strong&gt;“DEFAULT_CAPACITY”&lt;/strong&gt;属性，&lt;strong&gt;“size”&lt;/strong&gt;属性为元素个数。最大长度为2^31-1-8，见ArrayList中&lt;strong&gt;“MAX_ARRAY_SIZE”&lt;/strong&gt;属性。&lt;/p&gt;
+&lt;p&gt;2.触发扩容的对外方法都在ArrayList.add&lt;em&gt;()的几个方法中，发现长度大于空间长度时调用*&lt;/em&gt;“grow()”**,源码如下；&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; index, E element)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    rangeCheckForAdd(index);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ensureCapacityInternal(size + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);  &lt;span class=&quot;comment&quot;&gt;// Increments modCount!!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    System.arraycopy(elementData, index, elementData, index + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                     size - index);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    elementData[index] = element;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    size++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ensureExplicitCapacity&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; minCapacity)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    modCount++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (minCapacity - elementData.length &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        grow(minCapacity);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+    
+      <category term="Collection" scheme="https://huleilei0906.github.io/tags/Collection/"/>
+    
+      <category term="ArrayList" scheme="https://huleilei0906.github.io/tags/ArrayList/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo Hello World</title>
+    <link href="https://huleilei0906.github.io/2020/05/25/Hexo-hello-world/"/>
+    <id>https://huleilei0906.github.io/2020/05/25/Hexo-hello-world/</id>
+    <published>2020-05-25T13:43:58.000Z</published>
+    <updated>2020-11-28T17:00:51.424Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="https://huleilei0906.github.io/categories/Hexo/"/>
+    
+    
+      <category term="Hello World" scheme="https://huleilei0906.github.io/tags/Hello-World/"/>
+    
+  </entry>
+  
+</feed>
