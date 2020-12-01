@@ -298,18 +298,18 @@
 <h3 id="二、环境"><a href="#二、环境" class="headerlink" title="二、环境"></a>二、环境</h3><p>JDK1.8、IDEA</p>
 <h3 id="三、详解"><a href="#三、详解" class="headerlink" title="三、详解"></a>三、详解</h3><h4 id="1-非涉密网络环境"><a href="#1-非涉密网络环境" class="headerlink" title="1.非涉密网络环境"></a>1.非涉密网络环境</h4><p>这里的非涉密网络环境的特点是能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。</p>
 <h4 id="1）新建项目"><a href="#1）新建项目" class="headerlink" title="1）新建项目"></a>1）新建项目</h4><p>IDEA-&gt;File-&gt;New-&gt;Project…</p>
-<img style="margin:auto 0;" src="/.io//SpringBootBuild-1.png" alt="SpringBootBuild-1.png">
+<img style="margin:auto 0;" src="/2020/05/27/SpringBootBuild/SpringBootBuild-1.png" alt="SpringBootBuild-1.png">
 
 <h4 id="2）选择Spring-Initializr"><a href="#2）选择Spring-Initializr" class="headerlink" title="2）选择Spring Initializr"></a>2）选择Spring Initializr</h4><p>此处配置自己的JDK版本，使用默认的Initializr Service URL</p>
-<img style="margin:auto 0;" src="/.io//SpringBootBuild-2.png" alt="SpringBootBuild-2.png">
+<img style="margin:auto 0;" src="/2020/05/27/SpringBootBuild/SpringBootBuild-2.png" alt="SpringBootBuild-2.png">
 
-<h4 id="3）配置maven信息，根据项目信息填写"><a href="#3）配置maven信息，根据项目信息填写" class="headerlink" title="3）配置maven信息，根据项目信息填写"></a>3）配置maven信息，根据项目信息填写</h4><img style="margin:auto 0;" src="/.io//SpringBootBuild-3.png" alt="SpringBootBuild-3.png">
+<h4 id="3）配置maven信息，根据项目信息填写"><a href="#3）配置maven信息，根据项目信息填写" class="headerlink" title="3）配置maven信息，根据项目信息填写"></a>3）配置maven信息，根据项目信息填写</h4><img style="margin:auto 0;" src="/2020/05/27/SpringBootBuild/SpringBootBuild-3.png" alt="SpringBootBuild-3.png">
 
 <h4 id="4）添加项目所需依赖starter-gt-Next"><a href="#4）添加项目所需依赖starter-gt-Next" class="headerlink" title="4）添加项目所需依赖starter-&gt;Next"></a>4）添加项目所需依赖starter-&gt;Next</h4><p>注意一下，这里可以只选择starter-web，数据库的starter需要添加数据库连接配置，否则启动失败。</p>
-<img style="margin:auto 0;" src="/.io//SpringBootBuild-4.png" alt="SpringBootBuild-4.png">
+<img style="margin:auto 0;" src="/2020/05/27/SpringBootBuild/SpringBootBuild-4.png" alt="SpringBootBuild-4.png">
 
 <h4 id="2-涉密网络环境"><a href="#2-涉密网络环境" class="headerlink" title="2.涉密网络环境"></a>2.涉密网络环境</h4><p>此处涉密网络环境指不能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。</p>
-<h4 id="1）新建maven项目"><a href="#1）新建maven项目" class="headerlink" title="1）新建maven项目"></a>1）新建maven项目</h4><img style="margin:auto 0;" src="/.io//SpringBootBuild-5.png" alt="SpringBootBuild-5.png">
+<h4 id="1）新建maven项目"><a href="#1）新建maven项目" class="headerlink" title="1）新建maven项目"></a>1）新建maven项目</h4><img style="margin:auto 0;" src="/2020/05/27/SpringBootBuild/SpringBootBuild-5.png" alt="SpringBootBuild-5.png">
 
 <h4 id="3）添加父项目"><a href="#3）添加父项目" class="headerlink" title="3）添加父项目"></a>3）添加父项目</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
