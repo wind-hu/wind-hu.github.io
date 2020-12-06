@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://huleilei0906.github.io/"/>
-  <updated>2020-11-29T11:59:52.001Z</updated>
+  <updated>2020-12-06T10:23:41.753Z</updated>
   <id>https://huleilei0906.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot搭建MyBatis</title>
+    <link href="https://huleilei0906.github.io/2020/12/06/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/"/>
+    <id>https://huleilei0906.github.io/2020/12/06/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/</id>
+    <published>2020-12-06T06:22:27.000Z</published>
+    <updated>2020-12-06T10:23:41.753Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+    
+      <category term="Mybatis" scheme="https://huleilei0906.github.io/categories/Java/Mybatis/"/>
+    
+      <category term="SpringBoot" scheme="https://huleilei0906.github.io/categories/Java/Mybatis/SpringBoot/"/>
+    
+    
+      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
+    
+      <category term="Mybatis" scheme="https://huleilei0906.github.io/tags/Mybatis/"/>
+    
+      <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
+    
+  </entry>
   
   <entry>
     <title>nginx负载均衡配置</title>
@@ -57,7 +95,7 @@
     <link href="https://huleilei0906.github.io/2020/06/28/Quartz%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>https://huleilei0906.github.io/2020/06/28/Quartz%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2020-06-28T11:49:28.000Z</published>
-    <updated>2020-12-05T13:40:59.341Z</updated>
+    <updated>2020-12-06T10:07:07.342Z</updated>
     
     <summary type="html">
     
@@ -111,9 +149,9 @@
     
       <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
     
-      <category term="Spring" scheme="https://huleilei0906.github.io/tags/Spring/"/>
-    
       <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
+    
+      <category term="Spring" scheme="https://huleilei0906.github.io/tags/Spring/"/>
     
   </entry>
   
