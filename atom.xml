@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://huleilei0906.github.io/"/>
-  <updated>2020-12-06T10:23:41.753Z</updated>
+  <updated>2020-12-06T10:39:37.166Z</updated>
   <id>https://huleilei0906.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://huleilei0906.github.io/2020/12/06/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/"/>
     <id>https://huleilei0906.github.io/2020/12/06/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/</id>
     <published>2020-12-06T06:22:27.000Z</published>
-    <updated>2020-12-06T10:23:41.753Z</updated>
+    <updated>2020-12-06T10:39:37.166Z</updated>
     
     <summary type="html">
     
@@ -32,7 +32,7 @@
           &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3
+&lt;h2
         
       
     
@@ -82,11 +82,11 @@
       <category term="分布式" scheme="https://huleilei0906.github.io/categories/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
     
-      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
       <category term="nginx" scheme="https://huleilei0906.github.io/tags/nginx/"/>
     
       <category term="负载均衡" scheme="https://huleilei0906.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    
+      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
   </entry>
   
@@ -220,9 +220,9 @@
     
       <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
     
-      <category term="Redis" scheme="https://huleilei0906.github.io/tags/Redis/"/>
-    
       <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="Redis" scheme="https://huleilei0906.github.io/tags/Redis/"/>
     
   </entry>
   
