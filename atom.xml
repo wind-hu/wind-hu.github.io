@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://huleilei0906.github.io/"/>
-  <updated>2021-01-24T14:21:11.156Z</updated>
+  <updated>2021-03-30T15:01:16.359Z</updated>
   <id>https://huleilei0906.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SPI机制</title>
+    <link href="https://huleilei0906.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/"/>
+    <id>https://huleilei0906.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/</id>
+    <published>2020-07-01T14:19:26.000Z</published>
+    <updated>2021-03-30T15:01:16.359Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;一、什么是SPI&quot;&gt;&lt;a href=&quot;#一、什么是SPI&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SpringBoot" scheme="https://huleilei0906.github.io/categories/SpringBoot/"/>
+    
+      <category term="SPI" scheme="https://huleilei0906.github.io/categories/SpringBoot/SPI/"/>
+    
+    
+      <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
+    
+      <category term="SPI" scheme="https://huleilei0906.github.io/tags/SPI/"/>
+    
+  </entry>
   
   <entry>
     <title>MinIO</title>
@@ -55,7 +87,7 @@
     <link href="https://huleilei0906.github.io/2020/06/28/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/"/>
     <id>https://huleilei0906.github.io/2020/06/28/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/</id>
     <published>2020-06-28T12:41:30.000Z</published>
-    <updated>2021-01-24T13:59:48.915Z</updated>
+    <updated>2021-03-30T15:02:29.225Z</updated>
     
     <summary type="html">
     
@@ -125,7 +157,7 @@
     <link href="https://huleilei0906.github.io/2020/05/28/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/"/>
     <id>https://huleilei0906.github.io/2020/05/28/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/</id>
     <published>2020-05-28T06:22:27.000Z</published>
-    <updated>2021-01-24T09:27:02.678Z</updated>
+    <updated>2021-03-30T14:12:46.635Z</updated>
     
     <summary type="html">
     
@@ -163,7 +195,7 @@
     <link href="https://huleilei0906.github.io/2020/05/27/SpringBootBuild/"/>
     <id>https://huleilei0906.github.io/2020/05/27/SpringBootBuild/</id>
     <published>2020-05-27T15:11:37.000Z</published>
-    <updated>2020-11-28T17:00:51.706Z</updated>
+    <updated>2021-03-30T14:12:43.942Z</updated>
     
     <summary type="html">
     
@@ -185,9 +217,9 @@
     
       <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
     
-      <category term="Spring" scheme="https://huleilei0906.github.io/tags/Spring/"/>
-    
       <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
+    
+      <category term="Spring" scheme="https://huleilei0906.github.io/tags/Spring/"/>
     
   </entry>
   
@@ -196,7 +228,7 @@
     <link href="https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/"/>
     <id>https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</id>
     <published>2020-05-27T10:27:30.000Z</published>
-    <updated>2020-11-28T17:00:51.423Z</updated>
+    <updated>2021-03-30T14:12:42.819Z</updated>
     
     <summary type="html">
     
@@ -254,9 +286,9 @@
       <category term="分布式" scheme="https://huleilei0906.github.io/categories/JAVA/Redis/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
     
-      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
       <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+    
+      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
       <category term="Redis" scheme="https://huleilei0906.github.io/tags/Redis/"/>
     
@@ -267,7 +299,7 @@
     <link href="https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/"/>
     <id>https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</id>
     <published>2020-05-26T15:10:37.000Z</published>
-    <updated>2020-11-28T17:00:51.424Z</updated>
+    <updated>2021-03-30T14:12:43.440Z</updated>
     
     <summary type="html">
     

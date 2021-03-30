@@ -85,6 +85,90 @@
     
     
     
+    <article id="post-SPI机制" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/01/SPI%E6%9C%BA%E5%88%B6/"
+    >SPI机制</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/01/SPI%E6%9C%BA%E5%88%B6/" class="article-date">
+  <time datetime="2020-07-01T14:19:26.000Z" itemprop="datePublished">2020-07-01</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a> / <a class="article-category-link" href="/categories/SpringBoot/SPI/">SPI</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong></p>
+<h1 id="一、什么是SPI"><a href="#一、什么是SPI" class="headerlink" title="一、什么是SPI"></a>一、什么是SPI</h1><h2 id="1-1-SPI思想"><a href="#1-1-SPI思想" class="headerlink" title="1.1 SPI思想"></a>1.1 SPI思想</h2><p>SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。</p>
+<h2 id="1-2-SPI约定"><a href="#1-2-SPI约定" class="headerlink" title="1.2 SPI约定"></a>1.2 SPI约定</h2><h3 id="1-2-1-Java"><a href="#1-2-1-Java" class="headerlink" title="1.2.1 Java"></a>1.2.1 Java</h3><p>当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里创建一个以服务接口命名的文件。</p>
+<h3 id="1-2-2-Spring"><a href="#1-2-2-Spring" class="headerlink" title="1.2.2 Spring"></a>1.2.2 Spring</h3><p>在jar包的META-INF/目录里创建一个spring.factories，所有spi对应关系都可以写在这个文件中。</p>
+<h1 id="二、Spring中的SPI"><a href="#二、Spring中的SPI" class="headerlink" title="二、Spring中的SPI"></a>二、Spring中的SPI</h1><p>本文介绍下spring的SPI</p>
+<h2 id="2-1-定义一个接口"><a href="#2-1-定义一个接口" class="headerlink" title="2.1 定义一个接口"></a>2.1 定义一个接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">final</span> ApplicationContext context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-编写一个接口的实现类"><a href="#2-2-编写一个接口的实现类" class="headerlink" title="2.2 编写一个接口的实现类"></a>2.2 编写一个接口的实现类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInit</span> <span class="keyword">implements</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO init LogInit</span></span><br><span class="line">        log.info(<span class="string">"Init My Log."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-新建spi所需静态文件"><a href="#2-3-新建spi所需静态文件" class="headerlink" title="2.3 新建spi所需静态文件"></a>2.3 新建spi所需静态文件</h2><p>在Resources静态资源目录下新建spring.factories文件；写入如下内容：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">com.windh.springspi.interfaces.InitServiceInterFace</span>=<span class="string">\</span></span><br><span class="line">  <span class="attr">com.windh.springspi.impl.LogInit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.support.SpringFactoriesLoader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringspiApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext run = SpringApplication.run(SpringspiApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        List&lt;InitServiceInterFace&gt; serviceLoader = SpringFactoriesLoader.loadFactories(</span><br><span class="line">                InitServiceInterFace<span class="class">.<span class="keyword">class</span>, <span class="title">Thread</span>.<span class="title">currentThread</span>().<span class="title">getContextClassLoader</span>())</span>;</span><br><span class="line">        <span class="keyword">for</span> (InitServiceInterFace initServiceInterFace : serviceLoader) &#123;</span><br><span class="line">            initServiceInterFace.init(run);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>日志输入如下：</p>
+<img style="margin:auto 0;" src="/2020/07/01/SPI%E6%9C%BA%E5%88%B6/SPI-1.png" alt="SPI-1.png">
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SPI/" rel="tag">SPI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-Minio" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -250,7 +334,6 @@
 
 <h5 id="step5：最终效果如下"><a href="#step5：最终效果如下" class="headerlink" title="step5：最终效果如下"></a>step5：最终效果如下</h5><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#user  nobody;</span></span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#error_log  logs/error.log;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">    <span class="comment">#                  '$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">    <span class="comment">#                  '"$http_user_agent" "$http_x_forwarded_for"';</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/access.log  main;</span></span><br><span class="line">    <span class="attribute">upstream</span> servername &#123;</span><br><span class="line">        <span class="comment">#1、轮询（默认选项，所有weight=1）</span></span><br><span class="line">        <span class="comment">#2、weight，执行轮询几率，weight与访问几率成正比</span></span><br><span class="line">        <span class="comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span></span><br><span class="line">        <span class="comment">#4、least_conn，最少连接数负载均衡</span></span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP1&#125;</span>:<span class="variable">$&#123;PORT1&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP2&#125;</span>:<span class="variable">$&#123;PORT2&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP3&#125;</span>:<span class="variable">$&#123;PORT3&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP4&#125;</span>:<span class="variable">$&#123;PORT4&#125;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#keepalive_timeout  0;</span></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#include /usr/local/nginx/minio.conf    </span></span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">root</span>   html;</span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="attribute">location</span> /minio &#123;</span><br><span class="line">			<span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">			<span class="attribute">proxy_pass</span> http://servername;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#error_page  404              /404.html;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;</span><br><span class="line">        <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">            <span class="attribute">root</span>   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p>nginx作为一个运行在代码意外的工具。对于项目架构是很友好的，同时具备多种网络链路方面的处理。</p>
 
       
       <!-- reward -->
