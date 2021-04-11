@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">395</span>
+            <span class="post-count">397</span>
         </span>
     </span>
 
@@ -112,15 +112,19 @@
 
       
       <p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong></p>
-<h1 id="一、什么是SPI"><a href="#一、什么是SPI" class="headerlink" title="一、什么是SPI"></a>一、什么是SPI</h1><h2 id="1-1-SPI思想"><a href="#1-1-SPI思想" class="headerlink" title="1.1 SPI思想"></a>1.1 SPI思想</h2><p>SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。</p>
+<h1 id="1-什么是SPI"><a href="#1-什么是SPI" class="headerlink" title="1. 什么是SPI"></a>1. 什么是SPI</h1><h2 id="1-1-SPI思想"><a href="#1-1-SPI思想" class="headerlink" title="1.1 SPI思想"></a>1.1 SPI思想</h2><p>SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。</p>
 <h2 id="1-2-SPI约定"><a href="#1-2-SPI约定" class="headerlink" title="1.2 SPI约定"></a>1.2 SPI约定</h2><h3 id="1-2-1-Java"><a href="#1-2-1-Java" class="headerlink" title="1.2.1 Java"></a>1.2.1 Java</h3><p>当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里创建一个以服务接口命名的文件。</p>
 <h3 id="1-2-2-Spring"><a href="#1-2-2-Spring" class="headerlink" title="1.2.2 Spring"></a>1.2.2 Spring</h3><p>在jar包的META-INF/目录里创建一个spring.factories，所有spi对应关系都可以写在这个文件中。</p>
-<h1 id="二、Spring中的SPI"><a href="#二、Spring中的SPI" class="headerlink" title="二、Spring中的SPI"></a>二、Spring中的SPI</h1><p>本文介绍下spring的SPI</p>
+<h1 id="2-Spring中的SPI"><a href="#2-Spring中的SPI" class="headerlink" title="2. Spring中的SPI"></a>2. Spring中的SPI</h1><blockquote>
+<p>本文介绍下spring的SPI</p>
+</blockquote>
 <h2 id="2-1-定义一个接口"><a href="#2-1-定义一个接口" class="headerlink" title="2.1 定义一个接口"></a>2.1 定义一个接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">final</span> ApplicationContext context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-2-编写一个接口的实现类"><a href="#2-2-编写一个接口的实现类" class="headerlink" title="2.2 编写一个接口的实现类"></a>2.2 编写一个接口的实现类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInit</span> <span class="keyword">implements</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO init LogInit</span></span><br><span class="line">        log.info(<span class="string">"Init My Log."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-3-新建spi所需静态文件"><a href="#2-3-新建spi所需静态文件" class="headerlink" title="2.3 新建spi所需静态文件"></a>2.3 新建spi所需静态文件</h2><p>在Resources静态资源目录下新建spring.factories文件；写入如下内容：</p>
+<h2 id="2-3-新建spi所需静态文件"><a href="#2-3-新建spi所需静态文件" class="headerlink" title="2.3 新建spi所需静态文件"></a>2.3 新建spi所需静态文件</h2><blockquote>
+<p>在Resources静态资源目录下新建spring.factories文件；写入如下内容：</p>
+</blockquote>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">com.windh.springspi.interfaces.InitServiceInterFace</span>=<span class="string">\</span></span><br><span class="line">  <span class="attr">com.windh.springspi.impl.LogInit</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.support.SpringFactoriesLoader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringspiApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext run = SpringApplication.run(SpringspiApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        List&lt;InitServiceInterFace&gt; serviceLoader = SpringFactoriesLoader.loadFactories(</span><br><span class="line">                InitServiceInterFace<span class="class">.<span class="keyword">class</span>, <span class="title">Thread</span>.<span class="title">currentThread</span>().<span class="title">getContextClassLoader</span>())</span>;</span><br><span class="line">        <span class="keyword">for</span> (InitServiceInterFace initServiceInterFace : serviceLoader) &#123;</span><br><span class="line">            initServiceInterFace.init(run);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -158,6 +162,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            JAVA线程池
+          
+        </div>
+      </a>
     
     
       <a href="/2020/06/29/Minio/" class="article-nav-link">

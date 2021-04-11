@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">486</span>
+            <span class="post-count">557</span>
         </span>
     </span>
 
@@ -111,33 +111,32 @@
       
 
       
-      <h3 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h3><blockquote>
-<p>用过Spring的都知道DI和AOP，今天介绍一个实现AOP超级且方便功能强大的框架AspectJ。此文默认读者有一定spring基础。</p>
+      <blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
 </blockquote>
-<h3 id="二、环境"><a href="#二、环境" class="headerlink" title="二、环境"></a>二、环境</h3><blockquote>
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>用过Spring的都知道DI和AOP，今天介绍一个实现AOP超级且方便功能强大的框架AspectJ。此文默认读者有一定spring基础。</p>
+<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><blockquote>
 <p>JDK：1.8</p>
 <p>架构：SpringBoot</p>
 </blockquote>
-<h3 id="三、详解"><a href="#三、详解" class="headerlink" title="三、详解"></a>三、详解</h3><h4 id="1）基础概念"><a href="#1）基础概念" class="headerlink" title="1）基础概念"></a>1）基础概念</h4><p>Aspect：切面</p>
+<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-基础概念"><a href="#3-1-基础概念" class="headerlink" title="3.1 基础概念"></a>3.1 基础概念</h2><p>Aspect：切面</p>
 <p>Pointcut：切点，通过不同切入点，执行不同操作，此文中展示execution时机执行的操作。</p>
 <p>Advice：通知，包括前置通知、后置通知、异常通知、环绕通知等等；其中，环绕通知功能最为强大。此文展示环绕通知用法。</p>
-<h4 id="2）AspectJ依赖："><a href="#2）AspectJ依赖：" class="headerlink" title="2）AspectJ依赖："></a>2）AspectJ依赖：</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-AspectJ依赖："><a href="#3-2-AspectJ依赖：" class="headerlink" title="3.2 AspectJ依赖："></a>3.2 AspectJ依赖：</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="3）代码实现"><a href="#3）代码实现" class="headerlink" title="3）代码实现"></a>3）代码实现</h4><p>step1：首先在SpringBoot配置类中添加注解@EnableAspectJAutoProxy，如下：</p>
+<h2 id="3-3-代码实现"><a href="#3-3-代码实现" class="headerlink" title="3.3 代码实现"></a>3.3 代码实现</h2><p><code>step1</code>：首先在SpringBoot配置类中添加注解@EnableAspectJAutoProxy，如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableAspectJAutoProxy</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>step2：新建AspectjAop class，使用@Aspect标记为切面，注册到Spring容器中</p>
+<p><code>step2</code>：新建AspectjAop class，使用@Aspect标记为切面，注册到Spring容器中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>step3：新建方法controllerPointCut，添加Pointcut，切点时机为“execution”，匹配方法为controller报下所有public 方法。可以对请求进行信息安全过滤等等操作。</p>
+<p><code>step3</code>：新建方法controllerPointCut，添加Pointcut，切点时机为“execution”，匹配方法为controller报下所有public 方法。可以对请求进行信息安全过滤等等操作。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此路径表示controller下所有类中的public方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com..controller..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">controllerPointCut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>step4：添加Advice，注入执行中切点实例ProceedingJoinPoint，ProceedingJoinPoint可以获取入参，控制执行等等操作。可以在执行方法前后进行方法增强，实现业务等。</p>
+<p><code>step4</code>：添加Advice，注入执行中切点实例ProceedingJoinPoint，ProceedingJoinPoint可以获取入参，控制执行等等操作。可以在执行方法前后进行方法增强，实现业务等。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此路径表示controller下所有类中的public方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com..controller..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">controllerPointCut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around</span>(value = <span class="string">"controllerPointCut()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> Object <span class="title">aroundAdvice</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Pre-operation</span></span><br><span class="line">        log.info(<span class="string">"You can check the parameters."</span>);</span><br><span class="line">        Object obj = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            obj = proceedingJoinPoint.proceed();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            log.error(<span class="string">"controller throwable"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// TODO：Post-operation</span></span><br><span class="line">        log.info(<span class="string">"You can encapsulate the return value."</span>);</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><blockquote>
-<p>AOP的原理其实就是设计模式中的动态代理。后续会更新关于动态代理相关的blog。</p>
-</blockquote>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>AOP的原理其实就是设计模式中的动态代理。后续会更新关于动态代理相关的blog。</p>
 
       
       <!-- reward -->
@@ -171,11 +170,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/05/27/SpringBootBuild/" class="article-nav-link">
+      <a href="/2020/05/27/SpringBoot-Build/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            SpringBootBuild
+            SpringBoot-Build
           
         </div>
       </a>

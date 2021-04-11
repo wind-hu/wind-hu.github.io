@@ -112,11 +112,11 @@
 
       
       <blockquote>
-<p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。</strong></p>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
 </blockquote>
-<h1 id="一、什么是MinIO"><a href="#一、什么是MinIO" class="headerlink" title="一、什么是MinIO"></a>一、什么是MinIO</h1><h2 id="1-1-MinIO介绍"><a href="#1-1-MinIO介绍" class="headerlink" title="1.1 MinIO介绍"></a>1.1 MinIO介绍</h2><p>​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
+<h1 id="1-什么是MinIO"><a href="#1-什么是MinIO" class="headerlink" title="1. 什么是MinIO"></a>1. 什么是MinIO</h1><h2 id="1-1-MinIO介绍"><a href="#1-1-MinIO介绍" class="headerlink" title="1.1 MinIO介绍"></a>1.1 MinIO介绍</h2><p>​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
 <h2 id="1-2-MinIO保护数据策略"><a href="#1-2-MinIO保护数据策略" class="headerlink" title="1.2 MinIO保护数据策略"></a>1.2 MinIO保护数据策略</h2><p>​        Minio使用<strong>纠删码</strong><code>erasure code</code>和校验和<code>checksum</code>来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。</p>
-<h1 id="二、MinIO部署"><a href="#二、MinIO部署" class="headerlink" title="二、MinIO部署"></a>二、MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
+<h1 id="2-MinIO部署"><a href="#2-MinIO部署" class="headerlink" title="2. MinIO部署"></a>2. MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
 <p>进入<a href="https://dl.min.io/server/minio/release/linux-amd64/minio下载" target="_blank" rel="noopener">https://dl.min.io/server/minio/release/linux-amd64/minio下载</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;dl.minio.io&#x2F;server&#x2F;minio&#x2F;release&#x2F;linux-amd64&#x2F;minio</span><br></pre></td></tr></table></figure>
 
@@ -137,7 +137,7 @@
 
 <h3 id="2-2-3-MINIO集群注意点"><a href="#2-2-3-MINIO集群注意点" class="headerlink" title="2.2.3 MINIO集群注意点"></a>2.2.3 MINIO集群注意点</h3><p>minio的集群所有节点的<strong>登录账户</strong>及<strong>密码</strong>必须一致。</p>
 <p>minio的集群节点数量推荐大于等于<strong>4</strong>。</p>
-<h3 id="2-2-4-MINIO负载均衡"><a href="#2-2-4-MINIO负载均衡" class="headerlink" title="2.2.4 MINIO负载均衡"></a>2.2.4 MINIO负载均衡</h3><p>官方文档支持nginx，可参考我的另一篇<a href="/2020/06/28/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/" title="关于nginx负载均衡的Blog">关于nginx负载均衡的Blog</a>。</p>
+<h3 id="2-2-4-MINIO负载均衡"><a href="#2-2-4-MINIO负载均衡" class="headerlink" title="2.2.4 MINIO负载均衡"></a>2.2.4 MINIO负载均衡</h3><p>官方文档支持nginx，可参考我的另一篇。</p>
 <h4 id="2-2-4-1-配置nginx分发端口"><a href="#2-2-4-1-配置nginx分发端口" class="headerlink" title="2.2.4.1 配置nginx分发端口"></a>2.2.4.1 配置nginx分发端口</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  www.dealthBook.com;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   html;</span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-2-4-2-添加upstream"><a href="#2-2-4-2-添加upstream" class="headerlink" title="2.2.4.2 添加upstream"></a>2.2.4.2 添加upstream</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> minio_server &#123;</span><br><span class="line">	<span class="comment">#1、轮询（默认选项，所有weight=1）</span></span><br><span class="line">	<span class="comment">#2、weight，执行轮询几率，weight与访问几率成正比</span></span><br><span class="line">	<span class="comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span></span><br><span class="line">	<span class="comment">#4、least_conn，最少连接数负载均衡</span></span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP1&#125;</span>:<span class="variable">$&#123;PORT1&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP2&#125;</span>:<span class="variable">$&#123;PORT2&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP3&#125;</span>:<span class="variable">$&#123;PORT3&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP4&#125;</span>:<span class="variable">$&#123;PORT4&#125;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -152,7 +152,7 @@
 <h4 id="2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089"><a href="#2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089" class="headerlink" title="2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089"></a>2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089</h4><blockquote>
 <p>通过nginx进入minio <a href="http://ip:8089/minio" target="_blank" rel="noopener">http://ip:8089/minio</a></p>
 </blockquote>
-<h1 id="三、MinIO页面"><a href="#三、MinIO页面" class="headerlink" title="三、MinIO页面"></a>三、MinIO页面</h1><h2 id="3-1-新建桶（Bucket）及上传文件"><a href="#3-1-新建桶（Bucket）及上传文件" class="headerlink" title="3.1 新建桶（Bucket）及上传文件"></a>3.1 新建桶（Bucket）及上传文件</h2><img style="margin:auto 0;" src="/2020/06/29/Minio/MinIO-1.png" alt="MinIO-1.png">
+<h1 id="3-MinIO页面"><a href="#3-MinIO页面" class="headerlink" title="3. MinIO页面"></a>3. MinIO页面</h1><h2 id="3-1-新建桶（Bucket）及上传文件"><a href="#3-1-新建桶（Bucket）及上传文件" class="headerlink" title="3.1 新建桶（Bucket）及上传文件"></a>3.1 新建桶（Bucket）及上传文件</h2><img style="margin:auto 0;" src="/2020/06/29/Minio/MinIO-1.png" alt="MinIO-1.png">
       
       <!-- reward -->
       
@@ -195,9 +195,9 @@
       </a>
     
     
-      <a href="/2020/06/28/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+      <a href="/2020/06/28/Nginx-LoadBalance/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">nginx负载均衡配置</div>
+        <div class="article-nav-title">Nginx-LoadBalance</div>
       </a>
     
   </nav>

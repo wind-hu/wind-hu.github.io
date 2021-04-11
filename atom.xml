@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://huleilei0906.github.io/"/>
-  <updated>2021-03-30T15:01:16.359Z</updated>
+  <updated>2021-04-11T15:02:14.912Z</updated>
   <id>https://huleilei0906.github.io/</id>
   
   <author>
@@ -17,11 +17,45 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JAVA线程池</title>
+    <link href="https://huleilei0906.github.io/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    <id>https://huleilei0906.github.io/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/</id>
+    <published>2020-07-02T13:43:58.000Z</published>
+    <updated>2021-04-11T15:02:14.912Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+    
+      <category term="线程池" scheme="https://huleilei0906.github.io/categories/JAVA/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+    
+      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+    
+      <category term="线程池" scheme="https://huleilei0906.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SPI机制</title>
     <link href="https://huleilei0906.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/"/>
     <id>https://huleilei0906.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/</id>
     <published>2020-07-01T14:19:26.000Z</published>
-    <updated>2021-03-30T15:01:16.359Z</updated>
+    <updated>2021-04-11T15:13:40.043Z</updated>
     
     <summary type="html">
     
@@ -30,7 +64,7 @@
         
         
           &lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;一、什么是SPI&quot;&gt;&lt;a href=&quot;#一、什么是SPI&quot;
+&lt;h1 id=&quot;1-什么是SPI&quot;&gt;&lt;a href=&quot;#1-什么是SPI&quot;
         
       
     
@@ -53,7 +87,7 @@
     <link href="https://huleilei0906.github.io/2020/06/29/Minio/"/>
     <id>https://huleilei0906.github.io/2020/06/29/Minio/</id>
     <published>2020-06-29T09:24:59.000Z</published>
-    <updated>2021-01-24T14:21:11.156Z</updated>
+    <updated>2021-04-11T15:12:30.049Z</updated>
     
     <summary type="html">
     
@@ -62,7 +96,7 @@
         
         
           &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1
         
@@ -83,11 +117,11 @@
   </entry>
   
   <entry>
-    <title>nginx负载均衡配置</title>
-    <link href="https://huleilei0906.github.io/2020/06/28/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/"/>
-    <id>https://huleilei0906.github.io/2020/06/28/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%85%8D%E7%BD%AE/</id>
+    <title>Nginx-LoadBalance</title>
+    <link href="https://huleilei0906.github.io/2020/06/28/Nginx-LoadBalance/"/>
+    <id>https://huleilei0906.github.io/2020/06/28/Nginx-LoadBalance/</id>
     <published>2020-06-28T12:41:30.000Z</published>
-    <updated>2021-03-30T15:02:29.225Z</updated>
+    <updated>2021-04-11T15:10:49.517Z</updated>
     
     <summary type="html">
     
@@ -96,36 +130,40 @@
         
         
           &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3
+&lt;h1
         
       
     
     </summary>
     
     
-      <category term="nginx" scheme="https://huleilei0906.github.io/categories/nginx/"/>
+      <category term="Nginx" scheme="https://huleilei0906.github.io/categories/Nginx/"/>
     
-      <category term="负载均衡" scheme="https://huleilei0906.github.io/categories/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+      <category term="LoadBalance" scheme="https://huleilei0906.github.io/categories/Nginx/LoadBalance/"/>
     
-      <category term="分布式" scheme="https://huleilei0906.github.io/categories/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+      <category term="负载均衡" scheme="https://huleilei0906.github.io/categories/Nginx/LoadBalance/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    
+      <category term="分布式" scheme="https://huleilei0906.github.io/categories/Nginx/LoadBalance/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
     
       <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
-      <category term="nginx" scheme="https://huleilei0906.github.io/tags/nginx/"/>
+      <category term="Nginx" scheme="https://huleilei0906.github.io/tags/Nginx/"/>
+    
+      <category term="LoadBalance" scheme="https://huleilei0906.github.io/tags/LoadBalance/"/>
     
       <category term="负载均衡" scheme="https://huleilei0906.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     
   </entry>
   
   <entry>
-    <title>Quartz的使用</title>
-    <link href="https://huleilei0906.github.io/2020/06/28/Quartz%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://huleilei0906.github.io/2020/06/28/Quartz%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <title>Quartz-Use</title>
+    <link href="https://huleilei0906.github.io/2020/06/28/Quartz-Use/"/>
+    <id>https://huleilei0906.github.io/2020/06/28/Quartz-Use/</id>
     <published>2020-06-28T11:49:28.000Z</published>
-    <updated>2020-12-06T10:07:07.342Z</updated>
+    <updated>2021-04-11T15:05:17.135Z</updated>
     
     <summary type="html">
     
@@ -133,8 +171,10 @@
       
         
         
-          &lt;p&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/p&gt;
-&lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1
         
       
     
@@ -153,11 +193,11 @@
   </entry>
   
   <entry>
-    <title>SpringBoot搭建MyBatis</title>
-    <link href="https://huleilei0906.github.io/2020/05/28/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/"/>
-    <id>https://huleilei0906.github.io/2020/05/28/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/</id>
+    <title>SpringBoot-Build-MyBatis</title>
+    <link href="https://huleilei0906.github.io/2020/05/28/SpringBoot-Build-MyBatis/"/>
+    <id>https://huleilei0906.github.io/2020/05/28/SpringBoot-Build-MyBatis/</id>
     <published>2020-05-28T06:22:27.000Z</published>
-    <updated>2021-03-30T14:12:46.635Z</updated>
+    <updated>2021-04-11T15:02:46.742Z</updated>
     
     <summary type="html">
     
@@ -191,21 +231,32 @@
   </entry>
   
   <entry>
-    <title>SpringBootBuild</title>
-    <link href="https://huleilei0906.github.io/2020/05/27/SpringBootBuild/"/>
-    <id>https://huleilei0906.github.io/2020/05/27/SpringBootBuild/</id>
+    <title>SpringBoot-Build</title>
+    <link href="https://huleilei0906.github.io/2020/05/27/SpringBoot-Build/"/>
+    <id>https://huleilei0906.github.io/2020/05/27/SpringBoot-Build/</id>
     <published>2020-05-27T15:11:37.000Z</published>
-    <updated>2021-03-30T14:12:43.942Z</updated>
+    <updated>2021-04-11T15:01:19.405Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;JDK1.8、IDEA&lt;/p&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3. 详解&quot;&gt;&lt;/a&gt;3. 详解&lt;/h1&gt;&lt;h2 id=&quot;3-1-非涉密网络环境&quot;&gt;&lt;a href=&quot;#3-1-非涉密网络环境&quot; class=&quot;headerlink&quot; title=&quot;3.1 非涉密网络环境&quot;&gt;&lt;/a&gt;3.1 非涉密网络环境&lt;/h2&gt;&lt;p&gt;这里的非涉密网络环境的特点是能访问&lt;a href=&quot;https://start.spring.io&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://start.spring.io&lt;/a&gt;。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。&lt;/p&gt;
+&lt;h3 id=&quot;3-1-1-新建项目&quot;&gt;&lt;a href=&quot;#3-1-1-新建项目&quot; class=&quot;headerlink&quot; title=&quot;3.1.1 新建项目&quot;&gt;&lt;/a&gt;3.1.1 新建项目&lt;/h3&gt;&lt;p&gt;IDEA-&amp;gt;File-&amp;gt;New-&amp;gt;Project…&lt;/p&gt;
+&lt;img style=&quot;margin:auto 0;&quot; src=&quot;/2020/05/27/SpringBoot-Build/SpringBootBuild-1.png&quot; alt=&quot;SpringBootBuild-1.png&quot;&gt;
+
+&lt;h3 id=&quot;3-1-2-选择Spring-Initializr&quot;&gt;&lt;a href=&quot;#3-1-2-选择Spring-Initializr&quot; class=&quot;headerlink&quot; title=&quot;3.1.2 选择Spring Initializr&quot;&gt;&lt;/a&gt;3.1.2 选择Spring Initializr&lt;/h3&gt;&lt;p&gt;此处配置自己的JDK版本，使用默认的Initializr Service URL&lt;/p&gt;
+&lt;img style=&quot;margin:auto 0;&quot; src=&quot;/2020/05/27/SpringBoot-Build/SpringBootBuild-2.png&quot; alt=&quot;SpringBootBuild-2.png&quot;&gt;
+
+&lt;h3 id=&quot;3-1-3-配置maven信息，根据项目信息填写&quot;&gt;&lt;a href=&quot;#3-1-3-配置maven信息，根据项目信息填写&quot; class=&quot;headerlink&quot; title=&quot;3.1.3 配置maven信息，根据项目信息填写&quot;&gt;&lt;/a&gt;3.1.3 配置maven信息，根据项目信息填写&lt;/h3&gt;&lt;img style=&quot;margin:auto 0;&quot; src=&quot;/2020/05/27/SpringBoot-Build/SpringBootBuild-3.png&quot; alt=&quot;SpringBootBuild-3.png&quot;&gt;
+
+&lt;h3 id=&quot;3-1-4添加项目所需依赖starter-gt-Next&quot;&gt;&lt;a href=&quot;#3-1-4添加项目所需依赖starter-gt-Next&quot; class=&quot;headerlink&quot; title=&quot;3.1.4添加项目所需依赖starter-&amp;gt;Next&quot;&gt;&lt;/a&gt;3.1.4添加项目所需依赖starter-&amp;gt;Next&lt;/h3&gt;&lt;p&gt;注意一下，这里可以只选择starter-web，数据库的starter需要添加数据库连接配置，否则启动失败。&lt;/p&gt;
+&lt;img style=&quot;margin:auto 0;&quot; src=&quot;/2020/05/27/SpringBoot-Build/SpringBootBuild-4.png&quot; alt=&quot;SpringBootBuild-4.png&quot;&gt;
+
+&lt;br&gt;
     
     </summary>
     
@@ -228,7 +279,7 @@
     <link href="https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/"/>
     <id>https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</id>
     <published>2020-05-27T10:27:30.000Z</published>
-    <updated>2021-03-30T14:12:42.819Z</updated>
+    <updated>2021-04-11T14:54:28.830Z</updated>
     
     <summary type="html">
     
@@ -236,7 +287,10 @@
       
         
         
-          &lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1
         
       
     
@@ -263,7 +317,7 @@
     <link href="https://huleilei0906.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/"/>
     <id>https://huleilei0906.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/</id>
     <published>2020-05-27T05:19:09.000Z</published>
-    <updated>2020-11-28T17:00:51.725Z</updated>
+    <updated>2021-04-11T14:51:47.814Z</updated>
     
     <summary type="html">
     
@@ -271,8 +325,10 @@
       
         
         
-          &lt;p&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/p&gt;
-&lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;
+          &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1
         
       
     
@@ -299,18 +355,17 @@
     <link href="https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/"/>
     <id>https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</id>
     <published>2020-05-26T15:10:37.000Z</published>
-    <updated>2021-03-30T14:12:43.440Z</updated>
+    <updated>2021-04-11T14:48:56.711Z</updated>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot; title=&quot;一、背景&quot;&gt;&lt;/a&gt;一、背景&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;面试的时候问到过ArrayList的扩容机制以及HashMap的扩容机制，今天来讲讲ArrayList的扩容机制。&lt;/p&gt;
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;二、环境&quot;&gt;&lt;a href=&quot;#二、环境&quot; class=&quot;headerlink&quot; title=&quot;二、环境&quot;&gt;&lt;/a&gt;二、环境&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;JDK1.8&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;三、详解&quot;&gt;&lt;a href=&quot;#三、详解&quot; class=&quot;headerlink&quot; title=&quot;三、详解&quot;&gt;&lt;/a&gt;三、详解&lt;/h3&gt;&lt;p&gt;1.ArrayList若未指定长度默认空间长度为10，可见ArrayList中&lt;strong&gt;“DEFAULT_CAPACITY”&lt;/strong&gt;属性，&lt;strong&gt;“size”&lt;/strong&gt;属性为元素个数。最大长度为2^31-1-8，见ArrayList中&lt;strong&gt;“MAX_ARRAY_SIZE”&lt;/strong&gt;属性。&lt;/p&gt;
-&lt;p&gt;2.触发扩容的对外方法都在ArrayList.add&lt;em&gt;()的几个方法中，发现长度大于空间长度时调用*&lt;/em&gt;“grow()”**,源码如下；&lt;/p&gt;
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;面试的时候问到过ArrayList的扩容机制以及HashMap的扩容机制，今天来讲讲ArrayList的扩容机制。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;JDK1.8&lt;/p&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3.详解&quot;&gt;&lt;/a&gt;3.详解&lt;/h1&gt;&lt;h3 id=&quot;3-1-默认容量&quot;&gt;&lt;a href=&quot;#3-1-默认容量&quot; class=&quot;headerlink&quot; title=&quot;3.1 默认容量&quot;&gt;&lt;/a&gt;3.1 默认容量&lt;/h3&gt;&lt;p&gt; ArrayList若未指定长度默认空间长度为10，可见ArrayList中&lt;strong&gt;“DEFAULT_CAPACITY”&lt;/strong&gt;属性，&lt;strong&gt;“size”&lt;/strong&gt;属性为元素个数。最大长度为2^31-1-8，见ArrayList中&lt;strong&gt;“MAX_ARRAY_SIZE”&lt;/strong&gt;属性。&lt;/p&gt;
+&lt;h3 id=&quot;3-2-扩容&quot;&gt;&lt;a href=&quot;#3-2-扩容&quot; class=&quot;headerlink&quot; title=&quot;3.2 扩容&quot;&gt;&lt;/a&gt;3.2 扩容&lt;/h3&gt;&lt;p&gt; 触发扩容的对外方法都在ArrayList.add&lt;em&gt;()的几个方法中，发现长度大于空间长度时调用*&lt;/em&gt;“grow()”**,源码如下；&lt;/p&gt;
 &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; index, E element)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    rangeCheckForAdd(index);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ensureCapacityInternal(size + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);  &lt;span class=&quot;comment&quot;&gt;// Increments modCount!!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    System.arraycopy(elementData, index, elementData, index + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                     size - index);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    elementData[index] = element;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    size++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ensureExplicitCapacity&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; minCapacity)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    modCount++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (minCapacity - elementData.length &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        grow(minCapacity);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>

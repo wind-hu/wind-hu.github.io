@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    SpringBoot搭建MyBatis |  WindH
+    SpringBoot-Build-MyBatis |  WindH
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -45,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-SpringBoot搭建MyBatis" class="article article-type-post" itemscope
+  <article id="post-SpringBoot-Build-MyBatis" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -53,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  SpringBoot搭建MyBatis
+  SpringBoot-Build-MyBatis
 </h1>
  
 
@@ -62,7 +62,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/05/28/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/" class="article-date">
+      <a href="/2020/05/28/SpringBoot-Build-MyBatis/" class="article-date">
   <time datetime="2020-05-28T06:22:27.000Z" itemprop="datePublished">2020-05-28</time>
 </a>
       
@@ -114,7 +114,7 @@
       <blockquote>
 <p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。</strong></p>
 </blockquote>
-<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>SpringBoot中使用Mybatis之前，先搭建基本的<a href="/2020/05/27/SpringBootBuild/" title="SpringBoot">SpringBoot</a>项目,然后引入<a href="https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter" target="_blank" rel="noopener"><a href="https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter" target="_blank" rel="noopener">mybatis-spring-boot-starter</a></a>和数据库驱动（本文使用MySql）的依赖。也可以添加druid的依赖。</p>
+<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>SpringBoot中使用Mybatis之前，先搭建基本的项目,然后引入<a href="https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter" target="_blank" rel="noopener"><a href="https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter" target="_blank" rel="noopener">mybatis-spring-boot-starter</a></a>和数据库驱动（本文使用MySql）的依赖。也可以添加druid的依赖。</p>
 <h2 id="二、环境及依赖"><a href="#二、环境及依赖" class="headerlink" title="二、环境及依赖"></a>二、环境及依赖</h2><p>1）JDK：1.8<br>2）IDE：IDEA<br>3）maven依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.19<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.20<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -158,7 +158,7 @@
 <h4 id="11-验证"><a href="#11-验证" class="headerlink" title="11. 验证"></a>11. 验证</h4><blockquote>
 <p>访问 <a href="http://localhost:8080/user/a3fa40d2-978d-4945-b506-077762e99c24" target="_blank" rel="noopener">http://localhost:8080/user/a3fa40d2-978d-4945-b506-077762e99c24</a> 验证</p>
 </blockquote>
-<img style="margin:auto 0;" src="/2020/05/28/SpringBoot%E6%90%AD%E5%BB%BAMyBatis/SpringBoot中搭建MyBatis-1.png" alt="SpringBoot中搭建MyBatis-1.png">
+<img style="margin:auto 0;" src="/2020/05/28/SpringBoot-Build-MyBatis/SpringBoot中搭建MyBatis-1.png" alt="SpringBoot中搭建MyBatis-1.png">
 
 <h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><blockquote>
 <p>Mybatis在SSM框架总是必须掌握的。很多配置需要重点关注。关于pom中引入了druid，此处提供相关文章链接，可以简单了解。</p>
@@ -196,19 +196,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/06/28/Quartz%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-nav-link">
+      <a href="/2020/06/28/Quartz-Use/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Quartz的使用
+            Quartz-Use
           
         </div>
       </a>
     
     
-      <a href="/2020/05/27/SpringBootBuild/" class="article-nav-link">
+      <a href="/2020/05/27/SpringBoot-Build/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">SpringBootBuild</div>
+        <div class="article-nav-title">SpringBoot-Build</div>
       </a>
     
   </nav>
