@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://huleilei0906.github.io/"/>
-  <updated>2021-04-11T15:02:14.912Z</updated>
+  <updated>2021-04-17T05:48:47.455Z</updated>
   <id>https://huleilei0906.github.io/</id>
   
   <author>
@@ -21,30 +21,28 @@
     <link href="https://huleilei0906.github.io/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     <id>https://huleilei0906.github.io/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/</id>
     <published>2020-07-02T13:43:58.000Z</published>
-    <updated>2021-04-11T15:02:14.912Z</updated>
+    <updated>2021-04-17T05:48:47.455Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1
-        
-      
+&lt;h1 id=&quot;1-了解线程池&quot;&gt;&lt;a href=&quot;#1-了解线程池&quot; class=&quot;headerlink&quot; title=&quot;1.  了解线程池&quot;&gt;&lt;/a&gt;1.  了解线程池&lt;/h1&gt;&lt;p&gt;线程池简单理解就是一次创建多个线程，当一个任务交由线程池执行时，由线程池交由管理的线程来执行任务。&lt;/p&gt;
+&lt;h1 id=&quot;2-线程池的优点&quot;&gt;&lt;a href=&quot;#2-线程池的优点&quot; class=&quot;headerlink&quot; title=&quot;2. 线程池的优点&quot;&gt;&lt;/a&gt;2. 线程池的优点&lt;/h1&gt;&lt;p&gt;（1）不需要主动创建线程，线程的创建和销毁均由线程池管理，减少了不必要的消耗。&lt;/p&gt;
+&lt;p&gt;（2）提高响应速度，需要线程直接使用，省去了创建时的时间消耗。&lt;/p&gt;
+&lt;p&gt;（3）更方便于并发管理。&lt;/p&gt;
+&lt;h1 id=&quot;3-JDK中线程池类&quot;&gt;&lt;a href=&quot;#3-JDK中线程池类&quot; class=&quot;headerlink&quot; title=&quot;3. JDK中线程池类&quot;&gt;&lt;/a&gt;3. JDK中线程池类&lt;/h1&gt;&lt;p&gt;说到线程池就需要去了解 Executors ，它是线程池的工厂类，里面对应了四种应用场景的线程池。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
     
-      <category term="线程池" scheme="https://huleilei0906.github.io/categories/JAVA/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+      <category term="线程池" scheme="https://huleilei0906.github.io/categories/Java/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
     
       <category term="线程池" scheme="https://huleilei0906.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
@@ -55,25 +53,23 @@
     <link href="https://huleilei0906.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/"/>
     <id>https://huleilei0906.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/</id>
     <published>2020-07-01T14:19:26.000Z</published>
-    <updated>2021-04-11T15:13:40.043Z</updated>
+    <updated>2021-04-17T05:44:49.665Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;1-什么是SPI&quot;&gt;&lt;a href=&quot;#1-什么是SPI&quot;
-        
-      
+      &lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1-什么是SPI&quot;&gt;&lt;a href=&quot;#1-什么是SPI&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是SPI&quot;&gt;&lt;/a&gt;1. 什么是SPI&lt;/h1&gt;&lt;h2 id=&quot;1-1-SPI思想&quot;&gt;&lt;a href=&quot;#1-1-SPI思想&quot; class=&quot;headerlink&quot; title=&quot;1.1 SPI思想&quot;&gt;&lt;/a&gt;1.1 SPI思想&lt;/h2&gt;&lt;p&gt;SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-SPI约定&quot;&gt;&lt;a href=&quot;#1-2-SPI约定&quot; class=&quot;headerlink&quot; title=&quot;1.2 SPI约定&quot;&gt;&lt;/a&gt;1.2 SPI约定&lt;/h2&gt;&lt;h3 id=&quot;1-2-1-Java&quot;&gt;&lt;a href=&quot;#1-2-1-Java&quot; class=&quot;headerlink&quot; title=&quot;1.2.1 Java&quot;&gt;&lt;/a&gt;1.2.1 Java&lt;/h3&gt;&lt;p&gt;当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里创建一个以服务接口命名的文件。&lt;/p&gt;
+&lt;h3 id=&quot;1-2-2-Spring&quot;&gt;&lt;a href=&quot;#1-2-2-Spring&quot; class=&quot;headerlink&quot; title=&quot;1.2.2 Spring&quot;&gt;&lt;/a&gt;1.2.2 Spring&lt;/h3&gt;&lt;p&gt;在jar包的META-INF/目录里创建一个spring.factories，所有spi对应关系都可以写在这个文件中。&lt;/p&gt;
+&lt;h1 id=&quot;2-Spring中的SPI&quot;&gt;&lt;a href=&quot;#2-Spring中的SPI&quot; class=&quot;headerlink&quot; title=&quot;2. Spring中的SPI&quot;&gt;&lt;/a&gt;2. Spring中的SPI&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文介绍下spring的SPI&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;2-1-定义一个接口&quot;&gt;&lt;a href=&quot;#2-1-定义一个接口&quot; class=&quot;headerlink&quot; title=&quot;2.1 定义一个接口&quot;&gt;&lt;/a&gt;2.1 定义一个接口&lt;/h2&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; org.springframework.context.ApplicationContext;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;InitServiceInterFace&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; ApplicationContext context)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
     
-      <category term="SpringBoot" scheme="https://huleilei0906.github.io/categories/SpringBoot/"/>
-    
-      <category term="SPI" scheme="https://huleilei0906.github.io/categories/SpringBoot/SPI/"/>
+      <category term="SPI" scheme="https://huleilei0906.github.io/categories/SPI/"/>
     
     
       <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
@@ -87,20 +83,18 @@
     <link href="https://huleilei0906.github.io/2020/06/29/Minio/"/>
     <id>https://huleilei0906.github.io/2020/06/29/Minio/</id>
     <published>2020-06-29T09:24:59.000Z</published>
-    <updated>2021-04-11T15:12:30.049Z</updated>
+    <updated>2021-04-17T05:54:38.268Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1
-        
-      
+&lt;h1 id=&quot;1-什么是MinIO&quot;&gt;&lt;a href=&quot;#1-什么是MinIO&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是MinIO&quot;&gt;&lt;/a&gt;1. 什么是MinIO&lt;/h1&gt;&lt;h2 id=&quot;1-1-MinIO介绍&quot;&gt;&lt;a href=&quot;#1-1-MinIO介绍&quot; class=&quot;headerlink&quot; title=&quot;1.1 MinIO介绍&quot;&gt;&lt;/a&gt;1.1 MinIO介绍&lt;/h2&gt;&lt;p&gt;​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-MinIO保护数据策略&quot;&gt;&lt;a href=&quot;#1-2-MinIO保护数据策略&quot; class=&quot;headerlink&quot; title=&quot;1.2 MinIO保护数据策略&quot;&gt;&lt;/a&gt;1.2 MinIO保护数据策略&lt;/h2&gt;&lt;p&gt;​        Minio使用&lt;strong&gt;纠删码&lt;/strong&gt;&lt;code&gt;erasure code&lt;/code&gt;和校验和&lt;code&gt;checksum&lt;/code&gt;来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。&lt;/p&gt;
+&lt;h1 id=&quot;2-MinIO部署&quot;&gt;&lt;a href=&quot;#2-MinIO部署&quot; class=&quot;headerlink&quot; title=&quot;2. MinIO部署&quot;&gt;&lt;/a&gt;2. MinIO部署&lt;/h1&gt;&lt;h2 id=&quot;2-1-单节点部署&quot;&gt;&lt;a href=&quot;#2-1-单节点部署&quot; class=&quot;headerlink&quot; title=&quot;2.1 单节点部署&quot;&gt;&lt;/a&gt;2.1 单节点部署&lt;/h2&gt;&lt;h3 id=&quot;2-1-1-下载minio&quot;&gt;&lt;a href=&quot;#2-1-1-下载minio&quot; class=&quot;headerlink&quot; title=&quot;2.1.1 下载minio&quot;&gt;&lt;/a&gt;2.1.1 下载minio&lt;/h3&gt;&lt;p&gt;根据实际操作系统及位数下载相应minio server（注：不是minio client）&lt;/p&gt;
+&lt;p&gt;进入&lt;a href=&quot;https://dl.min.io/server/minio/release/linux-amd64/minio下载&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://dl.min.io/server/minio/release/linux-amd64/minio下载&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;wget https:&amp;#x2F;&amp;#x2F;dl.minio.io&amp;#x2F;server&amp;#x2F;minio&amp;#x2F;release&amp;#x2F;linux-amd64&amp;#x2F;minio&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -121,20 +115,18 @@
     <link href="https://huleilei0906.github.io/2020/06/28/Nginx-LoadBalance/"/>
     <id>https://huleilei0906.github.io/2020/06/28/Nginx-LoadBalance/</id>
     <published>2020-06-28T12:41:30.000Z</published>
-    <updated>2021-04-11T15:10:49.517Z</updated>
+    <updated>2021-04-17T05:43:42.182Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1
-        
-      
+&lt;h1 id=&quot;1-了解Nginx&quot;&gt;&lt;a href=&quot;#1-了解Nginx&quot; class=&quot;headerlink&quot; title=&quot;1. 了解Nginx&quot;&gt;&lt;/a&gt;1. 了解Nginx&lt;/h1&gt;&lt;p&gt;Nginx，高性能的HTTP和反向代理服务器。反向代理作为它的核心功能，它的优点包括隐藏真实服务器、服务聚合等。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;Nginx： nginx version: nginx/1.17.6    &lt;/p&gt;
+&lt;p&gt;Gcc：built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC)&lt;/p&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3.详解&quot;&gt;&lt;/a&gt;3.详解&lt;/h1&gt;&lt;p&gt;Nginx的安装的总结会放在后续blog更新，此处不做过多的赘述。&lt;/p&gt;
+&lt;h5 id=&quot;step1：准备一个nginx环境&quot;&gt;&lt;a href=&quot;#step1：准备一个nginx环境&quot; class=&quot;headerlink&quot; title=&quot;step1：准备一个nginx环境.&quot;&gt;&lt;/a&gt;&lt;code&gt;step1&lt;/code&gt;：准备一个nginx环境.&lt;/h5&gt;&lt;h5 id=&quot;step2：找到nginx配置文件路径，编辑nginx-conf&quot;&gt;&lt;a href=&quot;#step2：找到nginx配置文件路径，编辑nginx-conf&quot; class=&quot;headerlink&quot; title=&quot;step2：找到nginx配置文件路径，编辑nginx.conf&quot;&gt;&lt;/a&gt;&lt;code&gt;step2&lt;/code&gt;：找到nginx配置文件路径，编辑nginx.conf&lt;/h5&gt;&lt;h5 id=&quot;step3：nginx-conf中的http中添加-upstream，如下&quot;&gt;&lt;a href=&quot;#step3：nginx-conf中的http中添加-upstream，如下&quot; class=&quot;headerlink&quot; title=&quot;step3：nginx.conf中的http中添加 upstream，如下&quot;&gt;&lt;/a&gt;&lt;code&gt;step3&lt;/code&gt;：nginx.conf中的http中添加 upstream，如下&lt;/h5&gt;
     
     </summary>
     
@@ -143,50 +135,38 @@
     
       <category term="LoadBalance" scheme="https://huleilei0906.github.io/categories/Nginx/LoadBalance/"/>
     
-      <category term="负载均衡" scheme="https://huleilei0906.github.io/categories/Nginx/LoadBalance/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-      <category term="分布式" scheme="https://huleilei0906.github.io/categories/Nginx/LoadBalance/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-    
-      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
       <category term="Nginx" scheme="https://huleilei0906.github.io/tags/Nginx/"/>
     
       <category term="LoadBalance" scheme="https://huleilei0906.github.io/tags/LoadBalance/"/>
     
-      <category term="负载均衡" scheme="https://huleilei0906.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
   </entry>
   
   <entry>
-    <title>Quartz-Use</title>
-    <link href="https://huleilei0906.github.io/2020/06/28/Quartz-Use/"/>
-    <id>https://huleilei0906.github.io/2020/06/28/Quartz-Use/</id>
+    <title>Quartz</title>
+    <link href="https://huleilei0906.github.io/2020/06/28/Quartz/"/>
+    <id>https://huleilei0906.github.io/2020/06/28/Quartz/</id>
     <published>2020-06-28T11:49:28.000Z</published>
-    <updated>2021-04-11T15:05:17.135Z</updated>
+    <updated>2021-04-17T05:58:49.658Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1
-        
-      
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;Quartz（Job Scheduler），一个比较流行的定时任务框架。搜索引擎会有详细的介绍，此处不再赘述。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;JDK：1.8&lt;/p&gt;
+&lt;p&gt;IDE：IDEA&lt;/p&gt;
+&lt;p&gt;maven依赖：&lt;/p&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;spring-boot-starter-quartz&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;2.4.0&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.projectlombok&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;lombok&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.18.16&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;optional&lt;/span&gt;&amp;gt;&lt;/span&gt;true&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;optional&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3. 详解&quot;&gt;&lt;/a&gt;3. 详解&lt;/h1&gt;&lt;p&gt;Quartz的上手难度其实挺低的，它会给我们提供很多简单的定时任务方法。同时也是可以使用cron表达式设定任务执行时间，接下来的例子就是使用cron表达式进行任务的创建。cron的用法会在后续blog中讲解。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+      <category term="Quartz" scheme="https://huleilei0906.github.io/categories/Quartz/"/>
     
-      <category term="Quartz" scheme="https://huleilei0906.github.io/categories/Java/Quartz/"/>
-    
-    
-      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
     
       <category term="Quartz" scheme="https://huleilei0906.github.io/tags/Quartz/"/>
     
@@ -197,20 +177,16 @@
     <link href="https://huleilei0906.github.io/2020/05/28/SpringBoot-Build-MyBatis/"/>
     <id>https://huleilei0906.github.io/2020/05/28/SpringBoot-Build-MyBatis/</id>
     <published>2020-05-28T06:22:27.000Z</published>
-    <updated>2021-04-11T15:02:46.742Z</updated>
+    <updated>2021-04-17T05:58:20.162Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2
-        
-      
+&lt;h2 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h2&gt;&lt;p&gt;SpringBoot中使用Mybatis之前，先搭建基本的项目,然后引入&lt;a href=&quot;https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;a href=&quot;https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;mybatis-spring-boot-starter&lt;/a&gt;&lt;/a&gt;和数据库驱动（本文使用MySql）的依赖。也可以添加druid的依赖。&lt;/p&gt;
+&lt;h2 id=&quot;二、环境及依赖&quot;&gt;&lt;a href=&quot;#二、环境及依赖&quot; class=&quot;headerlink&quot; title=&quot;二、环境及依赖&quot;&gt;&lt;/a&gt;二、环境及依赖&lt;/h2&gt;&lt;p&gt;1）JDK：1.8&lt;br&gt;2）IDE：IDEA&lt;br&gt;3）maven依赖&lt;/p&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;spring-boot-starter-web&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;2.4.0&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.mybatis.spring.boot&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;mybatis-spring-boot-starter&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;2.1.4&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;mysql&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;mysql-connector-java&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;8.0.19&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.projectlombok&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;lombok&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.18.16&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;optional&lt;/span&gt;&amp;gt;&lt;/span&gt;true&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;optional&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;com.alibaba&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;druid-spring-boot-starter&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.1.20&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -218,8 +194,6 @@
       <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
     
       <category term="Mybatis" scheme="https://huleilei0906.github.io/categories/Java/Mybatis/"/>
-    
-      <category term="SpringBoot" scheme="https://huleilei0906.github.io/categories/Java/Mybatis/SpringBoot/"/>
     
     
       <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
@@ -235,7 +209,7 @@
     <link href="https://huleilei0906.github.io/2020/05/27/SpringBoot-Build/"/>
     <id>https://huleilei0906.github.io/2020/05/27/SpringBoot-Build/</id>
     <published>2020-05-27T15:11:37.000Z</published>
-    <updated>2021-04-11T15:01:19.405Z</updated>
+    <updated>2021-04-17T05:58:28.695Z</updated>
     
     <summary type="html">
     
@@ -245,28 +219,16 @@
 &lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。&lt;/p&gt;
 &lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;JDK1.8、IDEA&lt;/p&gt;
 &lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3. 详解&quot;&gt;&lt;/a&gt;3. 详解&lt;/h1&gt;&lt;h2 id=&quot;3-1-非涉密网络环境&quot;&gt;&lt;a href=&quot;#3-1-非涉密网络环境&quot; class=&quot;headerlink&quot; title=&quot;3.1 非涉密网络环境&quot;&gt;&lt;/a&gt;3.1 非涉密网络环境&lt;/h2&gt;&lt;p&gt;这里的非涉密网络环境的特点是能访问&lt;a href=&quot;https://start.spring.io&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://start.spring.io&lt;/a&gt;。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。&lt;/p&gt;
-&lt;h3 id=&quot;3-1-1-新建项目&quot;&gt;&lt;a href=&quot;#3-1-1-新建项目&quot; class=&quot;headerlink&quot; title=&quot;3.1.1 新建项目&quot;&gt;&lt;/a&gt;3.1.1 新建项目&lt;/h3&gt;&lt;p&gt;IDEA-&amp;gt;File-&amp;gt;New-&amp;gt;Project…&lt;/p&gt;
-&lt;img style=&quot;margin:auto 0;&quot; src=&quot;/2020/05/27/SpringBoot-Build/SpringBootBuild-1.png&quot; alt=&quot;SpringBootBuild-1.png&quot;&gt;
-
-&lt;h3 id=&quot;3-1-2-选择Spring-Initializr&quot;&gt;&lt;a href=&quot;#3-1-2-选择Spring-Initializr&quot; class=&quot;headerlink&quot; title=&quot;3.1.2 选择Spring Initializr&quot;&gt;&lt;/a&gt;3.1.2 选择Spring Initializr&lt;/h3&gt;&lt;p&gt;此处配置自己的JDK版本，使用默认的Initializr Service URL&lt;/p&gt;
-&lt;img style=&quot;margin:auto 0;&quot; src=&quot;/2020/05/27/SpringBoot-Build/SpringBootBuild-2.png&quot; alt=&quot;SpringBootBuild-2.png&quot;&gt;
-
-&lt;h3 id=&quot;3-1-3-配置maven信息，根据项目信息填写&quot;&gt;&lt;a href=&quot;#3-1-3-配置maven信息，根据项目信息填写&quot; class=&quot;headerlink&quot; title=&quot;3.1.3 配置maven信息，根据项目信息填写&quot;&gt;&lt;/a&gt;3.1.3 配置maven信息，根据项目信息填写&lt;/h3&gt;&lt;img style=&quot;margin:auto 0;&quot; src=&quot;/2020/05/27/SpringBoot-Build/SpringBootBuild-3.png&quot; alt=&quot;SpringBootBuild-3.png&quot;&gt;
-
-&lt;h3 id=&quot;3-1-4添加项目所需依赖starter-gt-Next&quot;&gt;&lt;a href=&quot;#3-1-4添加项目所需依赖starter-gt-Next&quot; class=&quot;headerlink&quot; title=&quot;3.1.4添加项目所需依赖starter-&amp;gt;Next&quot;&gt;&lt;/a&gt;3.1.4添加项目所需依赖starter-&amp;gt;Next&lt;/h3&gt;&lt;p&gt;注意一下，这里可以只选择starter-web，数据库的starter需要添加数据库连接配置，否则启动失败。&lt;/p&gt;
-&lt;img style=&quot;margin:auto 0;&quot; src=&quot;/2020/05/27/SpringBoot-Build/SpringBootBuild-4.png&quot; alt=&quot;SpringBootBuild-4.png&quot;&gt;
-
-&lt;br&gt;
     
     </summary>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
     
-      <category term="SpringBoot" scheme="https://huleilei0906.github.io/categories/JAVA/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://huleilei0906.github.io/categories/Java/SpringBoot/"/>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
     
       <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
     
@@ -279,32 +241,36 @@
     <link href="https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/"/>
     <id>https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</id>
     <published>2020-05-27T10:27:30.000Z</published>
-    <updated>2021-04-11T14:54:28.830Z</updated>
+    <updated>2021-04-17T05:47:17.483Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1
-        
-      
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;用过Spring的都知道DI和AOP，今天介绍一个实现AOP超级且方便功能强大的框架AspectJ。此文默认读者有一定spring基础。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;JDK：1.8&lt;/p&gt;
+&lt;p&gt;架构：SpringBoot&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3. 详解&quot;&gt;&lt;/a&gt;3. 详解&lt;/h1&gt;&lt;h2 id=&quot;3-1-基础概念&quot;&gt;&lt;a href=&quot;#3-1-基础概念&quot; class=&quot;headerlink&quot; title=&quot;3.1 基础概念&quot;&gt;&lt;/a&gt;3.1 基础概念&lt;/h2&gt;&lt;p&gt;Aspect：切面&lt;/p&gt;
+&lt;p&gt;Pointcut：切点，通过不同切入点，执行不同操作，此文中展示execution时机执行的操作。&lt;/p&gt;
+&lt;p&gt;Advice：通知，包括前置通知、后置通知、异常通知、环绕通知等等；其中，环绕通知功能最为强大。此文展示环绕通知用法。&lt;/p&gt;
+&lt;h2 id=&quot;3-2-AspectJ依赖：&quot;&gt;&lt;a href=&quot;#3-2-AspectJ依赖：&quot; class=&quot;headerlink&quot; title=&quot;3.2 AspectJ依赖：&quot;&gt;&lt;/a&gt;3.2 AspectJ依赖：&lt;/h2&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.aspectj&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;aspectjweaver&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.9.5&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;3-3-代码实现&quot;&gt;&lt;a href=&quot;#3-3-代码实现&quot; class=&quot;headerlink&quot; title=&quot;3.3 代码实现&quot;&gt;&lt;/a&gt;3.3 代码实现&lt;/h2&gt;
     
     </summary>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
     
-      <category term="AOP" scheme="https://huleilei0906.github.io/categories/JAVA/AOP/"/>
+      <category term="AOP" scheme="https://huleilei0906.github.io/categories/Java/AOP/"/>
     
-      <category term="AspectJ" scheme="https://huleilei0906.github.io/categories/JAVA/AOP/AspectJ/"/>
+      <category term="AspectJ" scheme="https://huleilei0906.github.io/categories/Java/AOP/AspectJ/"/>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
     
       <category term="AOP" scheme="https://huleilei0906.github.io/tags/AOP/"/>
     
@@ -317,34 +283,31 @@
     <link href="https://huleilei0906.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/"/>
     <id>https://huleilei0906.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/</id>
     <published>2020-05-27T05:19:09.000Z</published>
-    <updated>2021-04-11T14:51:47.814Z</updated>
+    <updated>2021-04-17T05:58:16.862Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1
-        
-      
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;在分布式项系统的大背景下，CAP中分区容错性是必不可少的。多节点的协调尤为重要，单体服务中的锁在分布式系统中已无效，需要另辟蹊径。此文介绍比较常见的一种基于Redis实现的分布式锁。ZooKeeper的分布式锁后续Blog更新中介绍。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;JDK：1.8&lt;/p&gt;
+&lt;p&gt;IDE：IDEA&lt;/p&gt;
+&lt;p&gt;Redis：Redis server v=5.0.5 bits=64 （redis配置此处不做赘述）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3.详解&quot;&gt;&lt;/a&gt;3.详解&lt;/h1&gt;&lt;p&gt;Redis能实现分布式锁是因为存在一个命令：setnx ,而ex属性保证了一些容错。&lt;/p&gt;
+&lt;h2 id=&quot;3-1-使用LUA脚本&quot;&gt;&lt;a href=&quot;#3-1-使用LUA脚本&quot; class=&quot;headerlink&quot; title=&quot;3.1 使用LUA脚本&quot;&gt;&lt;/a&gt;3.1 使用LUA脚本&lt;/h2&gt;&lt;h3 id=&quot;3-1-1-maven依赖&quot;&gt;&lt;a href=&quot;#3-1-1-maven依赖&quot; class=&quot;headerlink&quot; title=&quot;3.1.1 maven依赖:&quot;&gt;&lt;/a&gt;3.1.1 maven依赖:&lt;/h3&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;spring-boot-starter-data-redis&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
     
-      <category term="Redis" scheme="https://huleilei0906.github.io/categories/JAVA/Redis/"/>
-    
-      <category term="分布式" scheme="https://huleilei0906.github.io/categories/JAVA/Redis/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+      <category term="Redis" scheme="https://huleilei0906.github.io/categories/Java/Redis/"/>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
-    
-      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
     
       <category term="Redis" scheme="https://huleilei0906.github.io/tags/Redis/"/>
     
@@ -355,7 +318,7 @@
     <link href="https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/"/>
     <id>https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</id>
     <published>2020-05-26T15:10:37.000Z</published>
-    <updated>2021-04-11T14:48:56.711Z</updated>
+    <updated>2021-04-17T05:48:37.278Z</updated>
     
     <summary type="html">
     
@@ -371,12 +334,12 @@
     </summary>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/categories/JAVA/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+    
+      <category term="ArrayList" scheme="https://huleilei0906.github.io/categories/Java/ArrayList/"/>
     
     
-      <category term="JAVA" scheme="https://huleilei0906.github.io/tags/JAVA/"/>
-    
-      <category term="Collection" scheme="https://huleilei0906.github.io/tags/Collection/"/>
+      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
     
       <category term="ArrayList" scheme="https://huleilei0906.github.io/tags/ArrayList/"/>
     

@@ -69,7 +69,7 @@
   <time datetime="2020-05-27T15:11:37.000Z" itemprop="datePublished">2020-05-27</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a> / <a class="article-category-link" href="/categories/JAVA/SpringBoot/">SpringBoot</a>
+    <a class="article-category-link" href="/categories/Java/">Java</a> / <a class="article-category-link" href="/categories/Java/SpringBoot/">SpringBoot</a>
   </div>
   
 <div class="word_count">
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">672</span>
+            <span class="post-count">669</span>
         </span>
     </span>
 
@@ -107,6 +107,8 @@
 <h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。</p>
 <h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8、IDEA</p>
 <h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-非涉密网络环境"><a href="#3-1-非涉密网络环境" class="headerlink" title="3.1 非涉密网络环境"></a>3.1 非涉密网络环境</h2><p>这里的非涉密网络环境的特点是能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。</p>
+<a id="more"></a>
+
 <h3 id="3-1-1-新建项目"><a href="#3-1-1-新建项目" class="headerlink" title="3.1.1 新建项目"></a>3.1.1 新建项目</h3><p>IDEA-&gt;File-&gt;New-&gt;Project…</p>
 <img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-1.png" alt="SpringBootBuild-1.png">
 
@@ -120,7 +122,7 @@
 
 <br>
 
-<a id="more"></a>
+<!-- more -->
 
 <h2 id="3-2-涉密网络环境"><a href="#3-2-涉密网络环境" class="headerlink" title="3.2 涉密网络环境"></a>3.2 涉密网络环境</h2><p>此处涉密网络环境指不能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。</p>
 <h3 id="3-2-1-新建maven项目"><a href="#3-2-1-新建maven项目" class="headerlink" title="3.2.1 新建maven项目"></a>3.2.1 新建maven项目</h3><img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-5.png" alt="SpringBootBuild-5.png">
@@ -137,8 +139,12 @@
 <h3 id="3-2-6-添加springboot入口类注解"><a href="#3-2-6-添加springboot入口类注解" class="headerlink" title="3.2.6 添加springboot入口类注解"></a>3.2.6 添加springboot入口类注解</h3><p>在Application.java类上添加@SpringBootApplication注解。如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>SpringBoot主要的特点是项目构建快。几乎可以做到零配置就可以启动一个web项目。从开始构建到启动项目，1~2分钟就可以完成。</p>
-<br> 
+
+
+<p>SpringBoot主要的特点是项目构建快。几乎可以做到零配置就可以启动一个web项目。从开始构建到启动项目，1~2分钟就可以完成。</p>
+<br>
+
+ 
       <!-- reward -->
       
     </div>
@@ -160,7 +166,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA/" rel="tag">JAVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
 
     </footer>
   </div>

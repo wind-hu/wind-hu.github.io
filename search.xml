@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AOP实战-AspectJ</title>
+    <url>/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>用过Spring的都知道DI和AOP，今天介绍一个实现AOP超级且方便功能强大的框架AspectJ。此文默认读者有一定spring基础。</p>
+<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><blockquote>
+<p>JDK：1.8</p>
+<p>架构：SpringBoot</p>
+</blockquote>
+<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-基础概念"><a href="#3-1-基础概念" class="headerlink" title="3.1 基础概念"></a>3.1 基础概念</h2><p>Aspect：切面</p>
+<p>Pointcut：切点，通过不同切入点，执行不同操作，此文中展示execution时机执行的操作。</p>
+<p>Advice：通知，包括前置通知、后置通知、异常通知、环绕通知等等；其中，环绕通知功能最为强大。此文展示环绕通知用法。</p>
+<h2 id="3-2-AspectJ依赖："><a href="#3-2-AspectJ依赖：" class="headerlink" title="3.2 AspectJ依赖："></a>3.2 AspectJ依赖：</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-代码实现"><a href="#3-3-代码实现" class="headerlink" title="3.3 代码实现"></a>3.3 代码实现</h2><a id="more"></a>
+
+<p><code>step1</code>：首先在SpringBoot配置类中添加注解@EnableAspectJAutoProxy，如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableAspectJAutoProxy</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>step2</code>：新建AspectjAop class，使用@Aspect标记为切面，注册到Spring容器中</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>step3</code>：新建方法controllerPointCut，添加Pointcut，切点时机为“execution”，匹配方法为controller报下所有public 方法。可以对请求进行信息安全过滤等等操作。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此路径表示controller下所有类中的public方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com..controller..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">controllerPointCut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>step4</code>：添加Advice，注入执行中切点实例ProceedingJoinPoint，ProceedingJoinPoint可以获取入参，控制执行等等操作。可以在执行方法前后进行方法增强，实现业务等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此路径表示controller下所有类中的public方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com..controller..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">controllerPointCut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around</span>(value = <span class="string">"controllerPointCut()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> Object <span class="title">aroundAdvice</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Pre-operation</span></span><br><span class="line">        log.info(<span class="string">"You can check the parameters."</span>);</span><br><span class="line">        Object obj = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            obj = proceedingJoinPoint.proceed();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            log.error(<span class="string">"controller throwable"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// TODO：Post-operation</span></span><br><span class="line">        log.info(<span class="string">"You can encapsulate the return value."</span>);</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>AOP</category>
+        <category>AspectJ</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>AOP</tag>
+        <tag>AspectJ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Hello World</title>
+    <url>/2020/05/25/Hexo-hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<a id="more"></a>
+
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hello World</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ArrayList扩容机制</title>
     <url>/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<blockquote>
@@ -21,11 +89,11 @@
 <p>2.当在扩容1.5倍后，校验新容量是否超过MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8），若新容量（源码中newCapacity）大于最大容量 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）时,新容量为Integer.MAX_VALUE，否则为 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）;</p>
 ]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
+        <category>ArrayList</category>
       </categories>
       <tags>
-        <tag>JAVA</tag>
-        <tag>Collection</tag>
+        <tag>Java</tag>
         <tag>ArrayList</tag>
       </tags>
   </entry>
@@ -40,6 +108,8 @@
 <p>（2）提高响应速度，需要线程直接使用，省去了创建时的时间消耗。</p>
 <p>（3）更方便于并发管理。</p>
 <h1 id="3-JDK中线程池类"><a href="#3-JDK中线程池类" class="headerlink" title="3. JDK中线程池类"></a>3. JDK中线程池类</h1><p>说到线程池就需要去了解 Executors ，它是线程池的工厂类，里面对应了四种应用场景的线程池。</p>
+<a id="more"></a>
+
 <h2 id="3-1-newFixedThreadPool"><a href="#3-1-newFixedThreadPool" class="headerlink" title="3.1 newFixedThreadPool"></a>3.1 newFixedThreadPool</h2><p>创建一个线程池，该线程池重用在共享的无边界队列上运行的固定数量的线程。</p>
 <p><code>关键字</code>  固定线程数、无边界阻塞队列</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Executor threadPool = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">fixedPool.execute(()-&gt; log.info(<span class="string">"run with fixedPool"</span>));</span><br></pre></td></tr></table></figure>
@@ -112,12 +182,42 @@
 
 ]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
         <category>线程池</category>
       </categories>
       <tags>
-        <tag>JAVA</tag>
+        <tag>Java</tag>
         <tag>线程池</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx-LoadBalance</title>
+    <url>/2020/06/28/Nginx-LoadBalance/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-了解Nginx"><a href="#1-了解Nginx" class="headerlink" title="1. 了解Nginx"></a>1. 了解Nginx</h1><p>Nginx，高性能的HTTP和反向代理服务器。反向代理作为它的核心功能，它的优点包括隐藏真实服务器、服务聚合等。</p>
+<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>Nginx： nginx version: nginx/1.17.6    </p>
+<p>Gcc：built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC)</p>
+<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3.详解"></a>3.详解</h1><p>Nginx的安装的总结会放在后续blog更新，此处不做过多的赘述。</p>
+<h5 id="step1：准备一个nginx环境"><a href="#step1：准备一个nginx环境" class="headerlink" title="step1：准备一个nginx环境."></a><code>step1</code>：准备一个nginx环境.</h5><h5 id="step2：找到nginx配置文件路径，编辑nginx-conf"><a href="#step2：找到nginx配置文件路径，编辑nginx-conf" class="headerlink" title="step2：找到nginx配置文件路径，编辑nginx.conf"></a><code>step2</code>：找到nginx配置文件路径，编辑nginx.conf</h5><h5 id="step3：nginx-conf中的http中添加-upstream，如下"><a href="#step3：nginx-conf中的http中添加-upstream，如下" class="headerlink" title="step3：nginx.conf中的http中添加 upstream，如下"></a><code>step3</code>：nginx.conf中的http中添加 upstream，如下</h5><a id="more"></a>
+
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">upstream</span> servername &#123;</span><br><span class="line">    <span class="comment">#1、轮询（默认选项，所有weight=1）</span></span><br><span class="line">    <span class="comment">#2、weight，执行轮询几率，weight与访问几率成正比</span></span><br><span class="line">    <span class="comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span></span><br><span class="line">    <span class="comment">#4、least_conn，最少连接数负载均衡</span></span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP1&#125;</span>:<span class="variable">$&#123;PORT1&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP2&#125;</span>:<span class="variable">$&#123;PORT2&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP3&#125;</span>:<span class="variable">$&#123;PORT3&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP4&#125;</span>:<span class="variable">$&#123;PORT4&#125;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="step4：nginx-conf中的server中添加-location"><a href="#step4：nginx-conf中的server中添加-location" class="headerlink" title="step4：nginx.conf中的server中添加 location"></a><code>step4</code>：nginx.conf中的server中添加 location</h5><p>在server中listen 为对外暴露的nginx端口。</p>
+<p>location中的proxy_pass 指向step3中添加的upstream</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> /minio &#123;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://servername;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="step5：最终效果如下"><a href="#step5：最终效果如下" class="headerlink" title="step5：最终效果如下"></a><code>step5</code>：最终效果如下</h5><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#user  nobody;</span></span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#error_log  logs/error.log;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">    <span class="comment">#                  '$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">    <span class="comment">#                  '"$http_user_agent" "$http_x_forwarded_for"';</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/access.log  main;</span></span><br><span class="line">    <span class="attribute">upstream</span> servername &#123;</span><br><span class="line">        <span class="comment">#1、轮询（默认选项，所有weight=1）</span></span><br><span class="line">        <span class="comment">#2、weight，执行轮询几率，weight与访问几率成正比</span></span><br><span class="line">        <span class="comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span></span><br><span class="line">        <span class="comment">#4、least_conn，最少连接数负载均衡</span></span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP1&#125;</span>:<span class="variable">$&#123;PORT1&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP2&#125;</span>:<span class="variable">$&#123;PORT2&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP3&#125;</span>:<span class="variable">$&#123;PORT3&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP4&#125;</span>:<span class="variable">$&#123;PORT4&#125;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#keepalive_timeout  0;</span></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#include /usr/local/nginx/minio.conf    </span></span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">root</span>   html;</span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="attribute">location</span> /minio &#123;</span><br><span class="line">			<span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">			<span class="attribute">proxy_pass</span> http://servername;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#error_page  404              /404.html;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;</span><br><span class="line">        <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">            <span class="attribute">root</span>   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Nginx</category>
+        <category>LoadBalance</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+        <tag>LoadBalance</tag>
       </tags>
   </entry>
   <entry>
@@ -131,6 +231,8 @@
 <h1 id="2-MinIO部署"><a href="#2-MinIO部署" class="headerlink" title="2. MinIO部署"></a>2. MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
 <p>进入<a href="https://dl.min.io/server/minio/release/linux-amd64/minio下载" target="_blank" rel="noopener">https://dl.min.io/server/minio/release/linux-amd64/minio下载</a></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;dl.minio.io&#x2F;server&#x2F;minio&#x2F;release&#x2F;linux-amd64&#x2F;minio</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h3 id="2-1-2-上传到linux下"><a href="#2-1-2-上传到linux下" class="headerlink" title="2.1.2 上传到linux下"></a>2.1.2 上传到linux下</h3><p>在上一步下载的文件目录下添加shell脚本(例如：startMinIO.sh)并运行,命令如下：</p>
 <p>MINIO_ACCESS_KEY配置minio登录账户</p>
@@ -175,107 +277,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Hello World</title>
-    <url>/2020/05/25/Hexo-hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<a id="more"></a>
-
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hello World</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx-LoadBalance</title>
-    <url>/2020/06/28/Nginx-LoadBalance/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-了解Nginx"><a href="#1-了解Nginx" class="headerlink" title="1. 了解Nginx"></a>1. 了解Nginx</h1><p>Nginx，高性能的HTTP和反向代理服务器。反向代理作为它的核心功能，它的优点包括隐藏真实服务器、服务聚合等。</p>
-<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>Nginx： nginx version: nginx/1.17.6    </p>
-<p>Gcc：built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC)</p>
-<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3.详解"></a>3.详解</h1><p>Nginx的安装的总结会放在后续blog更新，此处不做过多的赘述。</p>
-<h5 id="step1：准备一个nginx环境"><a href="#step1：准备一个nginx环境" class="headerlink" title="step1：准备一个nginx环境."></a><code>step1</code>：准备一个nginx环境.</h5><h5 id="step2：找到nginx配置文件路径，编辑nginx-conf"><a href="#step2：找到nginx配置文件路径，编辑nginx-conf" class="headerlink" title="step2：找到nginx配置文件路径，编辑nginx.conf"></a><code>step2</code>：找到nginx配置文件路径，编辑nginx.conf</h5><h5 id="step3：nginx-conf中的http中添加-upstream，如下"><a href="#step3：nginx-conf中的http中添加-upstream，如下" class="headerlink" title="step3：nginx.conf中的http中添加 upstream，如下"></a><code>step3</code>：nginx.conf中的http中添加 upstream，如下</h5><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">upstream</span> servername &#123;</span><br><span class="line">    <span class="comment">#1、轮询（默认选项，所有weight=1）</span></span><br><span class="line">    <span class="comment">#2、weight，执行轮询几率，weight与访问几率成正比</span></span><br><span class="line">    <span class="comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span></span><br><span class="line">    <span class="comment">#4、least_conn，最少连接数负载均衡</span></span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP1&#125;</span>:<span class="variable">$&#123;PORT1&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP2&#125;</span>:<span class="variable">$&#123;PORT2&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP3&#125;</span>:<span class="variable">$&#123;PORT3&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP4&#125;</span>:<span class="variable">$&#123;PORT4&#125;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="step4：nginx-conf中的server中添加-location"><a href="#step4：nginx-conf中的server中添加-location" class="headerlink" title="step4：nginx.conf中的server中添加 location"></a><code>step4</code>：nginx.conf中的server中添加 location</h5><p>在server中listen 为对外暴露的nginx端口。</p>
-<p>location中的proxy_pass 指向step3中添加的upstream</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> /minio &#123;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://servername;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="step5：最终效果如下"><a href="#step5：最终效果如下" class="headerlink" title="step5：最终效果如下"></a><code>step5</code>：最终效果如下</h5><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#user  nobody;</span></span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#error_log  logs/error.log;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">    <span class="comment">#                  '$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">    <span class="comment">#                  '"$http_user_agent" "$http_x_forwarded_for"';</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/access.log  main;</span></span><br><span class="line">    <span class="attribute">upstream</span> servername &#123;</span><br><span class="line">        <span class="comment">#1、轮询（默认选项，所有weight=1）</span></span><br><span class="line">        <span class="comment">#2、weight，执行轮询几率，weight与访问几率成正比</span></span><br><span class="line">        <span class="comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span></span><br><span class="line">        <span class="comment">#4、least_conn，最少连接数负载均衡</span></span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP1&#125;</span>:<span class="variable">$&#123;PORT1&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP2&#125;</span>:<span class="variable">$&#123;PORT2&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP3&#125;</span>:<span class="variable">$&#123;PORT3&#125;</span>;</span><br><span class="line">        <span class="attribute">server</span> <span class="variable">$&#123;IP4&#125;</span>:<span class="variable">$&#123;PORT4&#125;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#keepalive_timeout  0;</span></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#include /usr/local/nginx/minio.conf    </span></span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">root</span>   html;</span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="attribute">location</span> /minio &#123;</span><br><span class="line">			<span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">			<span class="attribute">proxy_pass</span> http://servername;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#error_page  404              /404.html;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;</span><br><span class="line">        <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">            <span class="attribute">root</span>   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Nginx</category>
-        <category>LoadBalance</category>
-        <category>负载均衡</category>
-        <category>分布式</category>
-      </categories>
-      <tags>
-        <tag>分布式</tag>
-        <tag>Nginx</tag>
-        <tag>LoadBalance</tag>
-        <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AOP实战-AspectJ</title>
-    <url>/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>用过Spring的都知道DI和AOP，今天介绍一个实现AOP超级且方便功能强大的框架AspectJ。此文默认读者有一定spring基础。</p>
-<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><blockquote>
-<p>JDK：1.8</p>
-<p>架构：SpringBoot</p>
-</blockquote>
-<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-基础概念"><a href="#3-1-基础概念" class="headerlink" title="3.1 基础概念"></a>3.1 基础概念</h2><p>Aspect：切面</p>
-<p>Pointcut：切点，通过不同切入点，执行不同操作，此文中展示execution时机执行的操作。</p>
-<p>Advice：通知，包括前置通知、后置通知、异常通知、环绕通知等等；其中，环绕通知功能最为强大。此文展示环绕通知用法。</p>
-<h2 id="3-2-AspectJ依赖："><a href="#3-2-AspectJ依赖：" class="headerlink" title="3.2 AspectJ依赖："></a>3.2 AspectJ依赖：</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="3-3-代码实现"><a href="#3-3-代码实现" class="headerlink" title="3.3 代码实现"></a>3.3 代码实现</h2><p><code>step1</code>：首先在SpringBoot配置类中添加注解@EnableAspectJAutoProxy，如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableAspectJAutoProxy</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>step2</code>：新建AspectjAop class，使用@Aspect标记为切面，注册到Spring容器中</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>step3</code>：新建方法controllerPointCut，添加Pointcut，切点时机为“execution”，匹配方法为controller报下所有public 方法。可以对请求进行信息安全过滤等等操作。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此路径表示controller下所有类中的public方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com..controller..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">controllerPointCut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>step4</code>：添加Advice，注入执行中切点实例ProceedingJoinPoint，ProceedingJoinPoint可以获取入参，控制执行等等操作。可以在执行方法前后进行方法增强，实现业务等。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AspectjAop</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此路径表示controller下所有类中的public方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"execution(public * com..controller..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">controllerPointCut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around</span>(value = <span class="string">"controllerPointCut()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> Object <span class="title">aroundAdvice</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Pre-operation</span></span><br><span class="line">        log.info(<span class="string">"You can check the parameters."</span>);</span><br><span class="line">        Object obj = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            obj = proceedingJoinPoint.proceed();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            log.error(<span class="string">"controller throwable"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// TODO：Post-operation</span></span><br><span class="line">        log.info(<span class="string">"You can encapsulate the return value."</span>);</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>AOP的原理其实就是设计模式中的动态代理。后续会更新关于动态代理相关的blog。</p>
-]]></content>
-      <categories>
-        <category>JAVA</category>
-        <category>AOP</category>
-        <category>AspectJ</category>
-      </categories>
-      <tags>
-        <tag>JAVA</tag>
-        <tag>AOP</tag>
-        <tag>AspectJ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Quartz-Use</title>
-    <url>/2020/06/28/Quartz-Use/</url>
+    <title>Quartz</title>
+    <url>/2020/06/28/Quartz/</url>
     <content><![CDATA[<blockquote>
 <p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
 </blockquote>
@@ -286,6 +289,8 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><p>Quartz的上手难度其实挺低的，它会给我们提供很多简单的定时任务方法。同时也是可以使用cron表达式设定任务执行时间，接下来的例子就是使用cron表达式进行任务的创建。cron的用法会在后续blog中讲解。</p>
+<a id="more"></a>
+
 <h2 id="3-1-创建对外开放的类"><a href="#3-1-创建对外开放的类" class="headerlink" title="3.1 创建对外开放的类"></a>3.1 创建对外开放的类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.windh.quartz.job.JobRunnable;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.quartz.*;</span><br><span class="line"><span class="keyword">import</span> org.quartz.impl.StdSchedulerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"><span class="keyword">import</span> javax.annotation.PreDestroy;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.LinkedBlockingQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ThreadPoolExecutor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuartzUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Scheduler SCHEDULER;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Runnable&gt; JOB_KEY_MAP = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(<span class="number">64</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ThreadPoolExecutor THREAD_POOL;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">QuartzUtil</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// quartz scheduler</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            SCHEDULER = StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">            <span class="comment">// 及时启动</span></span><br><span class="line">            SCHEDULER.start();</span><br><span class="line">            <span class="comment">// startDelayed(1) 为延时启动，参数为int类型，单位 秒</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (SchedulerException e) &#123;</span><br><span class="line">            log.error(<span class="string">"Create Default StdScheduler error."</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// threadpool</span></span><br><span class="line">        THREAD_POOL = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">8</span>, <span class="number">64</span>, <span class="number">0</span>, TimeUnit.SECONDS,</span><br><span class="line">                <span class="keyword">new</span> LinkedBlockingQueue(<span class="number">64</span>), <span class="keyword">new</span> ThreadPoolExecutor.AbortPolicy());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PreDestroy</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 参数表示  当前正在执行的所有任务执行完才会结束scheduler</span></span><br><span class="line">        <span class="keyword">if</span> (SCHEDULER != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                SCHEDULER.shutdown(<span class="keyword">true</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SchedulerException e) &#123;</span><br><span class="line">                log.error(<span class="string">"Shutdown Scheduler error."</span>, e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (THREAD_POOL != <span class="keyword">null</span> &amp;&amp; !THREAD_POOL.isShutdown()) &#123;</span><br><span class="line">            THREAD_POOL.shutdown();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addTask</span><span class="params">(String cron, Runnable runnable)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (runnable != <span class="keyword">null</span> &amp;&amp; CronExpression.isValidExpression(cron)) &#123;</span><br><span class="line">            CronExpression cronExpression;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                cronExpression = <span class="keyword">new</span> CronExpression(cron);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">                log.error(<span class="string">"parse cron error,add Task error."</span>, e);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            addTask(cronExpression, runnable);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            log.error(<span class="string">"param invalid, addTask error."</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addTask</span><span class="params">(CronExpression cron, Runnable runnable)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (runnable == <span class="keyword">null</span> || cron == <span class="keyword">null</span> || !CronExpression.isValidExpression(cron.getCronExpression())) &#123;</span><br><span class="line">            log.error(<span class="string">"param invalid, addTask error."</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String uuid = UUID.randomUUID().toString();</span><br><span class="line">        JobDetail job = JobBuilder.newJob(JobRunnable<span class="class">.<span class="keyword">class</span>).<span class="title">withIdentity</span>(<span class="title">uuid</span>).<span class="title">build</span>()</span>;</span><br><span class="line"></span><br><span class="line">        Trigger trigger = TriggerBuilder.newTrigger()</span><br><span class="line">                .startNow()</span><br><span class="line">                .withIdentity(uuid)</span><br><span class="line">                .withSchedule(CronScheduleBuilder.cronSchedule(cron)).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            SCHEDULER.scheduleJob(job, trigger);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SchedulerException e) &#123;</span><br><span class="line">            log.error(<span class="string">"ScheduledJob error."</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        JOB_KEY_MAP.put(uuid, runnable);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ThreadPoolExecutor <span class="title">getThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> THREAD_POOL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, Runnable&gt; <span class="title">getJobKeyMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JOB_KEY_MAP;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Scheduler <span class="title">getScheduler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SCHEDULER;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="3-2-创建一个实现org-quartz-Job的类JobRunnable"><a href="#3-2-创建一个实现org-quartz-Job的类JobRunnable" class="headerlink" title="3.2 创建一个实现org.quartz.Job的类JobRunnable"></a>3.2 创建一个实现org.quartz.Job的类JobRunnable</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.windh.quartz.common.utils.QuartzUtil;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.quartz.Job;</span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;</span><br><span class="line"><span class="keyword">import</span> org.quartz.JobKey;</span><br><span class="line"><span class="keyword">import</span> org.quartz.SchedulerException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JobRunnable</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span> </span>&#123;</span><br><span class="line">        JobKey jobKey = context.getJobDetail().getKey();</span><br><span class="line">        <span class="keyword">if</span> (QuartzUtil.getJobKeyMap().containsKey(jobKey.getName())) &#123;</span><br><span class="line">            Runnable runnable = QuartzUtil.getJobKeyMap().get(jobKey.getName());</span><br><span class="line">            QuartzUtil.getThreadPool().execute(runnable);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                QuartzUtil.getScheduler().deleteJob(jobKey);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SchedulerException e) &#123;</span><br><span class="line">                log.error(<span class="string">"Job info is not contain ,Delete Job error."</span>, e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -294,14 +299,16 @@
 
 <h2 id="3-4-验证日志"><a href="#3-4-验证日志" class="headerlink" title="3.4 验证日志"></a>3.4 验证日志</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">INFO 3816 --- [pool-1-thread-1] c.w.q.common.springawares.StartWare      : 0&#x2F;2 * * * * ? scheduled exec.</span><br><span class="line">INFO 3816 --- [pool-1-thread-2] c.w.q.common.springawares.StartWare      : 0&#x2F;2 * * * * ? scheduled exec.</span><br><span class="line">INFO 3816 --- [pool-1-thread-3] c.w.q.common.springawares.StartWare      : 0&#x2F;2 * * * * ? scheduled exec.</span><br><span class="line">INFO 3816 --- [pool-1-thread-4] c.w.q.common.springawares.StartWare      : 0&#x2F;2 * * * * ? scheduled exec.</span><br><span class="line">INFO 3816 --- [pool-1-thread-5] c.w.q.common.springawares.StartWare      : 0&#x2F;2 * * * * ? scheduled exec.</span><br><span class="line">INFO 3816 --- [pool-1-thread-6] c.w.q.common.springawares.StartWare      : 0&#x2F;2 * * * * ? scheduled exec.</span><br></pre></td></tr></table></figure>
 
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>在使用的过程中其实有很多需要注意的点，比如quartz对job和trigger的name进行的一致的校验。之所以会封装一层，改job为runnable，是为了更方便调用，包括1.8之后能使用lambda后能直接构建匿名内部类，减少不必要的类的创建。</p>
+
+
+<p>在使用的过程中其实有很多需要注意的点，比如quartz对job和trigger的name进行的一致的校验。之所以会封装一层，改job为runnable，是为了更方便调用，包括1.8之后能使用lambda后能直接构建匿名内部类，减少不必要的类的创建。</p>
+<br>
+
 ]]></content>
       <categories>
-        <category>Java</category>
         <category>Quartz</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Quartz</tag>
       </tags>
   </entry>
@@ -317,6 +324,8 @@
 </blockquote>
 <h2 id="2-1-定义一个接口"><a href="#2-1-定义一个接口" class="headerlink" title="2.1 定义一个接口"></a>2.1 定义一个接口</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">final</span> ApplicationContext context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <h2 id="2-2-编写一个接口的实现类"><a href="#2-2-编写一个接口的实现类" class="headerlink" title="2.2 编写一个接口的实现类"></a>2.2 编写一个接口的实现类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInit</span> <span class="keyword">implements</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO init LogInit</span></span><br><span class="line">        log.info(<span class="string">"Init My Log."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-3-新建spi所需静态文件"><a href="#2-3-新建spi所需静态文件" class="headerlink" title="2.3 新建spi所需静态文件"></a>2.3 新建spi所需静态文件</h2><blockquote>
@@ -329,7 +338,6 @@
 <p>日志输入如下：</p>
 <img style="margin:auto 0;" src="/2020/07/01/SPI%E6%9C%BA%E5%88%B6/SPI-1.png" alt="SPI-1.png">]]></content>
       <categories>
-        <category>SpringBoot</category>
         <category>SPI</category>
       </categories>
       <tags>
@@ -346,6 +354,8 @@
 <h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。</p>
 <h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8、IDEA</p>
 <h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-非涉密网络环境"><a href="#3-1-非涉密网络环境" class="headerlink" title="3.1 非涉密网络环境"></a>3.1 非涉密网络环境</h2><p>这里的非涉密网络环境的特点是能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。</p>
+<a id="more"></a>
+
 <h3 id="3-1-1-新建项目"><a href="#3-1-1-新建项目" class="headerlink" title="3.1.1 新建项目"></a>3.1.1 新建项目</h3><p>IDEA-&gt;File-&gt;New-&gt;Project…</p>
 <img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-1.png" alt="SpringBootBuild-1.png">
 
@@ -359,7 +369,7 @@
 
 <br>
 
-<a id="more"></a>
+<!-- more -->
 
 <h2 id="3-2-涉密网络环境"><a href="#3-2-涉密网络环境" class="headerlink" title="3.2 涉密网络环境"></a>3.2 涉密网络环境</h2><p>此处涉密网络环境指不能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。</p>
 <h3 id="3-2-1-新建maven项目"><a href="#3-2-1-新建maven项目" class="headerlink" title="3.2.1 新建maven项目"></a>3.2.1 新建maven项目</h3><img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-5.png" alt="SpringBootBuild-5.png">
@@ -376,14 +386,18 @@
 <h3 id="3-2-6-添加springboot入口类注解"><a href="#3-2-6-添加springboot入口类注解" class="headerlink" title="3.2.6 添加springboot入口类注解"></a>3.2.6 添加springboot入口类注解</h3><p>在Application.java类上添加@SpringBootApplication注解。如下：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>SpringBoot主要的特点是项目构建快。几乎可以做到零配置就可以启动一个web项目。从开始构建到启动项目，1~2分钟就可以完成。</p>
-<br>]]></content>
+
+
+<p>SpringBoot主要的特点是项目构建快。几乎可以做到零配置就可以启动一个web项目。从开始构建到启动项目，1~2分钟就可以完成。</p>
+<br>
+
+]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>JAVA</tag>
+        <tag>Java</tag>
         <tag>SpringBoot</tag>
         <tag>Spring</tag>
       </tags>
@@ -397,6 +411,8 @@
 <h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>SpringBoot中使用Mybatis之前，先搭建基本的项目,然后引入<a href="https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter" target="_blank" rel="noopener"><a href="https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter" target="_blank" rel="noopener">mybatis-spring-boot-starter</a></a>和数据库驱动（本文使用MySql）的依赖。也可以添加druid的依赖。</p>
 <h2 id="二、环境及依赖"><a href="#二、环境及依赖" class="headerlink" title="二、环境及依赖"></a>二、环境及依赖</h2><p>1）JDK：1.8<br>2）IDE：IDEA<br>3）maven依赖</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.19<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.20<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h2 id="三、实践"><a href="#三、实践" class="headerlink" title="三、实践"></a>三、实践</h2><h4 id="1-新建表，此处自己随意新建一个表。只需要几个字段即可。随便插入两条数据。"><a href="#1-新建表，此处自己随意新建一个表。只需要几个字段即可。随便插入两条数据。" class="headerlink" title="1. 新建表，此处自己随意新建一个表。只需要几个字段即可。随便插入两条数据。"></a>1. 新建表，此处自己随意新建一个表。只需要几个字段即可。随便插入两条数据。</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t_user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">varchar</span>(<span class="number">300</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`username`</span> <span class="built_in">varchar</span>(<span class="number">300</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`password`</span> <span class="built_in">varchar</span>(<span class="number">300</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4 <span class="keyword">COLLATE</span>=utf8mb4_0900_ai_ci;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mybatis`</span>.<span class="string">`t_user`</span>(<span class="string">`id`</span>, <span class="string">`username`</span>, <span class="string">`password`</span>) <span class="keyword">VALUES</span> (<span class="string">'a3fa40d2-978d-4945-b506-077762e99c24'</span>, <span class="string">'user1'</span>, <span class="string">'68a45fe6-abd0-4b17-8809-2ba3026e9718'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mybatis`</span>.<span class="string">`t_user`</span>(<span class="string">`id`</span>, <span class="string">`username`</span>, <span class="string">`password`</span>) <span class="keyword">VALUES</span> (<span class="string">'ad2b8b5c-5b5b-4247-aadf-80032b4e570f'</span>, <span class="string">'user2'</span>, <span class="string">'ba511205-e163-4194-9ffe-3e42465c1790'</span>);</span><br></pre></td></tr></table></figure>
 
@@ -440,14 +456,15 @@
 </blockquote>
 <img style="margin:auto 0;" src="/2020/05/28/SpringBoot-Build-MyBatis/SpringBoot中搭建MyBatis-1.png" alt="SpringBoot中搭建MyBatis-1.png">
 
-<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><blockquote>
-<p>Mybatis在SSM框架总是必须掌握的。很多配置需要重点关注。关于pom中引入了druid，此处提供相关文章链接，可以简单了解。</p>
-</blockquote>
+
+
+<p>Mybatis在SSM框架总是必须掌握的。很多配置需要重点关注。关于pom中引入了druid，此处提供相关文章链<br>接，可以简单了解。</p>
+<br>
+
 ]]></content>
       <categories>
         <category>Java</category>
         <category>Mybatis</category>
-        <category>SpringBoot</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -470,6 +487,8 @@
 <h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3.详解"></a>3.详解</h1><p>Redis能实现分布式锁是因为存在一个命令：setnx ,而ex属性保证了一些容错。</p>
 <h2 id="3-1-使用LUA脚本"><a href="#3-1-使用LUA脚本" class="headerlink" title="3.1 使用LUA脚本"></a>3.1 使用LUA脚本</h2><h3 id="3-1-1-maven依赖"><a href="#3-1-1-maven依赖" class="headerlink" title="3.1.1 maven依赖:"></a>3.1.1 maven依赖:</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <h3 id="3-1-2实现代码如下"><a href="#3-1-2实现代码如下" class="headerlink" title="3.1.2实现代码如下:"></a>3.1.2实现代码如下:</h3><blockquote>
 <p>注：调用时value结果业务设定，过期时间也可以当参数传入。当业务的花费时间波动比较大，需要添加守护线程进行续命，确保业务不会因为锁的过期时间太短出现问题。</p>
 </blockquote>
@@ -481,17 +500,17 @@
 
 <h4 id="3-2-2-2-此处提供基础的使用示例，redisson包含的很多类型的锁，包括公平锁，锁组，读写锁等，此处不逐一介绍。不难发现，redisson的锁和java提供的显式锁用法一致。"><a href="#3-2-2-2-此处提供基础的使用示例，redisson包含的很多类型的锁，包括公平锁，锁组，读写锁等，此处不逐一介绍。不难发现，redisson的锁和java提供的显式锁用法一致。" class="headerlink" title="3.2.2.2 此处提供基础的使用示例，redisson包含的很多类型的锁，包括公平锁，锁组，读写锁等，此处不逐一介绍。不难发现，redisson的锁和java提供的显式锁用法一致。"></a>3.2.2.2 此处提供基础的使用示例，redisson包含的很多类型的锁，包括公平锁，锁组，读写锁等，此处不逐一介绍。不难发现，redisson的锁和java提供的显式锁用法一致。</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisSonDistributedLock</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Redisson redisson;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 过期时间10min</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;redis.expireTime:600000&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> EXPIRE_TIMEOUT = <span class="number">10</span> * <span class="number">60</span> * <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">redissonDistributedLockDemo</span><span class="params">(<span class="keyword">final</span> String key)</span> </span>&#123;</span><br><span class="line">        RLock lock = redisson.getLock(key);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">boolean</span> isLock = lock.tryLock(EXPIRE_TIMEOUT, TimeUnit.MILLISECONDS);</span><br><span class="line">            <span class="keyword">if</span> (isLock) &#123;</span><br><span class="line">                <span class="comment">// <span class="doctag">TODO:</span> 业务操作</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">"tryLock failed."</span>, e);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>此次介绍的分布式锁，只是一个简单的展示，具体的使用，需要根据业务处理。</p>
+
+
+<p>此次介绍的分布式锁，只是一个简单的展示，具体的使用，需要根据业务处理。</p>
 <p>比如Lua实现的分布式锁，当业务处理所需时间波动比较大时，预设的过期时间不好制定时，需要添加守护线程进行续命；同时也可以添加重试机制，确保加锁时不会因为其他非锁占用因素导致加锁失败。</p>
-]]></content>
+<br>]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
         <category>Redis</category>
-        <category>分布式</category>
       </categories>
       <tags>
-        <tag>JAVA</tag>
-        <tag>分布式</tag>
+        <tag>Java</tag>
         <tag>Redis</tag>
       </tags>
   </entry>

@@ -69,7 +69,7 @@
   <time datetime="2020-07-01T14:19:26.000Z" itemprop="datePublished">2020-07-01</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a> / <a class="article-category-link" href="/categories/SpringBoot/SPI/">SPI</a>
+    <a class="article-category-link" href="/categories/SPI/">SPI</a>
   </div>
   
 <div class="word_count">
@@ -109,6 +109,8 @@
 <p>本文介绍下spring的SPI</p>
 </blockquote>
 <h2 id="2-1-定义一个接口"><a href="#2-1-定义一个接口" class="headerlink" title="2.1 定义一个接口"></a>2.1 定义一个接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">final</span> ApplicationContext context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h2 id="2-2-编写一个接口的实现类"><a href="#2-2-编写一个接口的实现类" class="headerlink" title="2.2 编写一个接口的实现类"></a>2.2 编写一个接口的实现类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInit</span> <span class="keyword">implements</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO init LogInit</span></span><br><span class="line">        log.info(<span class="string">"Init My Log."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

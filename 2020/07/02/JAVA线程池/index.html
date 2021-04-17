@@ -69,7 +69,7 @@
   <time datetime="2020-07-02T13:43:58.000Z" itemprop="datePublished">2020-07-02</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a> / <a class="article-category-link" href="/categories/JAVA/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>
+    <a class="article-category-link" href="/categories/Java/">Java</a> / <a class="article-category-link" href="/categories/Java/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>
   </div>
   
 <div class="word_count">
@@ -109,6 +109,8 @@
 <p>（2）提高响应速度，需要线程直接使用，省去了创建时的时间消耗。</p>
 <p>（3）更方便于并发管理。</p>
 <h1 id="3-JDK中线程池类"><a href="#3-JDK中线程池类" class="headerlink" title="3. JDK中线程池类"></a>3. JDK中线程池类</h1><p>说到线程池就需要去了解 Executors ，它是线程池的工厂类，里面对应了四种应用场景的线程池。</p>
+<a id="more"></a>
+
 <h2 id="3-1-newFixedThreadPool"><a href="#3-1-newFixedThreadPool" class="headerlink" title="3.1 newFixedThreadPool"></a>3.1 newFixedThreadPool</h2><p>创建一个线程池，该线程池重用在共享的无边界队列上运行的固定数量的线程。</p>
 <p><code>关键字</code>  固定线程数、无边界阻塞队列</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Executor threadPool = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">fixedPool.execute(()-&gt; log.info(<span class="string">"run with fixedPool"</span>));</span><br></pre></td></tr></table></figure>
@@ -201,7 +203,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA/" rel="tag">JAVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" rel="tag">线程池</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" rel="tag">线程池</a></li></ul>
 
     </footer>
   </div>
