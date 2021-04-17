@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>WindH</title>
+  <title>Wind-Hu</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://huleilei0906.github.io/"/>
+  <link href="https://wind-hu.github.io/"/>
   <updated>2021-04-17T05:48:47.455Z</updated>
-  <id>https://huleilei0906.github.io/</id>
+  <id>https://wind-hu.github.io/</id>
   
   <author>
-    <name>WindH</name>
+    <name>Wind-Hu</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>JAVA线程池</title>
-    <link href="https://huleilei0906.github.io/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
-    <id>https://huleilei0906.github.io/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/</id>
+    <link href="https://wind-hu.github.io/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    <id>https://wind-hu.github.io/2020/07/02/JAVA%E7%BA%BF%E7%A8%8B%E6%B1%A0/</id>
     <published>2020-07-02T13:43:58.000Z</published>
     <updated>2021-04-17T05:48:47.455Z</updated>
     
@@ -37,21 +37,21 @@
     </summary>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/categories/Java/"/>
     
-      <category term="线程池" scheme="https://huleilei0906.github.io/categories/Java/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+      <category term="线程池" scheme="https://wind-hu.github.io/categories/Java/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
     
-      <category term="线程池" scheme="https://huleilei0906.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+      <category term="线程池" scheme="https://wind-hu.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
   </entry>
   
   <entry>
     <title>SPI机制</title>
-    <link href="https://huleilei0906.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/"/>
-    <id>https://huleilei0906.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/</id>
+    <link href="https://wind-hu.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/"/>
+    <id>https://wind-hu.github.io/2020/07/01/SPI%E6%9C%BA%E5%88%B6/</id>
     <published>2020-07-01T14:19:26.000Z</published>
     <updated>2021-04-17T05:44:49.665Z</updated>
     
@@ -69,19 +69,19 @@
     </summary>
     
     
-      <category term="SPI" scheme="https://huleilei0906.github.io/categories/SPI/"/>
+      <category term="SPI" scheme="https://wind-hu.github.io/categories/SPI/"/>
     
     
-      <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
     
-      <category term="SPI" scheme="https://huleilei0906.github.io/tags/SPI/"/>
+      <category term="SPI" scheme="https://wind-hu.github.io/tags/SPI/"/>
     
   </entry>
   
   <entry>
     <title>MinIO</title>
-    <link href="https://huleilei0906.github.io/2020/06/29/Minio/"/>
-    <id>https://huleilei0906.github.io/2020/06/29/Minio/</id>
+    <link href="https://wind-hu.github.io/2020/06/29/Minio/"/>
+    <id>https://wind-hu.github.io/2020/06/29/Minio/</id>
     <published>2020-06-29T09:24:59.000Z</published>
     <updated>2021-04-17T05:54:38.268Z</updated>
     
@@ -99,21 +99,21 @@
     </summary>
     
     
-      <category term="MinIO" scheme="https://huleilei0906.github.io/categories/MinIO/"/>
+      <category term="MinIO" scheme="https://wind-hu.github.io/categories/MinIO/"/>
     
     
-      <category term="MinIO" scheme="https://huleilei0906.github.io/tags/MinIO/"/>
+      <category term="MinIO" scheme="https://wind-hu.github.io/tags/MinIO/"/>
     
-      <category term="分布式" scheme="https://huleilei0906.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+      <category term="分布式" scheme="https://wind-hu.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
-      <category term="存储" scheme="https://huleilei0906.github.io/tags/%E5%AD%98%E5%82%A8/"/>
+      <category term="存储" scheme="https://wind-hu.github.io/tags/%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
   <entry>
     <title>Nginx-LoadBalance</title>
-    <link href="https://huleilei0906.github.io/2020/06/28/Nginx-LoadBalance/"/>
-    <id>https://huleilei0906.github.io/2020/06/28/Nginx-LoadBalance/</id>
+    <link href="https://wind-hu.github.io/2020/06/28/Nginx-LoadBalance/"/>
+    <id>https://wind-hu.github.io/2020/06/28/Nginx-LoadBalance/</id>
     <published>2020-06-28T12:41:30.000Z</published>
     <updated>2021-04-17T05:43:42.182Z</updated>
     
@@ -131,21 +131,21 @@
     </summary>
     
     
-      <category term="Nginx" scheme="https://huleilei0906.github.io/categories/Nginx/"/>
+      <category term="Nginx" scheme="https://wind-hu.github.io/categories/Nginx/"/>
     
-      <category term="LoadBalance" scheme="https://huleilei0906.github.io/categories/Nginx/LoadBalance/"/>
+      <category term="LoadBalance" scheme="https://wind-hu.github.io/categories/Nginx/LoadBalance/"/>
     
     
-      <category term="Nginx" scheme="https://huleilei0906.github.io/tags/Nginx/"/>
+      <category term="Nginx" scheme="https://wind-hu.github.io/tags/Nginx/"/>
     
-      <category term="LoadBalance" scheme="https://huleilei0906.github.io/tags/LoadBalance/"/>
+      <category term="LoadBalance" scheme="https://wind-hu.github.io/tags/LoadBalance/"/>
     
   </entry>
   
   <entry>
     <title>Quartz</title>
-    <link href="https://huleilei0906.github.io/2020/06/28/Quartz/"/>
-    <id>https://huleilei0906.github.io/2020/06/28/Quartz/</id>
+    <link href="https://wind-hu.github.io/2020/06/28/Quartz/"/>
+    <id>https://wind-hu.github.io/2020/06/28/Quartz/</id>
     <published>2020-06-28T11:49:28.000Z</published>
     <updated>2021-04-17T05:58:49.658Z</updated>
     
@@ -165,17 +165,17 @@
     </summary>
     
     
-      <category term="Quartz" scheme="https://huleilei0906.github.io/categories/Quartz/"/>
+      <category term="Quartz" scheme="https://wind-hu.github.io/categories/Quartz/"/>
     
     
-      <category term="Quartz" scheme="https://huleilei0906.github.io/tags/Quartz/"/>
+      <category term="Quartz" scheme="https://wind-hu.github.io/tags/Quartz/"/>
     
   </entry>
   
   <entry>
     <title>SpringBoot-Build-MyBatis</title>
-    <link href="https://huleilei0906.github.io/2020/05/28/SpringBoot-Build-MyBatis/"/>
-    <id>https://huleilei0906.github.io/2020/05/28/SpringBoot-Build-MyBatis/</id>
+    <link href="https://wind-hu.github.io/2020/05/28/SpringBoot-Build-MyBatis/"/>
+    <id>https://wind-hu.github.io/2020/05/28/SpringBoot-Build-MyBatis/</id>
     <published>2020-05-28T06:22:27.000Z</published>
     <updated>2021-04-17T05:58:20.162Z</updated>
     
@@ -191,23 +191,23 @@
     </summary>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/categories/Java/"/>
     
-      <category term="Mybatis" scheme="https://huleilei0906.github.io/categories/Java/Mybatis/"/>
+      <category term="Mybatis" scheme="https://wind-hu.github.io/categories/Java/Mybatis/"/>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
     
-      <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
     
-      <category term="Mybatis" scheme="https://huleilei0906.github.io/tags/Mybatis/"/>
+      <category term="Mybatis" scheme="https://wind-hu.github.io/tags/Mybatis/"/>
     
   </entry>
   
   <entry>
     <title>SpringBoot-Build</title>
-    <link href="https://huleilei0906.github.io/2020/05/27/SpringBoot-Build/"/>
-    <id>https://huleilei0906.github.io/2020/05/27/SpringBoot-Build/</id>
+    <link href="https://wind-hu.github.io/2020/05/27/SpringBoot-Build/"/>
+    <id>https://wind-hu.github.io/2020/05/27/SpringBoot-Build/</id>
     <published>2020-05-27T15:11:37.000Z</published>
     <updated>2021-04-17T05:58:28.695Z</updated>
     
@@ -223,23 +223,23 @@
     </summary>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/categories/Java/"/>
     
-      <category term="SpringBoot" scheme="https://huleilei0906.github.io/categories/Java/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://wind-hu.github.io/categories/Java/SpringBoot/"/>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
     
-      <category term="SpringBoot" scheme="https://huleilei0906.github.io/tags/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
     
-      <category term="Spring" scheme="https://huleilei0906.github.io/tags/Spring/"/>
+      <category term="Spring" scheme="https://wind-hu.github.io/tags/Spring/"/>
     
   </entry>
   
   <entry>
     <title>AOP实战-AspectJ</title>
-    <link href="https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/"/>
-    <id>https://huleilei0906.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</id>
+    <link href="https://wind-hu.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/"/>
+    <id>https://wind-hu.github.io/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</id>
     <published>2020-05-27T10:27:30.000Z</published>
     <updated>2021-04-17T05:47:17.483Z</updated>
     
@@ -263,25 +263,25 @@
     </summary>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/categories/Java/"/>
     
-      <category term="AOP" scheme="https://huleilei0906.github.io/categories/Java/AOP/"/>
+      <category term="AOP" scheme="https://wind-hu.github.io/categories/Java/AOP/"/>
     
-      <category term="AspectJ" scheme="https://huleilei0906.github.io/categories/Java/AOP/AspectJ/"/>
+      <category term="AspectJ" scheme="https://wind-hu.github.io/categories/Java/AOP/AspectJ/"/>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
     
-      <category term="AOP" scheme="https://huleilei0906.github.io/tags/AOP/"/>
+      <category term="AOP" scheme="https://wind-hu.github.io/tags/AOP/"/>
     
-      <category term="AspectJ" scheme="https://huleilei0906.github.io/tags/AspectJ/"/>
+      <category term="AspectJ" scheme="https://wind-hu.github.io/tags/AspectJ/"/>
     
   </entry>
   
   <entry>
     <title>分布式锁-Redis篇</title>
-    <link href="https://huleilei0906.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/"/>
-    <id>https://huleilei0906.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/</id>
+    <link href="https://wind-hu.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/"/>
+    <id>https://wind-hu.github.io/2020/05/27/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81-Redis%E7%AF%87/</id>
     <published>2020-05-27T05:19:09.000Z</published>
     <updated>2021-04-17T05:58:16.862Z</updated>
     
@@ -302,21 +302,21 @@
     </summary>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/categories/Java/"/>
     
-      <category term="Redis" scheme="https://huleilei0906.github.io/categories/Java/Redis/"/>
+      <category term="Redis" scheme="https://wind-hu.github.io/categories/Java/Redis/"/>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
     
-      <category term="Redis" scheme="https://huleilei0906.github.io/tags/Redis/"/>
+      <category term="Redis" scheme="https://wind-hu.github.io/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>ArrayList扩容机制</title>
-    <link href="https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/"/>
-    <id>https://huleilei0906.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</id>
+    <link href="https://wind-hu.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/"/>
+    <id>https://wind-hu.github.io/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</id>
     <published>2020-05-26T15:10:37.000Z</published>
     <updated>2021-04-17T05:48:37.278Z</updated>
     
@@ -334,21 +334,21 @@
     </summary>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/categories/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/categories/Java/"/>
     
-      <category term="ArrayList" scheme="https://huleilei0906.github.io/categories/Java/ArrayList/"/>
+      <category term="ArrayList" scheme="https://wind-hu.github.io/categories/Java/ArrayList/"/>
     
     
-      <category term="Java" scheme="https://huleilei0906.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
     
-      <category term="ArrayList" scheme="https://huleilei0906.github.io/tags/ArrayList/"/>
+      <category term="ArrayList" scheme="https://wind-hu.github.io/tags/ArrayList/"/>
     
   </entry>
   
   <entry>
     <title>Hexo Hello World</title>
-    <link href="https://huleilei0906.github.io/2020/05/25/Hexo-hello-world/"/>
-    <id>https://huleilei0906.github.io/2020/05/25/Hexo-hello-world/</id>
+    <link href="https://wind-hu.github.io/2020/05/25/Hexo-hello-world/"/>
+    <id>https://wind-hu.github.io/2020/05/25/Hexo-hello-world/</id>
     <published>2020-05-25T13:43:58.000Z</published>
     <updated>2020-11-28T17:00:51.424Z</updated>
     
@@ -368,10 +368,10 @@
     </summary>
     
     
-      <category term="Hexo" scheme="https://huleilei0906.github.io/categories/Hexo/"/>
+      <category term="Hexo" scheme="https://wind-hu.github.io/categories/Hexo/"/>
     
     
-      <category term="Hello World" scheme="https://huleilei0906.github.io/tags/Hello-World/"/>
+      <category term="Hello World" scheme="https://wind-hu.github.io/tags/Hello-World/"/>
     
   </entry>
   
