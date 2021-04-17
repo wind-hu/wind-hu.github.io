@@ -1,35 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ArrayList扩容机制</title>
-    <url>/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>面试的时候问到过ArrayList的扩容机制以及HashMap的扩容机制，今天来讲讲ArrayList的扩容机制。</p>
-<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8</p>
-<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3.详解"></a>3.详解</h1><h3 id="3-1-默认容量"><a href="#3-1-默认容量" class="headerlink" title="3.1 默认容量"></a>3.1 默认容量</h3><p> ArrayList若未指定长度默认空间长度为10，可见ArrayList中<strong>“DEFAULT_CAPACITY”</strong>属性，<strong>“size”</strong>属性为元素个数。最大长度为2^31-1-8，见ArrayList中<strong>“MAX_ARRAY_SIZE”</strong>属性。</p>
-<h3 id="3-2-扩容"><a href="#3-2-扩容" class="headerlink" title="3.2 扩容"></a>3.2 扩容</h3><p> 触发扩容的对外方法都在ArrayList.add<em>()的几个方法中，发现长度大于空间长度时调用*</em>“grow()”**,源码如下；</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line"></span><br><span class="line">    ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></span><br><span class="line">    System.arraycopy(elementData, index, elementData, index + <span class="number">1</span>,</span><br><span class="line">                     size - index);</span><br><span class="line">    elementData[index] = element;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-
-<p>扩容主要操作是在代码就在grow()方法中，源码及解析如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">   	<span class="comment">// oldCapacity为旧容量，newCapacity为新容量</span></span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">    <span class="comment">// 将oldCapacity 右移一位，其效果相当于oldCapacity /2，</span></span><br><span class="line">    <span class="comment">// 我们知道位运算的速度远远快于整除运算，整句运算式的结果就是将新容量更新为旧容量的1.5倍，</span></span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 检查新计算出的容量数值和实际所需容量数值比较，若计算出的容量数值小于实际所需容量数值，则用实际容量的数值</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    <span class="comment">// 检查新计算出的容量数值是否超过ArrayList最大长度，如果minCapacity大于最大容量，新容量为`Integer.MAX_VALUE`，否则，新容量大小则为 MAX_ARRAY_SIZE 即为 `Integer.MAX_VALUE - 8`</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    <span class="comment">// 调用copy方法</span></span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hugeCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> OutOfMemoryError();</span><br><span class="line">    <span class="keyword">return</span> (minCapacity &gt; MAX_ARRAY_SIZE) ?</span><br><span class="line">        <span class="comment">// MAX_ARRAY_SIZE = Integer.MAX_VALUE-8</span></span><br><span class="line">        Integer.MAX_VALUE :</span><br><span class="line">    MAX_ARRAY_SIZE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>ArrayList扩容机制如下：</p>
-<p>1.普遍情况下，新容量是旧容量1.5倍，同时校验新容量是否超过 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）。</p>
-<p>2.当在扩容1.5倍后，校验新容量是否超过MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8），若新容量（源码中newCapacity）大于最大容量 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）时,新容量为Integer.MAX_VALUE，否则为 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）;</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>ArrayList</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>ArrayList</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AOP实战-AspectJ</title>
     <url>/2020/05/27/AOP%E5%AE%9E%E6%88%98-AspectJ/</url>
     <content><![CDATA[<blockquote>
@@ -98,59 +69,32 @@
       </tags>
   </entry>
   <entry>
-    <title>MinIO</title>
-    <url>/2020/06/29/Minio/</url>
+    <title>ArrayList扩容机制</title>
+    <url>/2020/05/26/ArrayList%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<blockquote>
 <p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
 </blockquote>
-<h1 id="1-什么是MinIO"><a href="#1-什么是MinIO" class="headerlink" title="1. 什么是MinIO"></a>1. 什么是MinIO</h1><h2 id="1-1-MinIO介绍"><a href="#1-1-MinIO介绍" class="headerlink" title="1.1 MinIO介绍"></a>1.1 MinIO介绍</h2><p>​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
-<h2 id="1-2-MinIO保护数据策略"><a href="#1-2-MinIO保护数据策略" class="headerlink" title="1.2 MinIO保护数据策略"></a>1.2 MinIO保护数据策略</h2><p>​        Minio使用<strong>纠删码</strong><code>erasure code</code>和校验和<code>checksum</code>来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。</p>
-<h1 id="2-MinIO部署"><a href="#2-MinIO部署" class="headerlink" title="2. MinIO部署"></a>2. MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
-<p>进入<a href="https://dl.min.io/server/minio/release/linux-amd64/minio下载" target="_blank" rel="noopener">https://dl.min.io/server/minio/release/linux-amd64/minio下载</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;dl.minio.io&#x2F;server&#x2F;minio&#x2F;release&#x2F;linux-amd64&#x2F;minio</span><br></pre></td></tr></table></figure>
-
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>面试的时候问到过ArrayList的扩容机制以及HashMap的扩容机制，今天来讲讲ArrayList的扩容机制。</p>
+<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8</p>
+<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3.详解"></a>3.详解</h1><h3 id="3-1-默认容量"><a href="#3-1-默认容量" class="headerlink" title="3.1 默认容量"></a>3.1 默认容量</h3><p> ArrayList若未指定长度默认空间长度为10，可见ArrayList中<strong>“DEFAULT_CAPACITY”</strong>属性，<strong>“size”</strong>属性为元素个数。最大长度为2^31-1-8，见ArrayList中<strong>“MAX_ARRAY_SIZE”</strong>属性。</p>
+<h3 id="3-2-扩容"><a href="#3-2-扩容" class="headerlink" title="3.2 扩容"></a>3.2 扩容</h3><p> 触发扩容的对外方法都在ArrayList.add<em>()的几个方法中，发现长度大于空间长度时调用*</em>“grow()”**,源码如下；</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line"></span><br><span class="line">    ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></span><br><span class="line">    System.arraycopy(elementData, index, elementData, index + <span class="number">1</span>,</span><br><span class="line">                     size - index);</span><br><span class="line">    elementData[index] = element;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 
-<h3 id="2-1-2-上传到linux下"><a href="#2-1-2-上传到linux下" class="headerlink" title="2.1.2 上传到linux下"></a>2.1.2 上传到linux下</h3><p>在上一步下载的文件目录下添加shell脚本(例如：startMinIO.sh)并运行,命令如下：</p>
-<p>MINIO_ACCESS_KEY配置minio登录账户</p>
-<p>MINIO_SECRET_KEY配置minio登录密码</p>
-<p>dataPath为数据存储路径</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export MINIO_ACCESS_KEY="minio"</span><br><span class="line">export MINIO_SECRET_KEY="123qwe!@#"</span><br><span class="line">nohup ./minio server --address :9000 $&#123;dataPath&#125; &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>扩容主要操作是在代码就在grow()方法中，源码及解析如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">   	<span class="comment">// oldCapacity为旧容量，newCapacity为新容量</span></span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">    <span class="comment">// 将oldCapacity 右移一位，其效果相当于oldCapacity /2，</span></span><br><span class="line">    <span class="comment">// 我们知道位运算的速度远远快于整除运算，整句运算式的结果就是将新容量更新为旧容量的1.5倍，</span></span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 检查新计算出的容量数值和实际所需容量数值比较，若计算出的容量数值小于实际所需容量数值，则用实际容量的数值</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    <span class="comment">// 检查新计算出的容量数值是否超过ArrayList最大长度，如果minCapacity大于最大容量，新容量为`Integer.MAX_VALUE`，否则，新容量大小则为 MAX_ARRAY_SIZE 即为 `Integer.MAX_VALUE - 8`</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    <span class="comment">// 调用copy方法</span></span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hugeCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> OutOfMemoryError();</span><br><span class="line">    <span class="keyword">return</span> (minCapacity &gt; MAX_ARRAY_SIZE) ?</span><br><span class="line">        <span class="comment">// MAX_ARRAY_SIZE = Integer.MAX_VALUE-8</span></span><br><span class="line">        Integer.MAX_VALUE :</span><br><span class="line">    MAX_ARRAY_SIZE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-1-3-进入页面验证"><a href="#2-1-3-进入页面验证" class="headerlink" title="2.1.3 进入页面验证"></a>2.1.3 进入页面验证</h3><p>minio默认端口为9000，可以用–address 参数自定义。</p>
-<h2 id="2-2-集群部署"><a href="#2-2-集群部署" class="headerlink" title="2.2 集群部署"></a>2.2 集群部署</h2><p>MINIO集群与常规集群不同的是，MINIO集群中存储的文件并不是在所有节点上各存一份，而是将讲文件拆分成多分，再使用<strong>纠删码技术</strong>保障多节点文件完整。同时请<strong>对比</strong>集群部署和单点部署启动命令。本文档以四个节点为例预留5个端口（8089、9001、9002、9003、9004）</p>
-<h3 id="2-2-1-非集群单节点部署"><a href="#2-2-1-非集群单节点部署" class="headerlink" title="2.2.1 非集群单节点部署"></a>2.2.1 非集群单节点部署</h3><p>命令如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export MINIO_ACCESS_KEY="minio"</span><br><span class="line">export MINIO_SECRET_KEY="123qwe!@#"</span><br><span class="line">nohup ./minio server --address :9000 $&#123;dataPath&#125; &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-2-集群下单节点部署"><a href="#2-2-2-集群下单节点部署" class="headerlink" title="2.2.2 集群下单节点部署"></a>2.2.2 集群下单节点部署</h3><p>集群下部署minio单节点需要根据非集群单节点部署命令进行修改。将datapath部分指向集群中所有minio节点的datapath。</p>
-<p>集群中其中一个节点部署命令如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export MINIO_ACCESS_KEY="minio"</span><br><span class="line">export MINIO_SECRET_KEY="123qwe!@#"</span><br><span class="line">nohup ./minio server --address $&#123;Node1_IP&#125;:$&#123;Node1_Port&#125;  http://$&#123;Node1_IP&#125;/data/data1 http://$&#123;Node2_IP&#125;/data/data2 http://$&#123;Node3_IP&#125;/data/data3 http://$&#123;Node4_IP&#125;/data/data4 &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-3-MINIO集群注意点"><a href="#2-2-3-MINIO集群注意点" class="headerlink" title="2.2.3 MINIO集群注意点"></a>2.2.3 MINIO集群注意点</h3><p>minio的集群所有节点的<strong>登录账户</strong>及<strong>密码</strong>必须一致。</p>
-<p>minio的集群节点数量推荐大于等于<strong>4</strong>。</p>
-<h3 id="2-2-4-MINIO负载均衡"><a href="#2-2-4-MINIO负载均衡" class="headerlink" title="2.2.4 MINIO负载均衡"></a>2.2.4 MINIO负载均衡</h3><p>官方文档支持nginx，可参考我的另一篇。</p>
-<h4 id="2-2-4-1-配置nginx分发端口"><a href="#2-2-4-1-配置nginx分发端口" class="headerlink" title="2.2.4.1 配置nginx分发端口"></a>2.2.4.1 配置nginx分发端口</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"> <span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  www.dealthBook.com;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   html;</span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-4-2-添加upstream"><a href="#2-2-4-2-添加upstream" class="headerlink" title="2.2.4.2 添加upstream"></a>2.2.4.2 添加upstream</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">upstream</span> minio_server &#123;</span><br><span class="line">	<span class="comment">#1、轮询（默认选项，所有weight=1）</span></span><br><span class="line">	<span class="comment">#2、weight，执行轮询几率，weight与访问几率成正比</span></span><br><span class="line">	<span class="comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span></span><br><span class="line">	<span class="comment">#4、least_conn，最少连接数负载均衡</span></span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP1&#125;</span>:<span class="variable">$&#123;PORT1&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP2&#125;</span>:<span class="variable">$&#123;PORT2&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP3&#125;</span>:<span class="variable">$&#123;PORT3&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP4&#125;</span>:<span class="variable">$&#123;PORT4&#125;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-4-3-添加minio的upstream名称"><a href="#2-2-4-3-添加minio的upstream名称" class="headerlink" title="2.2.4.3 添加minio的upstream名称"></a>2.2.4.3 添加minio的upstream名称</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> /minio &#123;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://minio_server;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-4-4-最终配置文件布局"><a href="#2-2-4-4-最终配置文件布局" class="headerlink" title="2.2.4.4 最终配置文件布局"></a>2.2.4.4 最终配置文件布局</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">  	...</span><br><span class="line">    <span class="attribute">upstream</span> minio_server&#123;</span><br><span class="line">		...</span><br><span class="line">    &#125;</span><br><span class="line">    server&#123;</span><br><span class="line">        ...</span><br><span class="line">       	<span class="attribute">location</span> /minio&#123;</span><br><span class="line">            ...</span><br><span class="line">     	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-5-启动nginx及所有节点的minio"><a href="#2-2-5-启动nginx及所有节点的minio" class="headerlink" title="2.2.5 启动nginx及所有节点的minio"></a>2.2.5 启动nginx及所有节点的minio</h3><h3 id="2-2-6-验证"><a href="#2-2-6-验证" class="headerlink" title="2.2.6 验证"></a>2.2.6 验证</h3><h4 id="2-2-6-1-验证各节点minio是否正常"><a href="#2-2-6-1-验证各节点minio是否正常" class="headerlink" title="2.2.6.1 验证各节点minio是否正常"></a>2.2.6.1 验证各节点minio是否正常</h4><blockquote>
-<p>进入 <a href="http://ip:port/minio">http://ip:port/minio</a></p>
-</blockquote>
-<h4 id="2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089"><a href="#2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089" class="headerlink" title="2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089"></a>2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089</h4><blockquote>
-<p>通过nginx进入minio <a href="http://ip:8089/minio" target="_blank" rel="noopener">http://ip:8089/minio</a></p>
-</blockquote>
-<h1 id="3-MinIO页面"><a href="#3-MinIO页面" class="headerlink" title="3. MinIO页面"></a>3. MinIO页面</h1><h2 id="3-1-新建桶（Bucket）及上传文件"><a href="#3-1-新建桶（Bucket）及上传文件" class="headerlink" title="3.1 新建桶（Bucket）及上传文件"></a>3.1 新建桶（Bucket）及上传文件</h2><img style="margin:auto 0;" src="/2020/06/29/Minio/MinIO-1.png" alt="MinIO-1.png">]]></content>
+<p>ArrayList扩容机制如下：</p>
+<p>1.普遍情况下，新容量是旧容量1.5倍，同时校验新容量是否超过 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）。</p>
+<p>2.当在扩容1.5倍后，校验新容量是否超过MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8），若新容量（源码中newCapacity）大于最大容量 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）时,新容量为Integer.MAX_VALUE，否则为 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）;</p>
+]]></content>
       <categories>
-        <category>MinIO</category>
+        <category>Java</category>
+        <category>ArrayList</category>
       </categories>
       <tags>
-        <tag>MinIO</tag>
-        <tag>分布式</tag>
-        <tag>存储</tag>
+        <tag>Java</tag>
+        <tag>ArrayList</tag>
       </tags>
   </entry>
   <entry>
@@ -247,6 +191,62 @@
       </tags>
   </entry>
   <entry>
+    <title>MinIO</title>
+    <url>/2020/06/29/Minio/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-什么是MinIO"><a href="#1-什么是MinIO" class="headerlink" title="1. 什么是MinIO"></a>1. 什么是MinIO</h1><h2 id="1-1-MinIO介绍"><a href="#1-1-MinIO介绍" class="headerlink" title="1.1 MinIO介绍"></a>1.1 MinIO介绍</h2><p>​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
+<h2 id="1-2-MinIO保护数据策略"><a href="#1-2-MinIO保护数据策略" class="headerlink" title="1.2 MinIO保护数据策略"></a>1.2 MinIO保护数据策略</h2><p>​        Minio使用<strong>纠删码</strong><code>erasure code</code>和校验和<code>checksum</code>来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。</p>
+<h1 id="2-MinIO部署"><a href="#2-MinIO部署" class="headerlink" title="2. MinIO部署"></a>2. MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
+<p>进入<a href="https://dl.min.io/server/minio/release/linux-amd64/minio下载" target="_blank" rel="noopener">https://dl.min.io/server/minio/release/linux-amd64/minio下载</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;dl.minio.io&#x2F;server&#x2F;minio&#x2F;release&#x2F;linux-amd64&#x2F;minio</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="2-1-2-上传到linux下"><a href="#2-1-2-上传到linux下" class="headerlink" title="2.1.2 上传到linux下"></a>2.1.2 上传到linux下</h3><p>在上一步下载的文件目录下添加shell脚本(例如：startMinIO.sh)并运行,命令如下：</p>
+<p>MINIO_ACCESS_KEY配置minio登录账户</p>
+<p>MINIO_SECRET_KEY配置minio登录密码</p>
+<p>dataPath为数据存储路径</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export MINIO_ACCESS_KEY="minio"</span><br><span class="line">export MINIO_SECRET_KEY="123qwe!@#"</span><br><span class="line">nohup ./minio server --address :9000 $&#123;dataPath&#125; &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-3-进入页面验证"><a href="#2-1-3-进入页面验证" class="headerlink" title="2.1.3 进入页面验证"></a>2.1.3 进入页面验证</h3><p>minio默认端口为9000，可以用–address 参数自定义。</p>
+<h2 id="2-2-集群部署"><a href="#2-2-集群部署" class="headerlink" title="2.2 集群部署"></a>2.2 集群部署</h2><p>MINIO集群与常规集群不同的是，MINIO集群中存储的文件并不是在所有节点上各存一份，而是将讲文件拆分成多分，再使用<strong>纠删码技术</strong>保障多节点文件完整。同时请<strong>对比</strong>集群部署和单点部署启动命令。本文档以四个节点为例预留5个端口（8089、9001、9002、9003、9004）</p>
+<h3 id="2-2-1-非集群单节点部署"><a href="#2-2-1-非集群单节点部署" class="headerlink" title="2.2.1 非集群单节点部署"></a>2.2.1 非集群单节点部署</h3><p>命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export MINIO_ACCESS_KEY="minio"</span><br><span class="line">export MINIO_SECRET_KEY="123qwe!@#"</span><br><span class="line">nohup ./minio server --address :9000 $&#123;dataPath&#125; &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-2-集群下单节点部署"><a href="#2-2-2-集群下单节点部署" class="headerlink" title="2.2.2 集群下单节点部署"></a>2.2.2 集群下单节点部署</h3><p>集群下部署minio单节点需要根据非集群单节点部署命令进行修改。将datapath部分指向集群中所有minio节点的datapath。</p>
+<p>集群中其中一个节点部署命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export MINIO_ACCESS_KEY="minio"</span><br><span class="line">export MINIO_SECRET_KEY="123qwe!@#"</span><br><span class="line">nohup ./minio server --address $&#123;Node1_IP&#125;:$&#123;Node1_Port&#125;  http://$&#123;Node1_IP&#125;/data/data1 http://$&#123;Node2_IP&#125;/data/data2 http://$&#123;Node3_IP&#125;/data/data3 http://$&#123;Node4_IP&#125;/data/data4 &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-3-MINIO集群注意点"><a href="#2-2-3-MINIO集群注意点" class="headerlink" title="2.2.3 MINIO集群注意点"></a>2.2.3 MINIO集群注意点</h3><p>minio的集群所有节点的<strong>登录账户</strong>及<strong>密码</strong>必须一致。</p>
+<p>minio的集群节点数量推荐大于等于<strong>4</strong>。</p>
+<h3 id="2-2-4-MINIO负载均衡"><a href="#2-2-4-MINIO负载均衡" class="headerlink" title="2.2.4 MINIO负载均衡"></a>2.2.4 MINIO负载均衡</h3><p>官方文档支持nginx，可参考我的另一篇。</p>
+<h4 id="2-2-4-1-配置nginx分发端口"><a href="#2-2-4-1-配置nginx分发端口" class="headerlink" title="2.2.4.1 配置nginx分发端口"></a>2.2.4.1 配置nginx分发端口</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"> <span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  www.dealthBook.com;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   html;</span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-4-2-添加upstream"><a href="#2-2-4-2-添加upstream" class="headerlink" title="2.2.4.2 添加upstream"></a>2.2.4.2 添加upstream</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">upstream</span> minio_server &#123;</span><br><span class="line">	<span class="comment">#1、轮询（默认选项，所有weight=1）</span></span><br><span class="line">	<span class="comment">#2、weight，执行轮询几率，weight与访问几率成正比</span></span><br><span class="line">	<span class="comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span></span><br><span class="line">	<span class="comment">#4、least_conn，最少连接数负载均衡</span></span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP1&#125;</span>:<span class="variable">$&#123;PORT1&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP2&#125;</span>:<span class="variable">$&#123;PORT2&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP3&#125;</span>:<span class="variable">$&#123;PORT3&#125;</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="variable">$&#123;IP4&#125;</span>:<span class="variable">$&#123;PORT4&#125;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-4-3-添加minio的upstream名称"><a href="#2-2-4-3-添加minio的upstream名称" class="headerlink" title="2.2.4.3 添加minio的upstream名称"></a>2.2.4.3 添加minio的upstream名称</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> /minio &#123;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://minio_server;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-4-4-最终配置文件布局"><a href="#2-2-4-4-最终配置文件布局" class="headerlink" title="2.2.4.4 最终配置文件布局"></a>2.2.4.4 最终配置文件布局</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">  	...</span><br><span class="line">    <span class="attribute">upstream</span> minio_server&#123;</span><br><span class="line">		...</span><br><span class="line">    &#125;</span><br><span class="line">    server&#123;</span><br><span class="line">        ...</span><br><span class="line">       	<span class="attribute">location</span> /minio&#123;</span><br><span class="line">            ...</span><br><span class="line">     	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-5-启动nginx及所有节点的minio"><a href="#2-2-5-启动nginx及所有节点的minio" class="headerlink" title="2.2.5 启动nginx及所有节点的minio"></a>2.2.5 启动nginx及所有节点的minio</h3><h3 id="2-2-6-验证"><a href="#2-2-6-验证" class="headerlink" title="2.2.6 验证"></a>2.2.6 验证</h3><h4 id="2-2-6-1-验证各节点minio是否正常"><a href="#2-2-6-1-验证各节点minio是否正常" class="headerlink" title="2.2.6.1 验证各节点minio是否正常"></a>2.2.6.1 验证各节点minio是否正常</h4><blockquote>
+<p>进入 <a href="http://ip:port/minio">http://ip:port/minio</a></p>
+</blockquote>
+<h4 id="2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089"><a href="#2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089" class="headerlink" title="2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089"></a>2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089</h4><blockquote>
+<p>通过nginx进入minio <a href="http://ip:8089/minio" target="_blank" rel="noopener">http://ip:8089/minio</a></p>
+</blockquote>
+<h1 id="3-MinIO页面"><a href="#3-MinIO页面" class="headerlink" title="3. MinIO页面"></a>3. MinIO页面</h1><h2 id="3-1-新建桶（Bucket）及上传文件"><a href="#3-1-新建桶（Bucket）及上传文件" class="headerlink" title="3.1 新建桶（Bucket）及上传文件"></a>3.1 新建桶（Bucket）及上传文件</h2><img style="margin:auto 0;" src="/2020/06/29/Minio/MinIO-1.png" alt="MinIO-1.png">]]></content>
+      <categories>
+        <category>MinIO</category>
+      </categories>
+      <tags>
+        <tag>MinIO</tag>
+        <tag>分布式</tag>
+        <tag>存储</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx-LoadBalance</title>
     <url>/2020/06/28/Nginx-LoadBalance/</url>
     <content><![CDATA[<blockquote>
@@ -274,6 +274,96 @@
       <tags>
         <tag>Nginx</tag>
         <tag>LoadBalance</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SPI机制</title>
+    <url>/2020/07/01/SPI%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong></p>
+<h1 id="1-什么是SPI"><a href="#1-什么是SPI" class="headerlink" title="1. 什么是SPI"></a>1. 什么是SPI</h1><h2 id="1-1-SPI思想"><a href="#1-1-SPI思想" class="headerlink" title="1.1 SPI思想"></a>1.1 SPI思想</h2><p>SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。</p>
+<h2 id="1-2-SPI约定"><a href="#1-2-SPI约定" class="headerlink" title="1.2 SPI约定"></a>1.2 SPI约定</h2><h3 id="1-2-1-Java"><a href="#1-2-1-Java" class="headerlink" title="1.2.1 Java"></a>1.2.1 Java</h3><p>当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里创建一个以服务接口命名的文件。</p>
+<h3 id="1-2-2-Spring"><a href="#1-2-2-Spring" class="headerlink" title="1.2.2 Spring"></a>1.2.2 Spring</h3><p>在jar包的META-INF/目录里创建一个spring.factories，所有spi对应关系都可以写在这个文件中。</p>
+<h1 id="2-Spring中的SPI"><a href="#2-Spring中的SPI" class="headerlink" title="2. Spring中的SPI"></a>2. Spring中的SPI</h1><blockquote>
+<p>本文介绍下spring的SPI</p>
+</blockquote>
+<h2 id="2-1-定义一个接口"><a href="#2-1-定义一个接口" class="headerlink" title="2.1 定义一个接口"></a>2.1 定义一个接口</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">final</span> ApplicationContext context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="2-2-编写一个接口的实现类"><a href="#2-2-编写一个接口的实现类" class="headerlink" title="2.2 编写一个接口的实现类"></a>2.2 编写一个接口的实现类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInit</span> <span class="keyword">implements</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO init LogInit</span></span><br><span class="line">        log.info(<span class="string">"Init My Log."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-新建spi所需静态文件"><a href="#2-3-新建spi所需静态文件" class="headerlink" title="2.3 新建spi所需静态文件"></a>2.3 新建spi所需静态文件</h2><blockquote>
+<p>在Resources静态资源目录下新建spring.factories文件；写入如下内容：</p>
+</blockquote>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">com.windh.springspi.interfaces.InitServiceInterFace</span>=<span class="string">\</span></span><br><span class="line">  <span class="attr">com.windh.springspi.impl.LogInit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.support.SpringFactoriesLoader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringspiApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext run = SpringApplication.run(SpringspiApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        List&lt;InitServiceInterFace&gt; serviceLoader = SpringFactoriesLoader.loadFactories(</span><br><span class="line">                InitServiceInterFace<span class="class">.<span class="keyword">class</span>, <span class="title">Thread</span>.<span class="title">currentThread</span>().<span class="title">getContextClassLoader</span>())</span>;</span><br><span class="line">        <span class="keyword">for</span> (InitServiceInterFace initServiceInterFace : serviceLoader) &#123;</span><br><span class="line">            initServiceInterFace.init(run);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>日志输入如下：</p>
+<img style="margin:auto 0;" src="/2020/07/01/SPI%E6%9C%BA%E5%88%B6/SPI-1.png" alt="SPI-1.png">]]></content>
+      <categories>
+        <category>SPI</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>SPI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot-Build</title>
+    <url>/2020/05/27/SpringBoot-Build/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。</p>
+<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8、IDEA</p>
+<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-非涉密网络环境"><a href="#3-1-非涉密网络环境" class="headerlink" title="3.1 非涉密网络环境"></a>3.1 非涉密网络环境</h2><p>这里的非涉密网络环境的特点是能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。</p>
+<a id="more"></a>
+
+<h3 id="3-1-1-新建项目"><a href="#3-1-1-新建项目" class="headerlink" title="3.1.1 新建项目"></a>3.1.1 新建项目</h3><p>IDEA-&gt;File-&gt;New-&gt;Project…</p>
+<img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-1.png" alt="SpringBootBuild-1.png">
+
+<h3 id="3-1-2-选择Spring-Initializr"><a href="#3-1-2-选择Spring-Initializr" class="headerlink" title="3.1.2 选择Spring Initializr"></a>3.1.2 选择Spring Initializr</h3><p>此处配置自己的JDK版本，使用默认的Initializr Service URL</p>
+<img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-2.png" alt="SpringBootBuild-2.png">
+
+<h3 id="3-1-3-配置maven信息，根据项目信息填写"><a href="#3-1-3-配置maven信息，根据项目信息填写" class="headerlink" title="3.1.3 配置maven信息，根据项目信息填写"></a>3.1.3 配置maven信息，根据项目信息填写</h3><img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-3.png" alt="SpringBootBuild-3.png">
+
+<h3 id="3-1-4添加项目所需依赖starter-gt-Next"><a href="#3-1-4添加项目所需依赖starter-gt-Next" class="headerlink" title="3.1.4添加项目所需依赖starter-&gt;Next"></a>3.1.4添加项目所需依赖starter-&gt;Next</h3><p>注意一下，这里可以只选择starter-web，数据库的starter需要添加数据库连接配置，否则启动失败。</p>
+<img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-4.png" alt="SpringBootBuild-4.png">
+
+<br>
+
+<!-- more -->
+
+<h2 id="3-2-涉密网络环境"><a href="#3-2-涉密网络环境" class="headerlink" title="3.2 涉密网络环境"></a>3.2 涉密网络环境</h2><p>此处涉密网络环境指不能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。</p>
+<h3 id="3-2-1-新建maven项目"><a href="#3-2-1-新建maven项目" class="headerlink" title="3.2.1 新建maven项目"></a>3.2.1 新建maven项目</h3><img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-5.png" alt="SpringBootBuild-5.png">
+
+<h3 id="3-2-2-添加父项目"><a href="#3-2-2-添加父项目" class="headerlink" title="3.2.2 添加父项目"></a>3.2.2 添加父项目</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-3-添加maven依赖，包含ssm框架starter"><a href="#3-2-3-添加maven依赖，包含ssm框架starter" class="headerlink" title="3.2.3 添加maven依赖，包含ssm框架starter"></a>3.2.3 添加maven依赖，包含ssm框架starter</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-4-添加打包插件"><a href="#3-2-4-添加打包插件" class="headerlink" title="3.2.4 添加打包插件"></a>3.2.4 添加打包插件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 编译 src/main/java 目录下的 mapper 文件 --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-5-添加启动类"><a href="#3-2-5-添加启动类" class="headerlink" title="3.2.5 添加启动类"></a>3.2.5 添加启动类</h3><p>在java目录下添加java类，添加springboot主入口方法，示例路径：com.windh.maven.springboot.Application.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-6-添加springboot入口类注解"><a href="#3-2-6-添加springboot入口类注解" class="headerlink" title="3.2.6 添加springboot入口类注解"></a>3.2.6 添加springboot入口类注解</h3><p>在Application.java类上添加@SpringBootApplication注解。如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>SpringBoot主要的特点是项目构建快。几乎可以做到零配置就可以启动一个web项目。从开始构建到启动项目，1~2分钟就可以完成。</p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -310,39 +400,6 @@
       </categories>
       <tags>
         <tag>Quartz</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SPI机制</title>
-    <url>/2020/07/01/SPI%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong></p>
-<h1 id="1-什么是SPI"><a href="#1-什么是SPI" class="headerlink" title="1. 什么是SPI"></a>1. 什么是SPI</h1><h2 id="1-1-SPI思想"><a href="#1-1-SPI思想" class="headerlink" title="1.1 SPI思想"></a>1.1 SPI思想</h2><p>SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。</p>
-<h2 id="1-2-SPI约定"><a href="#1-2-SPI约定" class="headerlink" title="1.2 SPI约定"></a>1.2 SPI约定</h2><h3 id="1-2-1-Java"><a href="#1-2-1-Java" class="headerlink" title="1.2.1 Java"></a>1.2.1 Java</h3><p>当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里创建一个以服务接口命名的文件。</p>
-<h3 id="1-2-2-Spring"><a href="#1-2-2-Spring" class="headerlink" title="1.2.2 Spring"></a>1.2.2 Spring</h3><p>在jar包的META-INF/目录里创建一个spring.factories，所有spi对应关系都可以写在这个文件中。</p>
-<h1 id="2-Spring中的SPI"><a href="#2-Spring中的SPI" class="headerlink" title="2. Spring中的SPI"></a>2. Spring中的SPI</h1><blockquote>
-<p>本文介绍下spring的SPI</p>
-</blockquote>
-<h2 id="2-1-定义一个接口"><a href="#2-1-定义一个接口" class="headerlink" title="2.1 定义一个接口"></a>2.1 定义一个接口</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">final</span> ApplicationContext context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="2-2-编写一个接口的实现类"><a href="#2-2-编写一个接口的实现类" class="headerlink" title="2.2 编写一个接口的实现类"></a>2.2 编写一个接口的实现类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInit</span> <span class="keyword">implements</span> <span class="title">InitServiceInterFace</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO init LogInit</span></span><br><span class="line">        log.info(<span class="string">"Init My Log."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-3-新建spi所需静态文件"><a href="#2-3-新建spi所需静态文件" class="headerlink" title="2.3 新建spi所需静态文件"></a>2.3 新建spi所需静态文件</h2><blockquote>
-<p>在Resources静态资源目录下新建spring.factories文件；写入如下内容：</p>
-</blockquote>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">com.windh.springspi.interfaces.InitServiceInterFace</span>=<span class="string">\</span></span><br><span class="line">  <span class="attr">com.windh.springspi.impl.LogInit</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.windh.springspi.interfaces.InitServiceInterFace;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.support.SpringFactoriesLoader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringspiApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext run = SpringApplication.run(SpringspiApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        List&lt;InitServiceInterFace&gt; serviceLoader = SpringFactoriesLoader.loadFactories(</span><br><span class="line">                InitServiceInterFace<span class="class">.<span class="keyword">class</span>, <span class="title">Thread</span>.<span class="title">currentThread</span>().<span class="title">getContextClassLoader</span>())</span>;</span><br><span class="line">        <span class="keyword">for</span> (InitServiceInterFace initServiceInterFace : serviceLoader) &#123;</span><br><span class="line">            initServiceInterFace.init(run);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>日志输入如下：</p>
-<img style="margin:auto 0;" src="/2020/07/01/SPI%E6%9C%BA%E5%88%B6/SPI-1.png" alt="SPI-1.png">]]></content>
-      <categories>
-        <category>SPI</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-        <tag>SPI</tag>
       </tags>
   </entry>
   <entry>
@@ -413,63 +470,6 @@
         <tag>Java</tag>
         <tag>SpringBoot</tag>
         <tag>Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot-Build</title>
-    <url>/2020/05/27/SpringBoot-Build/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。</p>
-<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8、IDEA</p>
-<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-非涉密网络环境"><a href="#3-1-非涉密网络环境" class="headerlink" title="3.1 非涉密网络环境"></a>3.1 非涉密网络环境</h2><p>这里的非涉密网络环境的特点是能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。</p>
-<a id="more"></a>
-
-<h3 id="3-1-1-新建项目"><a href="#3-1-1-新建项目" class="headerlink" title="3.1.1 新建项目"></a>3.1.1 新建项目</h3><p>IDEA-&gt;File-&gt;New-&gt;Project…</p>
-<img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-1.png" alt="SpringBootBuild-1.png">
-
-<h3 id="3-1-2-选择Spring-Initializr"><a href="#3-1-2-选择Spring-Initializr" class="headerlink" title="3.1.2 选择Spring Initializr"></a>3.1.2 选择Spring Initializr</h3><p>此处配置自己的JDK版本，使用默认的Initializr Service URL</p>
-<img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-2.png" alt="SpringBootBuild-2.png">
-
-<h3 id="3-1-3-配置maven信息，根据项目信息填写"><a href="#3-1-3-配置maven信息，根据项目信息填写" class="headerlink" title="3.1.3 配置maven信息，根据项目信息填写"></a>3.1.3 配置maven信息，根据项目信息填写</h3><img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-3.png" alt="SpringBootBuild-3.png">
-
-<h3 id="3-1-4添加项目所需依赖starter-gt-Next"><a href="#3-1-4添加项目所需依赖starter-gt-Next" class="headerlink" title="3.1.4添加项目所需依赖starter-&gt;Next"></a>3.1.4添加项目所需依赖starter-&gt;Next</h3><p>注意一下，这里可以只选择starter-web，数据库的starter需要添加数据库连接配置，否则启动失败。</p>
-<img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-4.png" alt="SpringBootBuild-4.png">
-
-<br>
-
-<!-- more -->
-
-<h2 id="3-2-涉密网络环境"><a href="#3-2-涉密网络环境" class="headerlink" title="3.2 涉密网络环境"></a>3.2 涉密网络环境</h2><p>此处涉密网络环境指不能访问<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a>。</p>
-<h3 id="3-2-1-新建maven项目"><a href="#3-2-1-新建maven项目" class="headerlink" title="3.2.1 新建maven项目"></a>3.2.1 新建maven项目</h3><img style="margin:auto 0;" src="/2020/05/27/SpringBoot-Build/SpringBootBuild-5.png" alt="SpringBootBuild-5.png">
-
-<h3 id="3-2-2-添加父项目"><a href="#3-2-2-添加父项目" class="headerlink" title="3.2.2 添加父项目"></a>3.2.2 添加父项目</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-3-添加maven依赖，包含ssm框架starter"><a href="#3-2-3-添加maven依赖，包含ssm框架starter" class="headerlink" title="3.2.3 添加maven依赖，包含ssm框架starter"></a>3.2.3 添加maven依赖，包含ssm框架starter</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-4-添加打包插件"><a href="#3-2-4-添加打包插件" class="headerlink" title="3.2.4 添加打包插件"></a>3.2.4 添加打包插件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 编译 src/main/java 目录下的 mapper 文件 --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-5-添加启动类"><a href="#3-2-5-添加启动类" class="headerlink" title="3.2.5 添加启动类"></a>3.2.5 添加启动类</h3><p>在java目录下添加java类，添加springboot主入口方法，示例路径：com.windh.maven.springboot.Application.java</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-6-添加springboot入口类注解"><a href="#3-2-6-添加springboot入口类注解" class="headerlink" title="3.2.6 添加springboot入口类注解"></a>3.2.6 添加springboot入口类注解</h3><p>在Application.java类上添加@SpringBootApplication注解。如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>SpringBoot主要的特点是项目构建快。几乎可以做到零配置就可以启动一个web项目。从开始构建到启动项目，1~2分钟就可以完成。</p>
-<br>
-
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
