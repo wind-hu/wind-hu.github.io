@@ -1,0 +1,54 @@
+/* Here is your custom css styles. */
+/* 修改bg */
+.bg-color {
+    background-image: linear-gradient(to right, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+}
+
+/* 回到顶端、目录  */
+.top-scroll .btn-floating {
+    background-image: linear-gradient(to bottom, #ff0844 0%, #ffb199 100%);
+    opacity: 0.8
+}
+
+/* 翻页 */
+.btn-floating.btn-large.bg-color {
+    background-image: linear-gradient(to bottom, #ff0844 0%, #ffb199 100%);
+    opacity: 0.8
+}
+/* bg-color +span标签  各个文章标签自定义 */
+/*span.bg-color {*/
+/*    background-image: linear-gradient(to right, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);*/
+/*}*/
+
+.container {
+    max-width: 1500px;
+}
+
+/* 归档中时间线样式 */
+#cd-timeline::before {
+    background-image: linear-gradient(to bottom, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+}
+
+/* 文章详情的宽度 */
+@media only screen and (min-width: 993px) {
+    .container {
+        max-width: 1500px;
+    }
+
+    .post-container {
+        max-width: 1500px;
+    }
+}
+
+/* 关于我 页面 头像 右侧 socialLink 样式与主题色统一*/
+#aboutme .social-link a {
+    border: 1px solid #2CD8D5;
+    background-image: linear-gradient(to top right, #2CD8D5 0%, #C5C1FF 50%, #FFBAC3 100%);
+
+}
+
+/* 标签、分类中的 选项的悬浮事件 */
+.chip-container .chip:hover {
+    background-image: linear-gradient(to top right, #2CD8D5 0%, #C5C1FF 70%, #FFBAC3 100%) !important;
+    border: 1px solid #2CD8D5;
+}

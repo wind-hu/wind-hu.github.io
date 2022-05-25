@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Wind-Hu</title>
+  
+  <subtitle>Wind-Hu</subtitle>
+  <link href="https://wind-hu.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://wind-hu.github.io/"/>
+  <updated>2020-08-22T08:20:25.000Z</updated>
+  <id>https://wind-hu.github.io/</id>
+  
+  <author>
+    <name>Wind-Hu</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring的AntPathMatcher</title>
+    <link href="https://wind-hu.github.io/2020/08/22/spring-de-antpathmathcher/"/>
+    <id>https://wind-hu.github.io/2020/08/22/spring-de-antpathmathcher/</id>
+    <published>2020-08-22T08:20:25.000Z</published>
+    <updated>2020-08-22T08:20:25.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot全局异常捕获</title>
+    <link href="https://wind-hu.github.io/2020/08/22/springboot-quan-ju-yi-chang-bu-huo/"/>
+    <id>https://wind-hu.github.io/2020/08/22/springboot-quan-ju-yi-chang-bu-huo/</id>
+    <published>2020-08-22T08:00:37.000Z</published>
+    <updated>2020-08-22T08:00:37.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用GitHub Action自动同步代码到Gitee</title>
+    <link href="https://wind-hu.github.io/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/"/>
+    <id>https://wind-hu.github.io/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/</id>
+    <published>2020-08-19T14:12:40.000Z</published>
+    <updated>2020-08-19T14:12:40.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="基础能力" scheme="https://wind-hu.github.io/categories/%E5%9F%BA%E7%A1%80%E8%83%BD%E5%8A%9B/"/>
+    
+    
+    <category term="GitHub" scheme="https://wind-hu.github.io/tags/GitHub/"/>
+    
+    <category term="GitHub Action" scheme="https://wind-hu.github.io/tags/GitHub-Action/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA线程池</title>
+    <link href="https://wind-hu.github.io/2020/07/02/java-xian-cheng-chi/"/>
+    <id>https://wind-hu.github.io/2020/07/02/java-xian-cheng-chi/</id>
+    <published>2020-07-02T13:43:58.000Z</published>
+    <updated>2020-07-02T13:43:58.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-了解线程池&quot;&gt;&lt;a href=&quot;#1-了解线程池&quot; class=&quot;headerlink&quot; title=&quot;1.  了解线程池&quot;&gt;&lt;/a&gt;1.  了解线程池&lt;/h1&gt;&lt;p&gt;线程池简单理解就是一次创建多个线程，当一个任务交由线程池执行时，由线程池交由管理的线程来执行任务。&lt;/p&gt;
+&lt;h1 id=&quot;2-线程池的优点&quot;&gt;&lt;a href=&quot;#2-线程池的优点&quot; class=&quot;headerlink&quot; title=&quot;2. 线程池的优点&quot;&gt;&lt;/a&gt;2. 线程池的优点&lt;/h1&gt;&lt;p&gt;（1）不需要主动创建线程，线程的创建和销毁均由线程池管理，减少了不必要的消耗。&lt;/p&gt;
+&lt;p&gt;（2）提高响应速度，需要线程直接使用，省去了创建时的时间消耗。&lt;/p&gt;
+&lt;p&gt;（3）更方便于并发管理。&lt;/p&gt;
+&lt;h1 id=&quot;3-JDK中线程池类&quot;&gt;&lt;a href=&quot;#3-JDK中线程池类&quot; class=&quot;headerlink&quot; title=&quot;3. JDK中线程池类&quot;&gt;&lt;/a&gt;3. JDK中线程池类&lt;/h1&gt;&lt;p&gt;说到线程池就需要去了解 Executors ，它是线程池的工厂类，里面对应了四种应用场景的线程池。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="线程池" scheme="https://wind-hu.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SPI机制</title>
+    <link href="https://wind-hu.github.io/2020/07/01/spi-ji-zhi/"/>
+    <id>https://wind-hu.github.io/2020/07/01/spi-ji-zhi/</id>
+    <published>2020-07-01T14:19:26.000Z</published>
+    <updated>2020-07-01T14:19:26.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1-什么是SPI&quot;&gt;&lt;a href=&quot;#1-什么是SPI&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是SPI&quot;&gt;&lt;/a&gt;1. 什么是SPI&lt;/h1&gt;&lt;h2 id=&quot;1-1-SPI思想&quot;&gt;&lt;a href=&quot;#1-1-SPI思想&quot; class=&quot;headerlink&quot; title=&quot;1.1 SPI思想&quot;&gt;&lt;/a&gt;1.1 SPI思想&lt;/h2&gt;&lt;p&gt;SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-SPI约定&quot;&gt;&lt;a href=&quot;#1-2-SPI约定&quot; class=&quot;headerlink&quot; title=&quot;1.2 SPI约定&quot;&gt;&lt;/a&gt;1.2 SPI约定&lt;/h2&gt;&lt;h3 id=&quot;1-2-1-Java&quot;&gt;&lt;a href=&quot;#1-2-1-Java&quot; class=&quot;headerlink&quot; title=&quot;1.2.1 Java&quot;&gt;&lt;/a&gt;1.2.1 Java&lt;/h3&gt;&lt;p&gt;当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里创建一个以服务接口命名的文件。&lt;/p&gt;
+&lt;h3 id=&quot;1-2-2-Spring&quot;&gt;&lt;a href=&quot;#1-2-2-Spring&quot; class=&quot;headerlink&quot; title=&quot;1.2.2 Spring&quot;&gt;&lt;/a&gt;1.2.2 Spring&lt;/h3&gt;&lt;p&gt;在jar包的META-INF/目录里创建一个spring.factories，所有spi对应关系都可以写在这个文件中。&lt;/p&gt;
+&lt;h1 id=&quot;2-Spring中的SPI&quot;&gt;&lt;a href=&quot;#2-Spring中的SPI&quot; class=&quot;headerlink&quot; title=&quot;2. Spring中的SPI&quot;&gt;&lt;/a&gt;2. Spring中的SPI&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文介绍下spring的SPI&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;2-1-定义一个接口&quot;&gt;&lt;a href=&quot;#2-1-定义一个接口&quot; class=&quot;headerlink&quot; title=&quot;2.1 定义一个接口&quot;&gt;&lt;/a&gt;2.1 定义一个接口&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-java&quot; data-language=&quot;java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;context&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ApplicationContext&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;InitServiceInterFace&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ApplicationContext&lt;/span&gt; context&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
+    
+    <category term="SPI" scheme="https://wind-hu.github.io/tags/SPI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MinIO</title>
+    <link href="https://wind-hu.github.io/2020/06/29/minio/"/>
+    <id>https://wind-hu.github.io/2020/06/29/minio/</id>
+    <published>2020-06-29T09:24:59.000Z</published>
+    <updated>2020-06-29T09:24:59.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-什么是MinIO&quot;&gt;&lt;a href=&quot;#1-什么是MinIO&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是MinIO&quot;&gt;&lt;/a&gt;1. 什么是MinIO&lt;/h1&gt;&lt;h2 id=&quot;1-1-MinIO介绍&quot;&gt;&lt;a href=&quot;#1-1-MinIO介绍&quot; class=&quot;headerlink&quot; title=&quot;1.1 MinIO介绍&quot;&gt;&lt;/a&gt;1.1 MinIO介绍&lt;/h2&gt;&lt;p&gt;​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-MinIO保护数据策略&quot;&gt;&lt;a href=&quot;#1-2-MinIO保护数据策略&quot; class=&quot;headerlink&quot; title=&quot;1.2 MinIO保护数据策略&quot;&gt;&lt;/a&gt;1.2 MinIO保护数据策略&lt;/h2&gt;&lt;p&gt;​        Minio使用&lt;strong&gt;纠删码&lt;/strong&gt;&lt;code&gt;erasure code&lt;/code&gt;和校验和&lt;code&gt;checksum&lt;/code&gt;来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。&lt;/p&gt;
+&lt;h1 id=&quot;2-MinIO部署&quot;&gt;&lt;a href=&quot;#2-MinIO部署&quot; class=&quot;headerlink&quot; title=&quot;2. MinIO部署&quot;&gt;&lt;/a&gt;2. MinIO部署&lt;/h1&gt;&lt;h2 id=&quot;2-1-单节点部署&quot;&gt;&lt;a href=&quot;#2-1-单节点部署&quot; class=&quot;headerlink&quot; title=&quot;2.1 单节点部署&quot;&gt;&lt;/a&gt;2.1 单节点部署&lt;/h2&gt;&lt;h3 id=&quot;2-1-1-下载minio&quot;&gt;&lt;a href=&quot;#2-1-1-下载minio&quot; class=&quot;headerlink&quot; title=&quot;2.1.1 下载minio&quot;&gt;&lt;/a&gt;2.1.1 下载minio&lt;/h3&gt;&lt;p&gt;根据实际操作系统及位数下载相应minio server（注：不是minio client）&lt;/p&gt;
+&lt;p&gt;进入&lt;a href=&quot;https://dl.min.io/server/minio/release/linux-amd64/minio%E4%B8%8B%E8%BD%BD&quot;&gt;https://dl.min.io/server/minio/release/linux-amd64/minio下载&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;wget https://dl.minio.io/server/minio/release/linux-amd64/minio&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="中间件" scheme="https://wind-hu.github.io/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    
+    
+    <category term="MinIO" scheme="https://wind-hu.github.io/tags/MinIO/"/>
+    
+    <category term="分布式" scheme="https://wind-hu.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    <category term="存储" scheme="https://wind-hu.github.io/tags/%E5%AD%98%E5%82%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx-LoadBalance</title>
+    <link href="https://wind-hu.github.io/2020/06/28/nginx-loadbalance/"/>
+    <id>https://wind-hu.github.io/2020/06/28/nginx-loadbalance/</id>
+    <published>2020-06-28T12:41:30.000Z</published>
+    <updated>2020-06-28T12:41:30.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-了解Nginx&quot;&gt;&lt;a href=&quot;#1-了解Nginx&quot; class=&quot;headerlink&quot; title=&quot;1. 了解Nginx&quot;&gt;&lt;/a&gt;1. 了解Nginx&lt;/h1&gt;&lt;p&gt;Nginx，高性能的HTTP和反向代理服务器。反向代理作为它的核心功能，它的优点包括隐藏真实服务器、服务聚合等。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;Nginx： nginx version: nginx/1.17.6	&lt;/p&gt;
+&lt;p&gt;Gcc：built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC)&lt;/p&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3.详解&quot;&gt;&lt;/a&gt;3.详解&lt;/h1&gt;&lt;p&gt;Nginx的安装的总结会放在后续blog更新，此处不做过多的赘述。&lt;/p&gt;
+&lt;h5 id=&quot;step1：准备一个nginx环境&quot;&gt;&lt;a href=&quot;#step1：准备一个nginx环境&quot; class=&quot;headerlink&quot; title=&quot;step1：准备一个nginx环境.&quot;&gt;&lt;/a&gt;&lt;code&gt;step1&lt;/code&gt;：准备一个nginx环境.&lt;/h5&gt;&lt;h5 id=&quot;step2：找到nginx配置文件路径，编辑nginx-conf&quot;&gt;&lt;a href=&quot;#step2：找到nginx配置文件路径，编辑nginx-conf&quot; class=&quot;headerlink&quot; title=&quot;step2：找到nginx配置文件路径，编辑nginx.conf&quot;&gt;&lt;/a&gt;&lt;code&gt;step2&lt;/code&gt;：找到nginx配置文件路径，编辑nginx.conf&lt;/h5&gt;&lt;h5 id=&quot;step3：nginx-conf中的http中添加-upstream，如下&quot;&gt;&lt;a href=&quot;#step3：nginx-conf中的http中添加-upstream，如下&quot; class=&quot;headerlink&quot; title=&quot;step3：nginx.conf中的http中添加 upstream，如下&quot;&gt;&lt;/a&gt;&lt;code&gt;step3&lt;/code&gt;：nginx.conf中的http中添加 upstream，如下&lt;/h5&gt;</summary>
+    
+    
+    
+    <category term="中间件" scheme="https://wind-hu.github.io/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    
+    
+    <category term="Nginx" scheme="https://wind-hu.github.io/tags/Nginx/"/>
+    
+    <category term="LoadBalance" scheme="https://wind-hu.github.io/tags/LoadBalance/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot-Quartz</title>
+    <link href="https://wind-hu.github.io/2020/06/28/quartz-de-shi-yong/"/>
+    <id>https://wind-hu.github.io/2020/06/28/quartz-de-shi-yong/</id>
+    <published>2020-06-28T11:49:28.000Z</published>
+    <updated>2020-06-28T11:49:28.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;Quartz（Job Scheduler），一个比较流行的定时任务框架。搜索引擎会有详细的介绍，此处不再赘述。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;JDK：1.8&lt;/p&gt;
+&lt;p&gt;IDE：IDEA&lt;/p&gt;
+&lt;p&gt;maven依赖：&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-markup&quot; data-language=&quot;markup&quot;&gt;&lt;code class=&quot;language-markup&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;spring-boot-starter-quartz&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;2.4.0&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;org.projectlombok&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;lombok&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;1.18.16&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;optional&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;true&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;optional&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3. 详解&quot;&gt;&lt;/a&gt;3. 详解&lt;/h1&gt;&lt;p&gt;Quartz的上手难度其实挺低的，它会给我们提供很多简单的定时任务方法。同时也是可以使用cron表达式设定任务执行时间，接下来的例子就是使用cron表达式进行任务的创建。cron的用法会在后续blog中讲解。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
+    
+    <category term="Quartz" scheme="https://wind-hu.github.io/tags/Quartz/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot-Build-MyBatis</title>
+    <link href="https://wind-hu.github.io/2020/05/28/springboot-zhong-da-jian-mybatis/"/>
+    <id>https://wind-hu.github.io/2020/05/28/springboot-zhong-da-jian-mybatis/</id>
+    <published>2020-05-28T06:22:27.000Z</published>
+    <updated>2020-05-28T06:22:27.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;一、简介&quot;&gt;&lt;a href=&quot;#一、简介&quot; class=&quot;headerlink&quot; title=&quot;一、简介&quot;&gt;&lt;/a&gt;一、简介&lt;/h2&gt;&lt;p&gt;SpringBoot中使用Mybatis之前，先搭建基本的&lt;a href=&quot;/2020/05/27/springbootbuild/&quot; title=&quot;SpringBoot&quot;&gt;SpringBoot&lt;/a&gt;项目,然后引入&lt;a href=&quot;https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter&quot;&gt;mybatis-spring-boot-starter&lt;/a&gt;和数据库驱动（本文使用MySql）的依赖。也可以添加druid的依赖。&lt;/p&gt;
+&lt;h2 id=&quot;二、环境及依赖&quot;&gt;&lt;a href=&quot;#二、环境及依赖&quot; class=&quot;headerlink&quot; title=&quot;二、环境及依赖&quot;&gt;&lt;/a&gt;二、环境及依赖&lt;/h2&gt;&lt;p&gt;1）JDK：1.8&lt;br&gt;2）IDE：IDEA&lt;br&gt;3）maven依赖&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-markup&quot; data-language=&quot;markup&quot;&gt;&lt;code class=&quot;language-markup&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;spring-boot-starter-web&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;2.4.0&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;org.mybatis.spring.boot&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;mybatis-spring-boot-starter&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;2.1.4&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;mysql&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;mysql-connector-java&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;8.0.19&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;org.projectlombok&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;lombok&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;1.18.16&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;optional&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;true&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;optional&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;com.alibaba&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;druid-spring-boot-starter&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;1.1.20&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
+    
+    <category term="Mybatis" scheme="https://wind-hu.github.io/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot-Build</title>
+    <link href="https://wind-hu.github.io/2020/05/27/springbootbuild/"/>
+    <id>https://wind-hu.github.io/2020/05/27/springbootbuild/</id>
+    <published>2020-05-27T15:11:37.000Z</published>
+    <updated>2020-05-27T15:11:37.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;JDK1.8、IDEA&lt;/p&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3. 详解&quot;&gt;&lt;/a&gt;3. 详解&lt;/h1&gt;&lt;h2 id=&quot;3-1-非涉密网络环境&quot;&gt;&lt;a href=&quot;#3-1-非涉密网络环境&quot; class=&quot;headerlink&quot; title=&quot;3.1 非涉密网络环境&quot;&gt;&lt;/a&gt;3.1 非涉密网络环境&lt;/h2&gt;&lt;p&gt;这里的非涉密网络环境的特点是能访问&lt;a href=&quot;https://start.spring.io/&quot;&gt;https://start.spring.io&lt;/a&gt;。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="Spring" scheme="https://wind-hu.github.io/tags/Spring/"/>
+    
+    <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AOP实战-AspectJ</title>
+    <link href="https://wind-hu.github.io/2020/05/27/aop-shi-zhan-aspectj/"/>
+    <id>https://wind-hu.github.io/2020/05/27/aop-shi-zhan-aspectj/</id>
+    <published>2020-05-27T10:27:30.000Z</published>
+    <updated>2020-05-27T10:27:30.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;用过Spring的都知道DI和AOP，今天介绍一个实现AOP超级且方便功能强大的框架AspectJ。此文默认读者有一定spring基础。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;JDK：1.8&lt;/p&gt;
+&lt;p&gt;架构：SpringBoot&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3. 详解&quot;&gt;&lt;/a&gt;3. 详解&lt;/h1&gt;&lt;h2 id=&quot;3-1-基础概念&quot;&gt;&lt;a href=&quot;#3-1-基础概念&quot; class=&quot;headerlink&quot; title=&quot;3.1 基础概念&quot;&gt;&lt;/a&gt;3.1 基础概念&lt;/h2&gt;&lt;p&gt;Aspect：切面&lt;/p&gt;
+&lt;p&gt;Pointcut：切点，通过不同切入点，执行不同操作，此文中展示execution时机执行的操作。&lt;/p&gt;
+&lt;p&gt;Advice：通知，包括前置通知、后置通知、异常通知、环绕通知等等；其中，环绕通知功能最为强大。此文展示环绕通知用法。&lt;/p&gt;
+&lt;h2 id=&quot;3-2-AspectJ依赖：&quot;&gt;&lt;a href=&quot;#3-2-AspectJ依赖：&quot; class=&quot;headerlink&quot; title=&quot;3.2 AspectJ依赖：&quot;&gt;&lt;/a&gt;3.2 AspectJ依赖：&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-markup&quot; data-language=&quot;markup&quot;&gt;&lt;code class=&quot;language-markup&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;org.aspectj&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;aspectjweaver&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;1.9.5&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;3-3-代码实现&quot;&gt;&lt;a href=&quot;#3-3-代码实现&quot; class=&quot;headerlink&quot; title=&quot;3.3 代码实现&quot;&gt;&lt;/a&gt;3.3 代码实现&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="AOP" scheme="https://wind-hu.github.io/tags/AOP/"/>
+    
+    <category term="AspectJ" scheme="https://wind-hu.github.io/tags/AspectJ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DistributedLock-Redis</title>
+    <link href="https://wind-hu.github.io/2020/05/27/fen-bu-shi-suo-redis-pian/"/>
+    <id>https://wind-hu.github.io/2020/05/27/fen-bu-shi-suo-redis-pian/</id>
+    <published>2020-05-27T05:19:09.000Z</published>
+    <updated>2020-05-27T05:19:09.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;在分布式项系统的大背景下，CAP中分区容错性是必不可少的。多节点的协调尤为重要，单体服务中的锁在分布式系统中已无效，需要另辟蹊径。此文介绍比较常见的一种基于Redis实现的分布式锁。ZooKeeper的分布式锁后续Blog更新中介绍。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;JDK：1.8&lt;/p&gt;
+&lt;p&gt;IDE：IDEA&lt;/p&gt;
+&lt;p&gt;Redis：Redis server v=5.0.5 bits=64 （redis配置此处不做赘述）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3.详解&quot;&gt;&lt;/a&gt;3.详解&lt;/h1&gt;&lt;p&gt;Redis能实现分布式锁是因为存在一个命令：setnx ,而ex属性保证了一些容错。&lt;/p&gt;
+&lt;h2 id=&quot;3-1-使用LUA脚本&quot;&gt;&lt;a href=&quot;#3-1-使用LUA脚本&quot; class=&quot;headerlink&quot; title=&quot;3.1 使用LUA脚本&quot;&gt;&lt;/a&gt;3.1 使用LUA脚本&lt;/h2&gt;&lt;h3 id=&quot;3-1-1-maven依赖&quot;&gt;&lt;a href=&quot;#3-1-1-maven依赖&quot; class=&quot;headerlink&quot; title=&quot;3.1.1 maven依赖:&quot;&gt;&lt;/a&gt;3.1.1 maven依赖:&lt;/h3&gt;&lt;pre class=&quot;line-numbers language-markup&quot; data-language=&quot;markup&quot;&gt;&lt;code class=&quot;language-markup&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;spring-boot-starter-data-redis&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="Redis" scheme="https://wind-hu.github.io/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArrayList扩容机制</title>
+    <link href="https://wind-hu.github.io/2020/05/26/arraylist-kuo-rong-ji-zhi/"/>
+    <id>https://wind-hu.github.io/2020/05/26/arraylist-kuo-rong-ji-zhi/</id>
+    <published>2020-05-26T15:10:37.000Z</published>
+    <updated>2020-05-26T15:10:37.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1. 背景&lt;/h1&gt;&lt;p&gt;面试的时候问到过ArrayList的扩容机制以及HashMap的扩容机制，今天来讲讲ArrayList的扩容机制。&lt;/p&gt;
+&lt;h1 id=&quot;2-环境&quot;&gt;&lt;a href=&quot;#2-环境&quot; class=&quot;headerlink&quot; title=&quot;2. 环境&quot;&gt;&lt;/a&gt;2. 环境&lt;/h1&gt;&lt;p&gt;JDK1.8&lt;/p&gt;
+&lt;h1 id=&quot;3-详解&quot;&gt;&lt;a href=&quot;#3-详解&quot; class=&quot;headerlink&quot; title=&quot;3.详解&quot;&gt;&lt;/a&gt;3.详解&lt;/h1&gt;&lt;h3 id=&quot;3-1-默认容量&quot;&gt;&lt;a href=&quot;#3-1-默认容量&quot; class=&quot;headerlink&quot; title=&quot;3.1 默认容量&quot;&gt;&lt;/a&gt;3.1 默认容量&lt;/h3&gt;&lt;p&gt; ArrayList若未指定长度默认空间长度为10，可见ArrayList中&lt;strong&gt;“DEFAULT_CAPACITY”&lt;/strong&gt;属性，&lt;strong&gt;“size”&lt;/strong&gt;属性为元素个数。最大长度为2^31-1-8，见ArrayList中&lt;strong&gt;“MAX_ARRAY_SIZE”&lt;/strong&gt;属性。&lt;/p&gt;
+&lt;h3 id=&quot;3-2-扩容&quot;&gt;&lt;a href=&quot;#3-2-扩容&quot; class=&quot;headerlink&quot; title=&quot;3.2 扩容&quot;&gt;&lt;/a&gt;3.2 扩容&lt;/h3&gt;&lt;p&gt; 触发扩容的对外方法都在ArrayList.add*()的几个方法中，发现长度大于空间长度时调用**”grow()”**,源码如下；&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-java&quot; data-language=&quot;java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;E&lt;/span&gt; element&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;rangeCheckForAdd&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token function&quot;&gt;ensureCapacityInternal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;size &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;// Increments modCount!!&lt;/span&gt;
+    &lt;span class=&quot;token class-name&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;arraycopy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;elementData&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; elementData&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; index &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                     size &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; index&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    elementData&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;index&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; element&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    size&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ensureExplicitCapacity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; minCapacity&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    modCount&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;minCapacity &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; elementData&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;grow&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;minCapacity&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="后端" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Java" scheme="https://wind-hu.github.io/categories/%E5%90%8E%E7%AB%AF/Java/"/>
+    
+    
+    <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
+    
+    <category term="ArrayList" scheme="https://wind-hu.github.io/tags/ArrayList/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo Hello World</title>
+    <link href="https://wind-hu.github.io/2020/05/25/hexo-hello-world/"/>
+    <id>https://wind-hu.github.io/2020/05/25/hexo-hello-world/</id>
+    <published>2020-05-25T13:43:58.000Z</published>
+    <updated>2020-05-25T13:43:58.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ hexo new &lt;span class=&quot;token string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ hexo server&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ hexo generate&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Hexo" scheme="https://wind-hu.github.io/categories/Hexo/"/>
+    
+    
+    <category term="Hello World" scheme="https://wind-hu.github.io/tags/Hello-World/"/>
+    
+  </entry>
+  
+</feed>
