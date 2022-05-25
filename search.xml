@@ -795,6 +795,102 @@ INFO 3816 --- [pool-1-thread-6] c.w.q.common.springawares.StartWare      : 0/2 *
       </tags>
   </entry>
   <entry>
+    <title>SpringBoot-Build</title>
+    <url>/2020/05/27/springbootbuild/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。</p>
+<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8、IDEA</p>
+<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-非涉密网络环境"><a href="#3-1-非涉密网络环境" class="headerlink" title="3.1 非涉密网络环境"></a>3.1 非涉密网络环境</h2><p>这里的非涉密网络环境的特点是能访问<a href="https://start.spring.io/">https://start.spring.io</a>。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。</p>
+<span id="more"></span>
+
+<h3 id="3-1-1-新建项目"><a href="#3-1-1-新建项目" class="headerlink" title="3.1.1 新建项目"></a>3.1.1 新建项目</h3><p>IDEA-&gt;File-&gt;New-&gt;Project…</p>
+<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-1.png" alt="SpringBootBuild-1.png">
+
+<h3 id="3-1-2-选择Spring-Initializr"><a href="#3-1-2-选择Spring-Initializr" class="headerlink" title="3.1.2 选择Spring Initializr"></a>3.1.2 选择Spring Initializr</h3><p>此处配置自己的JDK版本，使用默认的Initializr Service URL</p>
+<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-2.png" alt="SpringBootBuild-2.png">
+
+<h3 id="3-1-3-配置maven信息，根据项目信息填写"><a href="#3-1-3-配置maven信息，根据项目信息填写" class="headerlink" title="3.1.3 配置maven信息，根据项目信息填写"></a>3.1.3 配置maven信息，根据项目信息填写</h3><img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-3.png" alt="SpringBootBuild-3.png">
+
+<h3 id="3-1-4添加项目所需依赖starter-gt-Next"><a href="#3-1-4添加项目所需依赖starter-gt-Next" class="headerlink" title="3.1.4添加项目所需依赖starter->Next"></a>3.1.4添加项目所需依赖starter-&gt;Next</h3><p>注意一下，这里可以只选择starter-web，数据库的starter需要添加数据库连接配置，否则启动失败。</p>
+<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-4.png" alt="SpringBootBuild-4.png">
+
+<br>
+
+<!-- more -->
+
+<h2 id="3-2-涉密网络环境"><a href="#3-2-涉密网络环境" class="headerlink" title="3.2 涉密网络环境"></a>3.2 涉密网络环境</h2><p>此处涉密网络环境指不能访问<a href="https://start.spring.io/">https://start.spring.io</a>。</p>
+<h3 id="3-2-1-新建maven项目"><a href="#3-2-1-新建maven项目" class="headerlink" title="3.2.1 新建maven项目"></a>3.2.1 新建maven项目</h3><img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-5.png" alt="SpringBootBuild-5.png">
+
+<h3 id="3-2-2-添加父项目"><a href="#3-2-2-添加父项目" class="headerlink" title="3.2.2 添加父项目"></a>3.2.2 添加父项目</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-parent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>relativePath</span><span class="token punctuation">/&gt;</span></span> <span class="token comment">&lt;!-- lookup parent from repository --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-2-3-添加maven依赖，包含ssm框架starter"><a href="#3-2-3-添加maven依赖，包含ssm框架starter" class="headerlink" title="3.2.3 添加maven依赖，包含ssm框架starter"></a>3.2.3 添加maven依赖，包含ssm框架starter</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>optional</span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>optional</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-2-4-添加打包插件"><a href="#3-2-4-添加打包插件" class="headerlink" title="3.2.4 添加打包插件"></a>3.2.4 添加打包插件</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resources</span><span class="token punctuation">&gt;</span></span>
+          <span class="token comment">&lt;!-- 编译 src/main/java 目录下的 mapper 文件 --&gt;</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resource</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>directory</span><span class="token punctuation">&gt;</span></span>src/main/java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>directory</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>includes</span><span class="token punctuation">&gt;</span></span>
+                  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span><span class="token punctuation">&gt;</span></span>**/*.xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>includes</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filtering</span><span class="token punctuation">&gt;</span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filtering</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resource</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resources</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-2-5-添加启动类"><a href="#3-2-5-添加启动类" class="headerlink" title="3.2.5 添加启动类"></a>3.2.5 添加启动类</h3><p>在java目录下添加java类，添加springboot主入口方法，示例路径：com.windh.maven.springboot.Application.java</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">Application</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-2-6-添加springboot入口类注解"><a href="#3-2-6-添加springboot入口类注解" class="headerlink" title="3.2.6 添加springboot入口类注解"></a>3.2.6 添加springboot入口类注解</h3><p>在Application.java类上添加@SpringBootApplication注解。如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Application</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">Application</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>SpringBoot主要的特点是项目构建快。几乎可以做到零配置就可以启动一个web项目。从开始构建到启动项目，1~2分钟就可以完成。</p>
+<br>
+
+]]></content>
+      <categories>
+        <category>后端</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringBoot-Build-MyBatis</title>
     <url>/2020/05/28/springboot-zhong-da-jian-mybatis/</url>
     <content><![CDATA[<blockquote>
@@ -1296,102 +1392,6 @@ INFO 3816 --- [pool-1-thread-6] c.w.q.common.springawares.StartWare      : 0/2 *
       <tags>
         <tag>Java</tag>
         <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot-Build</title>
-    <url>/2020/05/27/springbootbuild/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>SpringBoot是微服务基础，此文讲述搭建SpringBoot方式。</p>
-<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8、IDEA</p>
-<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><h2 id="3-1-非涉密网络环境"><a href="#3-1-非涉密网络环境" class="headerlink" title="3.1 非涉密网络环境"></a>3.1 非涉密网络环境</h2><p>这里的非涉密网络环境的特点是能访问<a href="https://start.spring.io/">https://start.spring.io</a>。此网址是spring官方提供的快速搭建SpringBoot项目的工具。包括IDEA中创建SpringBoot项目也是通过此工具实现。本文使用IDEA创建。</p>
-<span id="more"></span>
-
-<h3 id="3-1-1-新建项目"><a href="#3-1-1-新建项目" class="headerlink" title="3.1.1 新建项目"></a>3.1.1 新建项目</h3><p>IDEA-&gt;File-&gt;New-&gt;Project…</p>
-<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-1.png" alt="SpringBootBuild-1.png">
-
-<h3 id="3-1-2-选择Spring-Initializr"><a href="#3-1-2-选择Spring-Initializr" class="headerlink" title="3.1.2 选择Spring Initializr"></a>3.1.2 选择Spring Initializr</h3><p>此处配置自己的JDK版本，使用默认的Initializr Service URL</p>
-<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-2.png" alt="SpringBootBuild-2.png">
-
-<h3 id="3-1-3-配置maven信息，根据项目信息填写"><a href="#3-1-3-配置maven信息，根据项目信息填写" class="headerlink" title="3.1.3 配置maven信息，根据项目信息填写"></a>3.1.3 配置maven信息，根据项目信息填写</h3><img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-3.png" alt="SpringBootBuild-3.png">
-
-<h3 id="3-1-4添加项目所需依赖starter-gt-Next"><a href="#3-1-4添加项目所需依赖starter-gt-Next" class="headerlink" title="3.1.4添加项目所需依赖starter->Next"></a>3.1.4添加项目所需依赖starter-&gt;Next</h3><p>注意一下，这里可以只选择starter-web，数据库的starter需要添加数据库连接配置，否则启动失败。</p>
-<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-4.png" alt="SpringBootBuild-4.png">
-
-<br>
-
-<!-- more -->
-
-<h2 id="3-2-涉密网络环境"><a href="#3-2-涉密网络环境" class="headerlink" title="3.2 涉密网络环境"></a>3.2 涉密网络环境</h2><p>此处涉密网络环境指不能访问<a href="https://start.spring.io/">https://start.spring.io</a>。</p>
-<h3 id="3-2-1-新建maven项目"><a href="#3-2-1-新建maven项目" class="headerlink" title="3.2.1 新建maven项目"></a>3.2.1 新建maven项目</h3><img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/05/27/springbootbuild/SpringBootBuild-5.png" alt="SpringBootBuild-5.png">
-
-<h3 id="3-2-2-添加父项目"><a href="#3-2-2-添加父项目" class="headerlink" title="3.2.2 添加父项目"></a>3.2.2 添加父项目</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-parent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>relativePath</span><span class="token punctuation">/&gt;</span></span> <span class="token comment">&lt;!-- lookup parent from repository --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="3-2-3-添加maven依赖，包含ssm框架starter"><a href="#3-2-3-添加maven依赖，包含ssm框架starter" class="headerlink" title="3.2.3 添加maven依赖，包含ssm框架starter"></a>3.2.3 添加maven依赖，包含ssm框架starter</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>optional</span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>optional</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="3-2-4-添加打包插件"><a href="#3-2-4-添加打包插件" class="headerlink" title="3.2.4 添加打包插件"></a>3.2.4 添加打包插件</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">&gt;</span></span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
-              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resources</span><span class="token punctuation">&gt;</span></span>
-          <span class="token comment">&lt;!-- 编译 src/main/java 目录下的 mapper 文件 --&gt;</span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resource</span><span class="token punctuation">&gt;</span></span>
-              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>directory</span><span class="token punctuation">&gt;</span></span>src/main/java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>directory</span><span class="token punctuation">&gt;</span></span>
-              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>includes</span><span class="token punctuation">&gt;</span></span>
-                  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span><span class="token punctuation">&gt;</span></span>**/*.xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">&gt;</span></span>
-              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>includes</span><span class="token punctuation">&gt;</span></span>
-              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filtering</span><span class="token punctuation">&gt;</span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filtering</span><span class="token punctuation">&gt;</span></span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resource</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resources</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="3-2-5-添加启动类"><a href="#3-2-5-添加启动类" class="headerlink" title="3.2.5 添加启动类"></a>3.2.5 添加启动类</h3><p>在java目录下添加java类，添加springboot主入口方法，示例路径：com.windh.maven.springboot.Application.java</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">Application</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="3-2-6-添加springboot入口类注解"><a href="#3-2-6-添加springboot入口类注解" class="headerlink" title="3.2.6 添加springboot入口类注解"></a>3.2.6 添加springboot入口类注解</h3><p>在Application.java类上添加@SpringBootApplication注解。如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Application</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">Application</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>SpringBoot主要的特点是项目构建快。几乎可以做到零配置就可以启动一个web项目。从开始构建到启动项目，1~2分钟就可以完成。</p>
-<br>
-
-]]></content>
-      <categories>
-        <category>后端</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-        <tag>Spring</tag>
       </tags>
   </entry>
 </search>
