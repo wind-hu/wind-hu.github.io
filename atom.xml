@@ -270,9 +270,9 @@
     
     <category term="Java" scheme="https://wind-hu.github.io/tags/Java/"/>
     
-    <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
-    
     <category term="Quartz" scheme="https://wind-hu.github.io/tags/Quartz/"/>
+    
+    <category term="SpringBoot" scheme="https://wind-hu.github.io/tags/SpringBoot/"/>
     
   </entry>
   
