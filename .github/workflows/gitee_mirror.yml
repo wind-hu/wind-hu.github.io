@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
       - name: 'Mirror to gitee'
-        uses: pixta-dev/repository-mirroring-action@v1.1.0
+        uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
             git@gitee.com:wind-hu/wind-hu.git
