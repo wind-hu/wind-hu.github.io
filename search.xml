@@ -1,73 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ArrayList扩容机制</title>
-    <url>/2020/05/26/arraylist-kuo-rong-ji-zhi/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>面试的时候问到过ArrayList的扩容机制以及HashMap的扩容机制，今天来讲讲ArrayList的扩容机制。</p>
-<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8</p>
-<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3.详解"></a>3.详解</h1><h3 id="3-1-默认容量"><a href="#3-1-默认容量" class="headerlink" title="3.1 默认容量"></a>3.1 默认容量</h3><p> ArrayList若未指定长度默认空间长度为10，可见ArrayList中<strong>“DEFAULT_CAPACITY”</strong>属性，<strong>“size”</strong>属性为元素个数。最大长度为2^31-1-8，见ArrayList中<strong>“MAX_ARRAY_SIZE”</strong>属性。</p>
-<h3 id="3-2-扩容"><a href="#3-2-扩容" class="headerlink" title="3.2 扩容"></a>3.2 扩容</h3><p> 触发扩容的对外方法都在ArrayList.add*()的几个方法中，发现长度大于空间长度时调用**”grow()”**,源码如下；</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> <span class="token class-name">E</span> element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">rangeCheckForAdd</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token function">ensureCapacityInternal</span><span class="token punctuation">(</span>size <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Increments modCount!!</span>
-    <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> index<span class="token punctuation">,</span> elementData<span class="token punctuation">,</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
-                     size <span class="token operator">-</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    elementData<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> element<span class="token punctuation">;</span>
-    size<span class="token operator">++</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ensureExplicitCapacity</span><span class="token punctuation">(</span><span class="token keyword">int</span> minCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    modCount<span class="token operator">++</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>minCapacity <span class="token operator">-</span> elementData<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-        <span class="token function">grow</span><span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<span id="more"></span>
-
-<p>扩容主要操作是在代码就在grow()方法中，源码及解析如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">grow</span><span class="token punctuation">(</span><span class="token keyword">int</span> minCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-   	<span class="token comment">// oldCapacity为旧容量，newCapacity为新容量</span>
-    <span class="token keyword">int</span> oldCapacity <span class="token operator">=</span> elementData<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
-    <span class="token comment">// 将oldCapacity 右移一位，其效果相当于oldCapacity /2，</span>
-    <span class="token comment">// 我们知道位运算的速度远远快于整除运算，整句运算式的结果就是将新容量更新为旧容量的1.5倍，</span>
-    <span class="token keyword">int</span> newCapacity <span class="token operator">=</span> oldCapacity <span class="token operator">+</span> <span class="token punctuation">(</span>oldCapacity <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 检查新计算出的容量数值和实际所需容量数值比较，若计算出的容量数值小于实际所需容量数值，则用实际容量的数值</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>newCapacity <span class="token operator">-</span> minCapacity <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-        newCapacity <span class="token operator">=</span> minCapacity<span class="token punctuation">;</span>
-    <span class="token comment">// 检查新计算出的容量数值是否超过ArrayList最大长度，如果minCapacity大于最大容量，新容量为`Integer.MAX_VALUE`，否则，新容量大小则为 MAX_ARRAY_SIZE 即为 `Integer.MAX_VALUE - 8`</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>newCapacity <span class="token operator">-</span> MAX_ARRAY_SIZE <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-        newCapacity <span class="token operator">=</span> <span class="token function">hugeCapacity</span><span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 调用copy方法</span>
-    elementData <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> newCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">hugeCapacity</span><span class="token punctuation">(</span><span class="token keyword">int</span> minCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>minCapacity <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">// overflow</span>
-        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">OutOfMemoryError</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>minCapacity <span class="token operator">&gt;</span> MAX_ARRAY_SIZE<span class="token punctuation">)</span> <span class="token operator">?</span>
-        <span class="token comment">// MAX_ARRAY_SIZE = Integer.MAX_VALUE-8</span>
-        <span class="token class-name">Integer</span><span class="token punctuation">.</span>MAX_VALUE <span class="token operator">:</span>
-    MAX_ARRAY_SIZE<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>ArrayList扩容机制如下：</p>
-<p>1.普遍情况下，新容量是旧容量1.5倍，同时校验新容量是否超过 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）。</p>
-<p>2.当在扩容1.5倍后，校验新容量是否超过MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8），若新容量（源码中newCapacity）大于最大容量 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）时,新容量为Integer.MAX_VALUE，否则为 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）;</p>
-]]></content>
-      <categories>
-        <category>后端</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>ArrayList</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AOP实战-AspectJ</title>
     <url>/2020/05/27/aop-shi-zhan-aspectj/</url>
     <content><![CDATA[<blockquote>
@@ -155,6 +88,73 @@
         <tag>Java</tag>
         <tag>AOP</tag>
         <tag>AspectJ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ArrayList扩容机制</title>
+    <url>/2020/05/26/arraylist-kuo-rong-ji-zhi/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>面试的时候问到过ArrayList的扩容机制以及HashMap的扩容机制，今天来讲讲ArrayList的扩容机制。</p>
+<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK1.8</p>
+<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3.详解"></a>3.详解</h1><h3 id="3-1-默认容量"><a href="#3-1-默认容量" class="headerlink" title="3.1 默认容量"></a>3.1 默认容量</h3><p> ArrayList若未指定长度默认空间长度为10，可见ArrayList中<strong>“DEFAULT_CAPACITY”</strong>属性，<strong>“size”</strong>属性为元素个数。最大长度为2^31-1-8，见ArrayList中<strong>“MAX_ARRAY_SIZE”</strong>属性。</p>
+<h3 id="3-2-扩容"><a href="#3-2-扩容" class="headerlink" title="3.2 扩容"></a>3.2 扩容</h3><p> 触发扩容的对外方法都在ArrayList.add*()的几个方法中，发现长度大于空间长度时调用**”grow()”**,源码如下；</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> <span class="token class-name">E</span> element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">rangeCheckForAdd</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">ensureCapacityInternal</span><span class="token punctuation">(</span>size <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Increments modCount!!</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> index<span class="token punctuation">,</span> elementData<span class="token punctuation">,</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                     size <span class="token operator">-</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    elementData<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> element<span class="token punctuation">;</span>
+    size<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ensureExplicitCapacity</span><span class="token punctuation">(</span><span class="token keyword">int</span> minCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    modCount<span class="token operator">++</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>minCapacity <span class="token operator">-</span> elementData<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token function">grow</span><span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span id="more"></span>
+
+<p>扩容主要操作是在代码就在grow()方法中，源码及解析如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">grow</span><span class="token punctuation">(</span><span class="token keyword">int</span> minCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   	<span class="token comment">// oldCapacity为旧容量，newCapacity为新容量</span>
+    <span class="token keyword">int</span> oldCapacity <span class="token operator">=</span> elementData<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token comment">// 将oldCapacity 右移一位，其效果相当于oldCapacity /2，</span>
+    <span class="token comment">// 我们知道位运算的速度远远快于整除运算，整句运算式的结果就是将新容量更新为旧容量的1.5倍，</span>
+    <span class="token keyword">int</span> newCapacity <span class="token operator">=</span> oldCapacity <span class="token operator">+</span> <span class="token punctuation">(</span>oldCapacity <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 检查新计算出的容量数值和实际所需容量数值比较，若计算出的容量数值小于实际所需容量数值，则用实际容量的数值</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newCapacity <span class="token operator">-</span> minCapacity <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        newCapacity <span class="token operator">=</span> minCapacity<span class="token punctuation">;</span>
+    <span class="token comment">// 检查新计算出的容量数值是否超过ArrayList最大长度，如果minCapacity大于最大容量，新容量为`Integer.MAX_VALUE`，否则，新容量大小则为 MAX_ARRAY_SIZE 即为 `Integer.MAX_VALUE - 8`</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newCapacity <span class="token operator">-</span> MAX_ARRAY_SIZE <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        newCapacity <span class="token operator">=</span> <span class="token function">hugeCapacity</span><span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 调用copy方法</span>
+    elementData <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> newCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">hugeCapacity</span><span class="token punctuation">(</span><span class="token keyword">int</span> minCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>minCapacity <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">// overflow</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">OutOfMemoryError</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>minCapacity <span class="token operator">&gt;</span> MAX_ARRAY_SIZE<span class="token punctuation">)</span> <span class="token operator">?</span>
+        <span class="token comment">// MAX_ARRAY_SIZE = Integer.MAX_VALUE-8</span>
+        <span class="token class-name">Integer</span><span class="token punctuation">.</span>MAX_VALUE <span class="token operator">:</span>
+    MAX_ARRAY_SIZE<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>ArrayList扩容机制如下：</p>
+<p>1.普遍情况下，新容量是旧容量1.5倍，同时校验新容量是否超过 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）。</p>
+<p>2.当在扩容1.5倍后，校验新容量是否超过MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8），若新容量（源码中newCapacity）大于最大容量 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）时,新容量为Integer.MAX_VALUE，否则为 MAX_ARRAY_SIZE（Integer.MAX_VALUE - 8）;</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>ArrayList</tag>
       </tags>
   </entry>
   <entry>
@@ -314,104 +314,6 @@ scheduledPool<span class="token punctuation">.</span><span class="token function
       </tags>
   </entry>
   <entry>
-    <title>MinIO</title>
-    <url>/2020/06/29/minio/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-什么是MinIO"><a href="#1-什么是MinIO" class="headerlink" title="1. 什么是MinIO"></a>1. 什么是MinIO</h1><h2 id="1-1-MinIO介绍"><a href="#1-1-MinIO介绍" class="headerlink" title="1.1 MinIO介绍"></a>1.1 MinIO介绍</h2><p>​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
-<h2 id="1-2-MinIO保护数据策略"><a href="#1-2-MinIO保护数据策略" class="headerlink" title="1.2 MinIO保护数据策略"></a>1.2 MinIO保护数据策略</h2><p>​        Minio使用<strong>纠删码</strong><code>erasure code</code>和校验和<code>checksum</code>来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。</p>
-<h1 id="2-MinIO部署"><a href="#2-MinIO部署" class="headerlink" title="2. MinIO部署"></a>2. MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
-<p>进入<a href="https://dl.min.io/server/minio/release/linux-amd64/minio%E4%B8%8B%E8%BD%BD">https://dl.min.io/server/minio/release/linux-amd64/minio下载</a></p>
-<pre class="line-numbers language-none"><code class="language-none">wget https://dl.minio.io/server/minio/release/linux-amd64/minio<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<span id="more"></span>
-
-<h3 id="2-1-2-上传到linux下"><a href="#2-1-2-上传到linux下" class="headerlink" title="2.1.2 上传到linux下"></a>2.1.2 上传到linux下</h3><p>在上一步下载的文件目录下添加shell脚本(例如：startMinIO.sh)并运行,命令如下：</p>
-<p>MINIO_ACCESS_KEY配置minio登录账户</p>
-<p>MINIO_SECRET_KEY配置minio登录密码</p>
-<p>dataPath为数据存储路径</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
-<span class="token function">nohup</span> ./minio server --address :9000 <span class="token variable">${dataPath}</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-1-3-进入页面验证"><a href="#2-1-3-进入页面验证" class="headerlink" title="2.1.3 进入页面验证"></a>2.1.3 进入页面验证</h3><p>minio默认端口为9000，可以用–address 参数自定义。</p>
-<h2 id="2-2-集群部署"><a href="#2-2-集群部署" class="headerlink" title="2.2 集群部署"></a>2.2 集群部署</h2><p>MINIO集群与常规集群不同的是，MINIO集群中存储的文件并不是在所有节点上各存一份，而是将讲文件拆分成多分，再使用<strong>纠删码技术</strong>保障多节点文件完整。同时请<strong>对比</strong>集群部署和单点部署启动命令。本文档以四个节点为例预留5个端口（8089、9001、9002、9003、9004）</p>
-<h3 id="2-2-1-非集群单节点部署"><a href="#2-2-1-非集群单节点部署" class="headerlink" title="2.2.1 非集群单节点部署"></a>2.2.1 非集群单节点部署</h3><p>命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
-<span class="token function">nohup</span> ./minio server --address :9000 <span class="token variable">${dataPath}</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-2-2-集群下单节点部署"><a href="#2-2-2-集群下单节点部署" class="headerlink" title="2.2.2 集群下单节点部署"></a>2.2.2 集群下单节点部署</h3><p>集群下部署minio单节点需要根据非集群单节点部署命令进行修改。将datapath部分指向集群中所有minio节点的datapath。</p>
-<p>集群中其中一个节点部署命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
-<span class="token function">nohup</span> ./minio server --address <span class="token variable">${Node1_IP}</span><span class="token builtin class-name">:</span><span class="token variable">${Node1_Port}</span>  http://<span class="token variable">${Node1_IP}</span>/data/data1 http://<span class="token variable">${Node2_IP}</span>/data/data2 http://<span class="token variable">${Node3_IP}</span>/data/data3 http://<span class="token variable">${Node4_IP}</span>/data/data4 <span class="token operator">&gt;</span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-2-3-MINIO集群注意点"><a href="#2-2-3-MINIO集群注意点" class="headerlink" title="2.2.3 MINIO集群注意点"></a>2.2.3 MINIO集群注意点</h3><p>minio的集群所有节点的<strong>登录账户</strong>及<strong>密码</strong>必须一致。</p>
-<p>minio的集群节点数量推荐大于等于<strong>4</strong>。</p>
-<h3 id="2-2-4-MINIO负载均衡"><a href="#2-2-4-MINIO负载均衡" class="headerlink" title="2.2.4 MINIO负载均衡"></a>2.2.4 MINIO负载均衡</h3><p>官方文档支持nginx，可参考我的另一篇<a href="#">Post not found: nginx负载均衡配置 关于nginx负载均衡的Blog</a>。</p>
-<h4 id="2-2-4-1-配置nginx分发端口"><a href="#2-2-4-1-配置nginx分发端口" class="headerlink" title="2.2.4.1 配置nginx分发端口"></a>2.2.4.1 配置nginx分发端口</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"> <span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">{</span>
-    <span class="token directive"><span class="token keyword">listen</span>       <span class="token number">8089</span></span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">server_name</span>  www.dealthBook.com</span><span class="token punctuation">;</span>
-
-    <span class="token comment">#charset koi8-r;</span>
-
-    <span class="token comment">#access_log  logs/host.access.log  main;</span>
-
-    <span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">{</span>
-        <span class="token directive"><span class="token keyword">root</span>   html</span><span class="token punctuation">;</span>
-        <span class="token directive"><span class="token keyword">index</span>  index.html index.htm</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-4-2-添加upstream"><a href="#2-2-4-2-添加upstream" class="headerlink" title="2.2.4.2 添加upstream"></a>2.2.4.2 添加upstream</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">upstream</span> minio_server</span> <span class="token punctuation">{</span>
-	<span class="token comment">#1、轮询（默认选项，所有weight=1）</span>
-	<span class="token comment">#2、weight，执行轮询几率，weight与访问几率成正比</span>
-	<span class="token comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span>
-	<span class="token comment">#4、least_conn，最少连接数负载均衡</span>
-    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP1<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT1<span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP2<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT2<span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP3<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT3<span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP4<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT4<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-4-3-添加minio的upstream名称"><a href="#2-2-4-3-添加minio的upstream名称" class="headerlink" title="2.2.4.3 添加minio的upstream名称"></a>2.2.4.3 添加minio的upstream名称</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">location</span> /minio</span> <span class="token punctuation">{</span>
-    <span class="token directive"><span class="token keyword">proxy_set_header</span> Host <span class="token variable">$http_host</span></span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">proxy_pass</span> http://minio_server</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-4-4-最终配置文件布局"><a href="#2-2-4-4-最终配置文件布局" class="headerlink" title="2.2.4.4 最终配置文件布局"></a>2.2.4.4 最终配置文件布局</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">http</span></span><span class="token punctuation">{</span>
-  	...
-    <span class="token directive"><span class="token keyword">upstream</span> minio_server</span><span class="token punctuation">{</span>
-		...
-    <span class="token punctuation">}</span>
-    <span class="token directive"><span class="token keyword">server</span></span><span class="token punctuation">{</span>
-        ...
-       	<span class="token directive"><span class="token keyword">location</span> /minio</span><span class="token punctuation">{</span>
-            ...
-     	<span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-2-5-启动nginx及所有节点的minio"><a href="#2-2-5-启动nginx及所有节点的minio" class="headerlink" title="2.2.5 启动nginx及所有节点的minio"></a>2.2.5 启动nginx及所有节点的minio</h3><h3 id="2-2-6-验证"><a href="#2-2-6-验证" class="headerlink" title="2.2.6 验证"></a>2.2.6 验证</h3><h4 id="2-2-6-1-验证各节点minio是否正常"><a href="#2-2-6-1-验证各节点minio是否正常" class="headerlink" title="2.2.6.1 验证各节点minio是否正常"></a>2.2.6.1 验证各节点minio是否正常</h4><blockquote>
-<p>进入 <a href="http://ip:port/minio">http://ip:port/minio</a></p>
-</blockquote>
-<h4 id="2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089"><a href="#2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089" class="headerlink" title="2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089"></a>2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089</h4><blockquote>
-<p>通过nginx进入minio <a href="http://ip:8089/minio">http://ip:8089/minio</a></p>
-</blockquote>
-<h1 id="3-MinIO页面"><a href="#3-MinIO页面" class="headerlink" title="3. MinIO页面"></a>3. MinIO页面</h1><h2 id="3-1-新建桶（Bucket）及上传文件"><a href="#3-1-新建桶（Bucket）及上传文件" class="headerlink" title="3.1 新建桶（Bucket）及上传文件"></a>3.1 新建桶（Bucket）及上传文件</h2><img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/06/29/minio/MinIO-1.png" alt="MinIO-1.png">]]></content>
-      <categories>
-        <category>中间件</category>
-      </categories>
-      <tags>
-        <tag>MinIO</tag>
-        <tag>分布式</tag>
-        <tag>存储</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Nginx-LoadBalance</title>
     <url>/2020/06/28/nginx-loadbalance/</url>
     <content><![CDATA[<blockquote>
@@ -523,6 +425,278 @@ scheduledPool<span class="token punctuation">.</span><span class="token function
       </tags>
   </entry>
   <entry>
+    <title>SpringBoot-Quartz</title>
+    <url>/2020/06/28/quartz-de-shi-yong/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>Quartz（Job Scheduler），一个比较流行的定时任务框架。搜索引擎会有详细的介绍，此处不再赘述。</p>
+<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK：1.8</p>
+<p>IDE：IDEA</p>
+<p>maven依赖：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-quartz<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.4.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.18.16<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>optional</span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>optional</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><p>Quartz的上手难度其实挺低的，它会给我们提供很多简单的定时任务方法。同时也是可以使用cron表达式设定任务执行时间，接下来的例子就是使用cron表达式进行任务的创建。cron的用法会在后续blog中讲解。</p>
+<span id="more"></span>
+
+<h2 id="3-1-创建对外开放的类"><a href="#3-1-创建对外开放的类" class="headerlink" title="3.1 创建对外开放的类"></a>3.1 创建对外开放的类</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token class-name">JobRunnable</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span><span class="token class-name">StdSchedulerFactory</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">PostConstruct</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">PreDestroy</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">ParseException</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">LinkedHashMap</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">UUID</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">LinkedBlockingQueue</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">ThreadPoolExecutor</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">TimeUnit</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzUtil</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Scheduler</span> SCHEDULER<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Runnable</span><span class="token punctuation">&gt;</span></span> JOB_KEY_MAP <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">ThreadPoolExecutor</span> THREAD_POOL<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">QuartzUtil</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@PostConstruct</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// quartz scheduler</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            SCHEDULER <span class="token operator">=</span> <span class="token class-name">StdSchedulerFactory</span><span class="token punctuation">.</span><span class="token function">getDefaultScheduler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 及时启动</span>
+            SCHEDULER<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// startDelayed(1) 为延时启动，参数为int类型，单位 秒</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Create Default StdScheduler error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// threadpool</span>
+        THREAD_POOL <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">,</span>
+                <span class="token keyword">new</span> <span class="token class-name">LinkedBlockingQueue</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor<span class="token punctuation">.</span>AbortPolicy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@PreDestroy</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 参数表示  当前正在执行的所有任务执行完才会结束scheduler</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>SCHEDULER <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                SCHEDULER<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Shutdown Scheduler error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>THREAD_POOL <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>THREAD_POOL<span class="token punctuation">.</span><span class="token function">isShutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            THREAD_POOL<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">addTask</span><span class="token punctuation">(</span><span class="token class-name">String</span> cron<span class="token punctuation">,</span> <span class="token class-name">Runnable</span> runnable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>runnable <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token class-name">CronExpression</span><span class="token punctuation">.</span><span class="token function">isValidExpression</span><span class="token punctuation">(</span>cron<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">CronExpression</span> cronExpression<span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                cronExpression <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CronExpression</span><span class="token punctuation">(</span>cron<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ParseException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"parse cron error,add Task error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">addTask</span><span class="token punctuation">(</span>cronExpression<span class="token punctuation">,</span> runnable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"param invalid, addTask error."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">addTask</span><span class="token punctuation">(</span><span class="token class-name">CronExpression</span> cron<span class="token punctuation">,</span> <span class="token class-name">Runnable</span> runnable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>runnable <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> cron <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token class-name">CronExpression</span><span class="token punctuation">.</span><span class="token function">isValidExpression</span><span class="token punctuation">(</span>cron<span class="token punctuation">.</span><span class="token function">getCronExpression</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"param invalid, addTask error."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">String</span> uuid <span class="token operator">=</span> UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">JobDetail</span> job <span class="token operator">=</span> <span class="token class-name">JobBuilder</span><span class="token punctuation">.</span><span class="token function">newJob</span><span class="token punctuation">(</span><span class="token class-name">JobRunnable</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withIdentity</span><span class="token punctuation">(</span>uuid<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">Trigger</span> trigger <span class="token operator">=</span> <span class="token class-name">TriggerBuilder</span><span class="token punctuation">.</span><span class="token function">newTrigger</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">startNow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">withIdentity</span><span class="token punctuation">(</span>uuid<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">withSchedule</span><span class="token punctuation">(</span><span class="token class-name">CronScheduleBuilder</span><span class="token punctuation">.</span><span class="token function">cronSchedule</span><span class="token punctuation">(</span>cron<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            SCHEDULER<span class="token punctuation">.</span><span class="token function">scheduleJob</span><span class="token punctuation">(</span>job<span class="token punctuation">,</span> trigger<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"ScheduledJob error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        JOB_KEY_MAP<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>uuid<span class="token punctuation">,</span> runnable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">ThreadPoolExecutor</span> <span class="token function">getThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> THREAD_POOL<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Runnable</span><span class="token punctuation">&gt;</span></span> <span class="token function">getJobKeyMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> JOB_KEY_MAP<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Scheduler</span> <span class="token function">getScheduler</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> SCHEDULER<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-2-创建一个实现org-quartz-Job的类JobRunnable"><a href="#3-2-创建一个实现org-quartz-Job的类JobRunnable" class="headerlink" title="3.2 创建一个实现org.quartz.Job的类JobRunnable"></a>3.2 创建一个实现org.quartz.Job的类JobRunnable</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token class-name">QuartzUtil</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token class-name">Job</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token class-name">JobExecutionContext</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token class-name">JobKey</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token class-name">SchedulerException</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JobRunnable</span> <span class="token keyword">implements</span> <span class="token class-name">Job</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token class-name">JobExecutionContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">JobKey</span> jobKey <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getJobDetail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">getJobKeyMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Runnable</span> runnable <span class="token operator">=</span> <span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">getJobKeyMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">getThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>runnable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">getScheduler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">deleteJob</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Job info is not contain ,Delete Job error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-3-调用，验证方式为springboot启动后添加scheduled。当然你也可以在springboot入口类的main方法里简单验证下"><a href="#3-3-调用，验证方式为springboot启动后添加scheduled。当然你也可以在springboot入口类的main方法里简单验证下" class="headerlink" title="3.3 调用，验证方式为springboot启动后添加scheduled。当然你也可以在springboot入口类的main方法里简单验证下"></a>3.3 调用，验证方式为springboot启动后添加scheduled。当然你也可以在springboot入口类的main方法里简单验证下</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token class-name">QuartzUtil</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span></span><span class="token class-name">CommandLineRunner</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StartWare</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        <span class="token comment">// cron表达式 0/2 * * * * ?  表示每分钟的0秒开始没过2秒执行一次</span>
+        <span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">addTask</span><span class="token punctuation">(</span><span class="token string">"0/2 * * * * ?"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"0/2 * * * * ? scheduled exec."</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-4-验证日志"><a href="#3-4-验证日志" class="headerlink" title="3.4 验证日志"></a>3.4 验证日志</h2><pre class="line-numbers language-none"><code class="language-none">INFO 3816 --- [pool-1-thread-1] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
+INFO 3816 --- [pool-1-thread-2] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
+INFO 3816 --- [pool-1-thread-3] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
+INFO 3816 --- [pool-1-thread-4] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
+INFO 3816 --- [pool-1-thread-5] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
+INFO 3816 --- [pool-1-thread-6] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>在使用的过程中其实有很多需要注意的点，比如quartz对job和trigger的name进行的一致的校验。之所以会封装一层，改job为runnable，是为了更方便调用，包括1.8之后能使用lambda后能直接构建匿名内部类，减少不必要的类的创建。</p>
+<br>
+
+]]></content>
+      <categories>
+        <category>后端</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Quartz</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SPI机制</title>
+    <url>/2020/07/01/spi-ji-zhi/</url>
+    <content><![CDATA[<p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong></p>
+<h1 id="1-什么是SPI"><a href="#1-什么是SPI" class="headerlink" title="1. 什么是SPI"></a>1. 什么是SPI</h1><h2 id="1-1-SPI思想"><a href="#1-1-SPI思想" class="headerlink" title="1.1 SPI思想"></a>1.1 SPI思想</h2><p>SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。</p>
+<h2 id="1-2-SPI约定"><a href="#1-2-SPI约定" class="headerlink" title="1.2 SPI约定"></a>1.2 SPI约定</h2><h3 id="1-2-1-Java"><a href="#1-2-1-Java" class="headerlink" title="1.2.1 Java"></a>1.2.1 Java</h3><p>当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里创建一个以服务接口命名的文件。</p>
+<h3 id="1-2-2-Spring"><a href="#1-2-2-Spring" class="headerlink" title="1.2.2 Spring"></a>1.2.2 Spring</h3><p>在jar包的META-INF/目录里创建一个spring.factories，所有spi对应关系都可以写在这个文件中。</p>
+<h1 id="2-Spring中的SPI"><a href="#2-Spring中的SPI" class="headerlink" title="2. Spring中的SPI"></a>2. Spring中的SPI</h1><blockquote>
+<p>本文介绍下spring的SPI</p>
+</blockquote>
+<h2 id="2-1-定义一个接口"><a href="#2-1-定义一个接口" class="headerlink" title="2.1 定义一个接口"></a>2.1 定义一个接口</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">ApplicationContext</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">InitServiceInterFace</span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">ApplicationContext</span> context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<span id="more"></span>
+
+<h2 id="2-2-编写一个接口的实现类"><a href="#2-2-编写一个接口的实现类" class="headerlink" title="2.2 编写一个接口的实现类"></a>2.2 编写一个接口的实现类</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token class-name">InitServiceInterFace</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">ApplicationContext</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogInit</span> <span class="token keyword">implements</span> <span class="token class-name">InitServiceInterFace</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">ApplicationContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// TODO init LogInit</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Init My Log."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-3-新建spi所需静态文件"><a href="#2-3-新建spi所需静态文件" class="headerlink" title="2.3 新建spi所需静态文件"></a>2.3 新建spi所需静态文件</h2><blockquote>
+<p>在Resources静态资源目录下新建spring.factories文件；写入如下内容：</p>
+</blockquote>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token key attr-name">InitServiceInterFace</span><span class="token punctuation">=</span><span class="token value attr-value">\
+  LogInit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token keyword">import</span> <span class="token import"><span class="token class-name">InitServiceInterFace</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span></span><span class="token class-name">SpringApplication</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span></span><span class="token class-name">SpringBootApplication</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">ConfigurableApplicationContext</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>io<span class="token punctuation">.</span>support<span class="token punctuation">.</span></span><span class="token class-name">SpringFactoriesLoader</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringspiApplication</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ConfigurableApplicationContext</span> run <span class="token operator">=</span> <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">SpringspiApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">InitServiceInterFace</span><span class="token punctuation">&gt;</span></span> serviceLoader <span class="token operator">=</span> <span class="token class-name">SpringFactoriesLoader</span><span class="token punctuation">.</span><span class="token function">loadFactories</span><span class="token punctuation">(</span>
+                <span class="token class-name">InitServiceInterFace</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContextClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">InitServiceInterFace</span> initServiceInterFace <span class="token operator">:</span> serviceLoader<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            initServiceInterFace<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>run<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>日志输入如下：</p>
+<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/07/01/spi-ji-zhi/SPI-1.png" alt="SPI-1.png">]]></content>
+      <categories>
+        <category>后端</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+        <tag>SPI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringBoot-Build</title>
     <url>/2020/05/27/springbootbuild/</url>
     <content><![CDATA[<blockquote>
@@ -614,8 +788,8 @@ scheduledPool<span class="token punctuation">.</span><span class="token function
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>Spring</tag>
         <tag>SpringBoot</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -864,278 +1038,6 @@ scheduledPool<span class="token punctuation">.</span><span class="token function
       </tags>
   </entry>
   <entry>
-    <title>SPI机制</title>
-    <url>/2020/07/01/spi-ji-zhi/</url>
-    <content><![CDATA[<p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong></p>
-<h1 id="1-什么是SPI"><a href="#1-什么是SPI" class="headerlink" title="1. 什么是SPI"></a>1. 什么是SPI</h1><h2 id="1-1-SPI思想"><a href="#1-1-SPI思想" class="headerlink" title="1.1 SPI思想"></a>1.1 SPI思想</h2><p>SPI的全名为Service Provider Interface.这个是针对厂商或者插件的。</p>
-<h2 id="1-2-SPI约定"><a href="#1-2-SPI约定" class="headerlink" title="1.2 SPI约定"></a>1.2 SPI约定</h2><h3 id="1-2-1-Java"><a href="#1-2-1-Java" class="headerlink" title="1.2.1 Java"></a>1.2.1 Java</h3><p>当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里创建一个以服务接口命名的文件。</p>
-<h3 id="1-2-2-Spring"><a href="#1-2-2-Spring" class="headerlink" title="1.2.2 Spring"></a>1.2.2 Spring</h3><p>在jar包的META-INF/目录里创建一个spring.factories，所有spi对应关系都可以写在这个文件中。</p>
-<h1 id="2-Spring中的SPI"><a href="#2-Spring中的SPI" class="headerlink" title="2. Spring中的SPI"></a>2. Spring中的SPI</h1><blockquote>
-<p>本文介绍下spring的SPI</p>
-</blockquote>
-<h2 id="2-1-定义一个接口"><a href="#2-1-定义一个接口" class="headerlink" title="2.1 定义一个接口"></a>2.1 定义一个接口</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">ApplicationContext</span></span><span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">InitServiceInterFace</span> <span class="token punctuation">{</span>
-    <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">ApplicationContext</span> context<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<span id="more"></span>
-
-<h2 id="2-2-编写一个接口的实现类"><a href="#2-2-编写一个接口的实现类" class="headerlink" title="2.2 编写一个接口的实现类"></a>2.2 编写一个接口的实现类</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token class-name">InitServiceInterFace</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">ApplicationContext</span></span><span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogInit</span> <span class="token keyword">implements</span> <span class="token class-name">InitServiceInterFace</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">ApplicationContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// TODO init LogInit</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Init My Log."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="2-3-新建spi所需静态文件"><a href="#2-3-新建spi所需静态文件" class="headerlink" title="2.3 新建spi所需静态文件"></a>2.3 新建spi所需静态文件</h2><blockquote>
-<p>在Resources静态资源目录下新建spring.factories文件；写入如下内容：</p>
-</blockquote>
-<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token key attr-name">InitServiceInterFace</span><span class="token punctuation">=</span><span class="token value attr-value">\
-  LogInit</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h2 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">
-<span class="token keyword">import</span> <span class="token import"><span class="token class-name">InitServiceInterFace</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span></span><span class="token class-name">SpringApplication</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span></span><span class="token class-name">SpringBootApplication</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">ConfigurableApplicationContext</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>io<span class="token punctuation">.</span>support<span class="token punctuation">.</span></span><span class="token class-name">SpringFactoriesLoader</span></span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token annotation punctuation">@SpringBootApplication</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringspiApplication</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">ConfigurableApplicationContext</span> run <span class="token operator">=</span> <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">SpringspiApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">InitServiceInterFace</span><span class="token punctuation">&gt;</span></span> serviceLoader <span class="token operator">=</span> <span class="token class-name">SpringFactoriesLoader</span><span class="token punctuation">.</span><span class="token function">loadFactories</span><span class="token punctuation">(</span>
-                <span class="token class-name">InitServiceInterFace</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContextClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">InitServiceInterFace</span> initServiceInterFace <span class="token operator">:</span> serviceLoader<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            initServiceInterFace<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>run<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>日志输入如下：</p>
-<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/07/01/spi-ji-zhi/SPI-1.png" alt="SPI-1.png">]]></content>
-      <categories>
-        <category>后端</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-        <tag>SPI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot-Quartz</title>
-    <url>/2020/06/28/quartz-de-shi-yong/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>Quartz（Job Scheduler），一个比较流行的定时任务框架。搜索引擎会有详细的介绍，此处不再赘述。</p>
-<h1 id="2-环境"><a href="#2-环境" class="headerlink" title="2. 环境"></a>2. 环境</h1><p>JDK：1.8</p>
-<p>IDE：IDEA</p>
-<p>maven依赖：</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-quartz<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.4.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.18.16<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>optional</span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>optional</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="3-详解"><a href="#3-详解" class="headerlink" title="3. 详解"></a>3. 详解</h1><p>Quartz的上手难度其实挺低的，它会给我们提供很多简单的定时任务方法。同时也是可以使用cron表达式设定任务执行时间，接下来的例子就是使用cron表达式进行任务的创建。cron的用法会在后续blog中讲解。</p>
-<span id="more"></span>
-
-<h2 id="3-1-创建对外开放的类"><a href="#3-1-创建对外开放的类" class="headerlink" title="3.1 创建对外开放的类"></a>3.1 创建对外开放的类</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token class-name">JobRunnable</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span><span class="token class-name">StdSchedulerFactory</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">PostConstruct</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">PreDestroy</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">ParseException</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">LinkedHashMap</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">UUID</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">LinkedBlockingQueue</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">ThreadPoolExecutor</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">TimeUnit</span></span><span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuartzUtil</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Scheduler</span> SCHEDULER<span class="token punctuation">;</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Runnable</span><span class="token punctuation">&gt;</span></span> JOB_KEY_MAP <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">ThreadPoolExecutor</span> THREAD_POOL<span class="token punctuation">;</span>
-
-    <span class="token keyword">private</span> <span class="token class-name">QuartzUtil</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@PostConstruct</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// quartz scheduler</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            SCHEDULER <span class="token operator">=</span> <span class="token class-name">StdSchedulerFactory</span><span class="token punctuation">.</span><span class="token function">getDefaultScheduler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// 及时启动</span>
-            SCHEDULER<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// startDelayed(1) 为延时启动，参数为int类型，单位 秒</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Create Default StdScheduler error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token comment">// threadpool</span>
-        THREAD_POOL <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">,</span>
-                <span class="token keyword">new</span> <span class="token class-name">LinkedBlockingQueue</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor<span class="token punctuation">.</span>AbortPolicy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@PreDestroy</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// 参数表示  当前正在执行的所有任务执行完才会结束scheduler</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>SCHEDULER <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">try</span> <span class="token punctuation">{</span>
-                SCHEDULER<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Shutdown Scheduler error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>THREAD_POOL <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>THREAD_POOL<span class="token punctuation">.</span><span class="token function">isShutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            THREAD_POOL<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">addTask</span><span class="token punctuation">(</span><span class="token class-name">String</span> cron<span class="token punctuation">,</span> <span class="token class-name">Runnable</span> runnable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>runnable <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token class-name">CronExpression</span><span class="token punctuation">.</span><span class="token function">isValidExpression</span><span class="token punctuation">(</span>cron<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token class-name">CronExpression</span> cronExpression<span class="token punctuation">;</span>
-            <span class="token keyword">try</span> <span class="token punctuation">{</span>
-                cronExpression <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CronExpression</span><span class="token punctuation">(</span>cron<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ParseException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"parse cron error,add Task error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">return</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token function">addTask</span><span class="token punctuation">(</span>cronExpression<span class="token punctuation">,</span> runnable<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"param invalid, addTask error."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">addTask</span><span class="token punctuation">(</span><span class="token class-name">CronExpression</span> cron<span class="token punctuation">,</span> <span class="token class-name">Runnable</span> runnable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>runnable <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> cron <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token class-name">CronExpression</span><span class="token punctuation">.</span><span class="token function">isValidExpression</span><span class="token punctuation">(</span>cron<span class="token punctuation">.</span><span class="token function">getCronExpression</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"param invalid, addTask error."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token class-name">String</span> uuid <span class="token operator">=</span> UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">JobDetail</span> job <span class="token operator">=</span> <span class="token class-name">JobBuilder</span><span class="token punctuation">.</span><span class="token function">newJob</span><span class="token punctuation">(</span><span class="token class-name">JobRunnable</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withIdentity</span><span class="token punctuation">(</span>uuid<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token class-name">Trigger</span> trigger <span class="token operator">=</span> <span class="token class-name">TriggerBuilder</span><span class="token punctuation">.</span><span class="token function">newTrigger</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">startNow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">withIdentity</span><span class="token punctuation">(</span>uuid<span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">withSchedule</span><span class="token punctuation">(</span><span class="token class-name">CronScheduleBuilder</span><span class="token punctuation">.</span><span class="token function">cronSchedule</span><span class="token punctuation">(</span>cron<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            SCHEDULER<span class="token punctuation">.</span><span class="token function">scheduleJob</span><span class="token punctuation">(</span>job<span class="token punctuation">,</span> trigger<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"ScheduledJob error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        JOB_KEY_MAP<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>uuid<span class="token punctuation">,</span> runnable<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">ThreadPoolExecutor</span> <span class="token function">getThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> THREAD_POOL<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Runnable</span><span class="token punctuation">&gt;</span></span> <span class="token function">getJobKeyMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> JOB_KEY_MAP<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Scheduler</span> <span class="token function">getScheduler</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> SCHEDULER<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="3-2-创建一个实现org-quartz-Job的类JobRunnable"><a href="#3-2-创建一个实现org-quartz-Job的类JobRunnable" class="headerlink" title="3.2 创建一个实现org.quartz.Job的类JobRunnable"></a>3.2 创建一个实现org.quartz.Job的类JobRunnable</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token class-name">QuartzUtil</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token class-name">Job</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token class-name">JobExecutionContext</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token class-name">JobKey</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>quartz<span class="token punctuation">.</span></span><span class="token class-name">SchedulerException</span></span><span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JobRunnable</span> <span class="token keyword">implements</span> <span class="token class-name">Job</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">execute</span><span class="token punctuation">(</span><span class="token class-name">JobExecutionContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">JobKey</span> jobKey <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getJobDetail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">getJobKeyMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token class-name">Runnable</span> runnable <span class="token operator">=</span> <span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">getJobKeyMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">getThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>runnable<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            <span class="token keyword">try</span> <span class="token punctuation">{</span>
-                <span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">getScheduler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">deleteJob</span><span class="token punctuation">(</span>jobKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SchedulerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Job info is not contain ,Delete Job error."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="3-3-调用，验证方式为springboot启动后添加scheduled。当然你也可以在springboot入口类的main方法里简单验证下"><a href="#3-3-调用，验证方式为springboot启动后添加scheduled。当然你也可以在springboot入口类的main方法里简单验证下" class="headerlink" title="3.3 调用，验证方式为springboot启动后添加scheduled。当然你也可以在springboot入口类的main方法里简单验证下"></a>3.3 调用，验证方式为springboot启动后添加scheduled。当然你也可以在springboot入口类的main方法里简单验证下</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token class-name">QuartzUtil</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span></span><span class="token class-name">CommandLineRunner</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StartWare</span> <span class="token keyword">implements</span> <span class="token class-name">CommandLineRunner</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
-        <span class="token comment">// cron表达式 0/2 * * * * ?  表示每分钟的0秒开始没过2秒执行一次</span>
-        <span class="token class-name">QuartzUtil</span><span class="token punctuation">.</span><span class="token function">addTask</span><span class="token punctuation">(</span><span class="token string">"0/2 * * * * ?"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"0/2 * * * * ? scheduled exec."</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="3-4-验证日志"><a href="#3-4-验证日志" class="headerlink" title="3.4 验证日志"></a>3.4 验证日志</h2><pre class="line-numbers language-none"><code class="language-none">INFO 3816 --- [pool-1-thread-1] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
-INFO 3816 --- [pool-1-thread-2] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
-INFO 3816 --- [pool-1-thread-3] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
-INFO 3816 --- [pool-1-thread-4] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
-INFO 3816 --- [pool-1-thread-5] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.
-INFO 3816 --- [pool-1-thread-6] c.w.q.common.springawares.StartWare      : 0/2 * * * * ? scheduled exec.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>在使用的过程中其实有很多需要注意的点，比如quartz对job和trigger的name进行的一致的校验。之所以会封装一层，改job为runnable，是为了更方便调用，包括1.8之后能使用lambda后能直接构建匿名内部类，减少不必要的类的创建。</p>
-<br>
-
-]]></content>
-      <categories>
-        <category>后端</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-        <tag>Quartz</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring的AntPathMatcher</title>
     <url>/2020/08/22/spring-de-antpathmathcher/</url>
     <content><![CDATA[<blockquote>
@@ -1163,6 +1065,104 @@ INFO 3816 --- [pool-1-thread-6] c.w.q.common.springawares.StartWare      : 0/2 *
       <tags>
         <tag>Java</tag>
         <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MinIO</title>
+    <url>/2020/06/29/minio/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-什么是MinIO"><a href="#1-什么是MinIO" class="headerlink" title="1. 什么是MinIO"></a>1. 什么是MinIO</h1><h2 id="1-1-MinIO介绍"><a href="#1-1-MinIO介绍" class="headerlink" title="1.1 MinIO介绍"></a>1.1 MinIO介绍</h2><p>​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
+<h2 id="1-2-MinIO保护数据策略"><a href="#1-2-MinIO保护数据策略" class="headerlink" title="1.2 MinIO保护数据策略"></a>1.2 MinIO保护数据策略</h2><p>​        Minio使用<strong>纠删码</strong><code>erasure code</code>和校验和<code>checksum</code>来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。</p>
+<h1 id="2-MinIO部署"><a href="#2-MinIO部署" class="headerlink" title="2. MinIO部署"></a>2. MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
+<p>进入<a href="https://dl.min.io/server/minio/release/linux-amd64/minio%E4%B8%8B%E8%BD%BD">https://dl.min.io/server/minio/release/linux-amd64/minio下载</a></p>
+<pre class="line-numbers language-none"><code class="language-none">wget https://dl.minio.io/server/minio/release/linux-amd64/minio<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<span id="more"></span>
+
+<h3 id="2-1-2-上传到linux下"><a href="#2-1-2-上传到linux下" class="headerlink" title="2.1.2 上传到linux下"></a>2.1.2 上传到linux下</h3><p>在上一步下载的文件目录下添加shell脚本(例如：startMinIO.sh)并运行,命令如下：</p>
+<p>MINIO_ACCESS_KEY配置minio登录账户</p>
+<p>MINIO_SECRET_KEY配置minio登录密码</p>
+<p>dataPath为数据存储路径</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
+<span class="token function">nohup</span> ./minio server --address :9000 <span class="token variable">${dataPath}</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-1-3-进入页面验证"><a href="#2-1-3-进入页面验证" class="headerlink" title="2.1.3 进入页面验证"></a>2.1.3 进入页面验证</h3><p>minio默认端口为9000，可以用–address 参数自定义。</p>
+<h2 id="2-2-集群部署"><a href="#2-2-集群部署" class="headerlink" title="2.2 集群部署"></a>2.2 集群部署</h2><p>MINIO集群与常规集群不同的是，MINIO集群中存储的文件并不是在所有节点上各存一份，而是将讲文件拆分成多分，再使用<strong>纠删码技术</strong>保障多节点文件完整。同时请<strong>对比</strong>集群部署和单点部署启动命令。本文档以四个节点为例预留5个端口（8089、9001、9002、9003、9004）</p>
+<h3 id="2-2-1-非集群单节点部署"><a href="#2-2-1-非集群单节点部署" class="headerlink" title="2.2.1 非集群单节点部署"></a>2.2.1 非集群单节点部署</h3><p>命令如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
+<span class="token function">nohup</span> ./minio server --address :9000 <span class="token variable">${dataPath}</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-2-集群下单节点部署"><a href="#2-2-2-集群下单节点部署" class="headerlink" title="2.2.2 集群下单节点部署"></a>2.2.2 集群下单节点部署</h3><p>集群下部署minio单节点需要根据非集群单节点部署命令进行修改。将datapath部分指向集群中所有minio节点的datapath。</p>
+<p>集群中其中一个节点部署命令如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
+<span class="token function">nohup</span> ./minio server --address <span class="token variable">${Node1_IP}</span><span class="token builtin class-name">:</span><span class="token variable">${Node1_Port}</span>  http://<span class="token variable">${Node1_IP}</span>/data/data1 http://<span class="token variable">${Node2_IP}</span>/data/data2 http://<span class="token variable">${Node3_IP}</span>/data/data3 http://<span class="token variable">${Node4_IP}</span>/data/data4 <span class="token operator">&gt;</span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-3-MINIO集群注意点"><a href="#2-2-3-MINIO集群注意点" class="headerlink" title="2.2.3 MINIO集群注意点"></a>2.2.3 MINIO集群注意点</h3><p>minio的集群所有节点的<strong>登录账户</strong>及<strong>密码</strong>必须一致。</p>
+<p>minio的集群节点数量推荐大于等于<strong>4</strong>。</p>
+<h3 id="2-2-4-MINIO负载均衡"><a href="#2-2-4-MINIO负载均衡" class="headerlink" title="2.2.4 MINIO负载均衡"></a>2.2.4 MINIO负载均衡</h3><p>官方文档支持nginx，可参考我的另一篇<a href="#">Post not found: nginx负载均衡配置 关于nginx负载均衡的Blog</a>。</p>
+<h4 id="2-2-4-1-配置nginx分发端口"><a href="#2-2-4-1-配置nginx分发端口" class="headerlink" title="2.2.4.1 配置nginx分发端口"></a>2.2.4.1 配置nginx分发端口</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"> <span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">{</span>
+    <span class="token directive"><span class="token keyword">listen</span>       <span class="token number">8089</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server_name</span>  www.dealthBook.com</span><span class="token punctuation">;</span>
+
+    <span class="token comment">#charset koi8-r;</span>
+
+    <span class="token comment">#access_log  logs/host.access.log  main;</span>
+
+    <span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">{</span>
+        <span class="token directive"><span class="token keyword">root</span>   html</span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">index</span>  index.html index.htm</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-2-4-2-添加upstream"><a href="#2-2-4-2-添加upstream" class="headerlink" title="2.2.4.2 添加upstream"></a>2.2.4.2 添加upstream</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">upstream</span> minio_server</span> <span class="token punctuation">{</span>
+	<span class="token comment">#1、轮询（默认选项，所有weight=1）</span>
+	<span class="token comment">#2、weight，执行轮询几率，weight与访问几率成正比</span>
+	<span class="token comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span>
+	<span class="token comment">#4、least_conn，最少连接数负载均衡</span>
+    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP1<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT1<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP2<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT2<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP3<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT3<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP4<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT4<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-2-4-3-添加minio的upstream名称"><a href="#2-2-4-3-添加minio的upstream名称" class="headerlink" title="2.2.4.3 添加minio的upstream名称"></a>2.2.4.3 添加minio的upstream名称</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">location</span> /minio</span> <span class="token punctuation">{</span>
+    <span class="token directive"><span class="token keyword">proxy_set_header</span> Host <span class="token variable">$http_host</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">proxy_pass</span> http://minio_server</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-2-4-4-最终配置文件布局"><a href="#2-2-4-4-最终配置文件布局" class="headerlink" title="2.2.4.4 最终配置文件布局"></a>2.2.4.4 最终配置文件布局</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">http</span></span><span class="token punctuation">{</span>
+  	...
+    <span class="token directive"><span class="token keyword">upstream</span> minio_server</span><span class="token punctuation">{</span>
+		...
+    <span class="token punctuation">}</span>
+    <span class="token directive"><span class="token keyword">server</span></span><span class="token punctuation">{</span>
+        ...
+       	<span class="token directive"><span class="token keyword">location</span> /minio</span><span class="token punctuation">{</span>
+            ...
+     	<span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-5-启动nginx及所有节点的minio"><a href="#2-2-5-启动nginx及所有节点的minio" class="headerlink" title="2.2.5 启动nginx及所有节点的minio"></a>2.2.5 启动nginx及所有节点的minio</h3><h3 id="2-2-6-验证"><a href="#2-2-6-验证" class="headerlink" title="2.2.6 验证"></a>2.2.6 验证</h3><h4 id="2-2-6-1-验证各节点minio是否正常"><a href="#2-2-6-1-验证各节点minio是否正常" class="headerlink" title="2.2.6.1 验证各节点minio是否正常"></a>2.2.6.1 验证各节点minio是否正常</h4><blockquote>
+<p>进入 <a href="http://ip:port/minio">http://ip:port/minio</a></p>
+</blockquote>
+<h4 id="2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089"><a href="#2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089" class="headerlink" title="2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089"></a>2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089</h4><blockquote>
+<p>通过nginx进入minio <a href="http://ip:8089/minio">http://ip:8089/minio</a></p>
+</blockquote>
+<h1 id="3-MinIO页面"><a href="#3-MinIO页面" class="headerlink" title="3. MinIO页面"></a>3. MinIO页面</h1><h2 id="3-1-新建桶（Bucket）及上传文件"><a href="#3-1-新建桶（Bucket）及上传文件" class="headerlink" title="3.1 新建桶（Bucket）及上传文件"></a>3.1 新建桶（Bucket）及上传文件</h2><img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/06/29/minio/MinIO-1.png" alt="MinIO-1.png">]]></content>
+      <categories>
+        <category>中间件</category>
+      </categories>
+      <tags>
+        <tag>MinIO</tag>
+        <tag>分布式</tag>
+        <tag>存储</tag>
       </tags>
   </entry>
   <entry>
