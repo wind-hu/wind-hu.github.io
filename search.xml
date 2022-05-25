@@ -158,32 +158,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Hello World</title>
-    <url>/2020/05/25/hexo-hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<span id="more"></span>
-
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hello World</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JAVA线程池</title>
     <url>/2020/07/02/java-xian-cheng-chi/</url>
     <content><![CDATA[<blockquote>
@@ -311,6 +285,130 @@ scheduledPool<span class="token punctuation">.</span><span class="token function
       </categories>
       <tags>
         <tag>线程池</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Hello World</title>
+    <url>/2020/05/25/hexo-hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<span id="more"></span>
+
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hello World</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MinIO</title>
+    <url>/2020/06/29/minio/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
+</blockquote>
+<h1 id="1-什么是MinIO"><a href="#1-什么是MinIO" class="headerlink" title="1. 什么是MinIO"></a>1. 什么是MinIO</h1><h2 id="1-1-MinIO介绍"><a href="#1-1-MinIO介绍" class="headerlink" title="1.1 MinIO介绍"></a>1.1 MinIO介绍</h2><p>​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
+<h2 id="1-2-MinIO保护数据策略"><a href="#1-2-MinIO保护数据策略" class="headerlink" title="1.2 MinIO保护数据策略"></a>1.2 MinIO保护数据策略</h2><p>​        Minio使用<strong>纠删码</strong><code>erasure code</code>和校验和<code>checksum</code>来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。</p>
+<h1 id="2-MinIO部署"><a href="#2-MinIO部署" class="headerlink" title="2. MinIO部署"></a>2. MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
+<p>进入<a href="https://dl.min.io/server/minio/release/linux-amd64/minio%E4%B8%8B%E8%BD%BD">https://dl.min.io/server/minio/release/linux-amd64/minio下载</a></p>
+<pre class="line-numbers language-none"><code class="language-none">wget https://dl.minio.io/server/minio/release/linux-amd64/minio<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<span id="more"></span>
+
+<h3 id="2-1-2-上传到linux下"><a href="#2-1-2-上传到linux下" class="headerlink" title="2.1.2 上传到linux下"></a>2.1.2 上传到linux下</h3><p>在上一步下载的文件目录下添加shell脚本(例如：startMinIO.sh)并运行,命令如下：</p>
+<p>MINIO_ACCESS_KEY配置minio登录账户</p>
+<p>MINIO_SECRET_KEY配置minio登录密码</p>
+<p>dataPath为数据存储路径</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
+<span class="token function">nohup</span> ./minio server --address :9000 <span class="token variable">${dataPath}</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-1-3-进入页面验证"><a href="#2-1-3-进入页面验证" class="headerlink" title="2.1.3 进入页面验证"></a>2.1.3 进入页面验证</h3><p>minio默认端口为9000，可以用–address 参数自定义。</p>
+<h2 id="2-2-集群部署"><a href="#2-2-集群部署" class="headerlink" title="2.2 集群部署"></a>2.2 集群部署</h2><p>MINIO集群与常规集群不同的是，MINIO集群中存储的文件并不是在所有节点上各存一份，而是将讲文件拆分成多分，再使用<strong>纠删码技术</strong>保障多节点文件完整。同时请<strong>对比</strong>集群部署和单点部署启动命令。本文档以四个节点为例预留5个端口（8089、9001、9002、9003、9004）</p>
+<h3 id="2-2-1-非集群单节点部署"><a href="#2-2-1-非集群单节点部署" class="headerlink" title="2.2.1 非集群单节点部署"></a>2.2.1 非集群单节点部署</h3><p>命令如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
+<span class="token function">nohup</span> ./minio server --address :9000 <span class="token variable">${dataPath}</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-2-集群下单节点部署"><a href="#2-2-2-集群下单节点部署" class="headerlink" title="2.2.2 集群下单节点部署"></a>2.2.2 集群下单节点部署</h3><p>集群下部署minio单节点需要根据非集群单节点部署命令进行修改。将datapath部分指向集群中所有minio节点的datapath。</p>
+<p>集群中其中一个节点部署命令如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
+<span class="token function">nohup</span> ./minio server --address <span class="token variable">${Node1_IP}</span><span class="token builtin class-name">:</span><span class="token variable">${Node1_Port}</span>  http://<span class="token variable">${Node1_IP}</span>/data/data1 http://<span class="token variable">${Node2_IP}</span>/data/data2 http://<span class="token variable">${Node3_IP}</span>/data/data3 http://<span class="token variable">${Node4_IP}</span>/data/data4 <span class="token operator">&gt;</span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-3-MINIO集群注意点"><a href="#2-2-3-MINIO集群注意点" class="headerlink" title="2.2.3 MINIO集群注意点"></a>2.2.3 MINIO集群注意点</h3><p>minio的集群所有节点的<strong>登录账户</strong>及<strong>密码</strong>必须一致。</p>
+<p>minio的集群节点数量推荐大于等于<strong>4</strong>。</p>
+<h3 id="2-2-4-MINIO负载均衡"><a href="#2-2-4-MINIO负载均衡" class="headerlink" title="2.2.4 MINIO负载均衡"></a>2.2.4 MINIO负载均衡</h3><p>官方文档支持nginx，可参考我的另一篇<a href="#">Post not found: nginx负载均衡配置 关于nginx负载均衡的Blog</a>。</p>
+<h4 id="2-2-4-1-配置nginx分发端口"><a href="#2-2-4-1-配置nginx分发端口" class="headerlink" title="2.2.4.1 配置nginx分发端口"></a>2.2.4.1 配置nginx分发端口</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"> <span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">{</span>
+    <span class="token directive"><span class="token keyword">listen</span>       <span class="token number">8089</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server_name</span>  www.dealthBook.com</span><span class="token punctuation">;</span>
+
+    <span class="token comment">#charset koi8-r;</span>
+
+    <span class="token comment">#access_log  logs/host.access.log  main;</span>
+
+    <span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">{</span>
+        <span class="token directive"><span class="token keyword">root</span>   html</span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">index</span>  index.html index.htm</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-2-4-2-添加upstream"><a href="#2-2-4-2-添加upstream" class="headerlink" title="2.2.4.2 添加upstream"></a>2.2.4.2 添加upstream</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">upstream</span> minio_server</span> <span class="token punctuation">{</span>
+	<span class="token comment">#1、轮询（默认选项，所有weight=1）</span>
+	<span class="token comment">#2、weight，执行轮询几率，weight与访问几率成正比</span>
+	<span class="token comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span>
+	<span class="token comment">#4、least_conn，最少连接数负载均衡</span>
+    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP1<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT1<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP2<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT2<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP3<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT3<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP4<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT4<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-2-4-3-添加minio的upstream名称"><a href="#2-2-4-3-添加minio的upstream名称" class="headerlink" title="2.2.4.3 添加minio的upstream名称"></a>2.2.4.3 添加minio的upstream名称</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">location</span> /minio</span> <span class="token punctuation">{</span>
+    <span class="token directive"><span class="token keyword">proxy_set_header</span> Host <span class="token variable">$http_host</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">proxy_pass</span> http://minio_server</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-2-4-4-最终配置文件布局"><a href="#2-2-4-4-最终配置文件布局" class="headerlink" title="2.2.4.4 最终配置文件布局"></a>2.2.4.4 最终配置文件布局</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">http</span></span><span class="token punctuation">{</span>
+  	...
+    <span class="token directive"><span class="token keyword">upstream</span> minio_server</span><span class="token punctuation">{</span>
+		...
+    <span class="token punctuation">}</span>
+    <span class="token directive"><span class="token keyword">server</span></span><span class="token punctuation">{</span>
+        ...
+       	<span class="token directive"><span class="token keyword">location</span> /minio</span><span class="token punctuation">{</span>
+            ...
+     	<span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2-2-5-启动nginx及所有节点的minio"><a href="#2-2-5-启动nginx及所有节点的minio" class="headerlink" title="2.2.5 启动nginx及所有节点的minio"></a>2.2.5 启动nginx及所有节点的minio</h3><h3 id="2-2-6-验证"><a href="#2-2-6-验证" class="headerlink" title="2.2.6 验证"></a>2.2.6 验证</h3><h4 id="2-2-6-1-验证各节点minio是否正常"><a href="#2-2-6-1-验证各节点minio是否正常" class="headerlink" title="2.2.6.1 验证各节点minio是否正常"></a>2.2.6.1 验证各节点minio是否正常</h4><blockquote>
+<p>进入 <a href="http://ip:port/minio">http://ip:port/minio</a></p>
+</blockquote>
+<h4 id="2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089"><a href="#2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089" class="headerlink" title="2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089"></a>2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089</h4><blockquote>
+<p>通过nginx进入minio <a href="http://ip:8089/minio">http://ip:8089/minio</a></p>
+</blockquote>
+<h1 id="3-MinIO页面"><a href="#3-MinIO页面" class="headerlink" title="3. MinIO页面"></a>3. MinIO页面</h1><h2 id="3-1-新建桶（Bucket）及上传文件"><a href="#3-1-新建桶（Bucket）及上传文件" class="headerlink" title="3.1 新建桶（Bucket）及上传文件"></a>3.1 新建桶（Bucket）及上传文件</h2><img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/06/29/minio/MinIO-1.png" alt="MinIO-1.png">]]></content>
+      <categories>
+        <category>中间件</category>
+      </categories>
+      <tags>
+        <tag>MinIO</tag>
+        <tag>分布式</tag>
+        <tag>存储</tag>
       </tags>
   </entry>
   <entry>
@@ -1068,171 +1166,6 @@ INFO 3816 --- [pool-1-thread-6] c.w.q.common.springawares.StartWare      : 0/2 *
       </tags>
   </entry>
   <entry>
-    <title>MinIO</title>
-    <url>/2020/06/29/minio/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本文的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望各位大佬指出。</strong> </p>
-</blockquote>
-<h1 id="1-什么是MinIO"><a href="#1-什么是MinIO" class="headerlink" title="1. 什么是MinIO"></a>1. 什么是MinIO</h1><h2 id="1-1-MinIO介绍"><a href="#1-1-MinIO介绍" class="headerlink" title="1.1 MinIO介绍"></a>1.1 MinIO介绍</h2><p>​        MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
-<h2 id="1-2-MinIO保护数据策略"><a href="#1-2-MinIO保护数据策略" class="headerlink" title="1.2 MinIO保护数据策略"></a>1.2 MinIO保护数据策略</h2><p>​        Minio使用<strong>纠删码</strong><code>erasure code</code>和校验和<code>checksum</code>来保护数据免受硬件故障和无声数据损坏。 即便您丢失一半数量（N/2）的硬盘，您仍然可以恢复数据。</p>
-<h1 id="2-MinIO部署"><a href="#2-MinIO部署" class="headerlink" title="2. MinIO部署"></a>2. MinIO部署</h1><h2 id="2-1-单节点部署"><a href="#2-1-单节点部署" class="headerlink" title="2.1 单节点部署"></a>2.1 单节点部署</h2><h3 id="2-1-1-下载minio"><a href="#2-1-1-下载minio" class="headerlink" title="2.1.1 下载minio"></a>2.1.1 下载minio</h3><p>根据实际操作系统及位数下载相应minio server（注：不是minio client）</p>
-<p>进入<a href="https://dl.min.io/server/minio/release/linux-amd64/minio%E4%B8%8B%E8%BD%BD">https://dl.min.io/server/minio/release/linux-amd64/minio下载</a></p>
-<pre class="line-numbers language-none"><code class="language-none">wget https://dl.minio.io/server/minio/release/linux-amd64/minio<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<span id="more"></span>
-
-<h3 id="2-1-2-上传到linux下"><a href="#2-1-2-上传到linux下" class="headerlink" title="2.1.2 上传到linux下"></a>2.1.2 上传到linux下</h3><p>在上一步下载的文件目录下添加shell脚本(例如：startMinIO.sh)并运行,命令如下：</p>
-<p>MINIO_ACCESS_KEY配置minio登录账户</p>
-<p>MINIO_SECRET_KEY配置minio登录密码</p>
-<p>dataPath为数据存储路径</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
-<span class="token function">nohup</span> ./minio server --address :9000 <span class="token variable">${dataPath}</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-1-3-进入页面验证"><a href="#2-1-3-进入页面验证" class="headerlink" title="2.1.3 进入页面验证"></a>2.1.3 进入页面验证</h3><p>minio默认端口为9000，可以用–address 参数自定义。</p>
-<h2 id="2-2-集群部署"><a href="#2-2-集群部署" class="headerlink" title="2.2 集群部署"></a>2.2 集群部署</h2><p>MINIO集群与常规集群不同的是，MINIO集群中存储的文件并不是在所有节点上各存一份，而是将讲文件拆分成多分，再使用<strong>纠删码技术</strong>保障多节点文件完整。同时请<strong>对比</strong>集群部署和单点部署启动命令。本文档以四个节点为例预留5个端口（8089、9001、9002、9003、9004）</p>
-<h3 id="2-2-1-非集群单节点部署"><a href="#2-2-1-非集群单节点部署" class="headerlink" title="2.2.1 非集群单节点部署"></a>2.2.1 非集群单节点部署</h3><p>命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
-<span class="token function">nohup</span> ./minio server --address :9000 <span class="token variable">${dataPath}</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-2-2-集群下单节点部署"><a href="#2-2-2-集群下单节点部署" class="headerlink" title="2.2.2 集群下单节点部署"></a>2.2.2 集群下单节点部署</h3><p>集群下部署minio单节点需要根据非集群单节点部署命令进行修改。将datapath部分指向集群中所有minio节点的datapath。</p>
-<p>集群中其中一个节点部署命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_ACCESS_KEY</span><span class="token operator">=</span><span class="token string">"minio"</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">MINIO_SECRET_KEY</span><span class="token operator">=</span><span class="token string">"123qwe!@#"</span>
-<span class="token function">nohup</span> ./minio server --address <span class="token variable">${Node1_IP}</span><span class="token builtin class-name">:</span><span class="token variable">${Node1_Port}</span>  http://<span class="token variable">${Node1_IP}</span>/data/data1 http://<span class="token variable">${Node2_IP}</span>/data/data2 http://<span class="token variable">${Node3_IP}</span>/data/data3 http://<span class="token variable">${Node4_IP}</span>/data/data4 <span class="token operator">&gt;</span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-2-3-MINIO集群注意点"><a href="#2-2-3-MINIO集群注意点" class="headerlink" title="2.2.3 MINIO集群注意点"></a>2.2.3 MINIO集群注意点</h3><p>minio的集群所有节点的<strong>登录账户</strong>及<strong>密码</strong>必须一致。</p>
-<p>minio的集群节点数量推荐大于等于<strong>4</strong>。</p>
-<h3 id="2-2-4-MINIO负载均衡"><a href="#2-2-4-MINIO负载均衡" class="headerlink" title="2.2.4 MINIO负载均衡"></a>2.2.4 MINIO负载均衡</h3><p>官方文档支持nginx，可参考我的另一篇<a href="#">Post not found: nginx负载均衡配置 关于nginx负载均衡的Blog</a>。</p>
-<h4 id="2-2-4-1-配置nginx分发端口"><a href="#2-2-4-1-配置nginx分发端口" class="headerlink" title="2.2.4.1 配置nginx分发端口"></a>2.2.4.1 配置nginx分发端口</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"> <span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">{</span>
-    <span class="token directive"><span class="token keyword">listen</span>       <span class="token number">8089</span></span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">server_name</span>  www.dealthBook.com</span><span class="token punctuation">;</span>
-
-    <span class="token comment">#charset koi8-r;</span>
-
-    <span class="token comment">#access_log  logs/host.access.log  main;</span>
-
-    <span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">{</span>
-        <span class="token directive"><span class="token keyword">root</span>   html</span><span class="token punctuation">;</span>
-        <span class="token directive"><span class="token keyword">index</span>  index.html index.htm</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-4-2-添加upstream"><a href="#2-2-4-2-添加upstream" class="headerlink" title="2.2.4.2 添加upstream"></a>2.2.4.2 添加upstream</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">upstream</span> minio_server</span> <span class="token punctuation">{</span>
-	<span class="token comment">#1、轮询（默认选项，所有weight=1）</span>
-	<span class="token comment">#2、weight，执行轮询几率，weight与访问几率成正比</span>
-	<span class="token comment">#3、ip_hash，每个请求按照hash结果分配，这样其实是每个服务都有一个固定的值</span>
-	<span class="token comment">#4、least_conn，最少连接数负载均衡</span>
-    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP1<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT1<span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP2<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT2<span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP3<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT3<span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">server</span> $</span><span class="token punctuation">{</span>IP4<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>PORT4<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-4-3-添加minio的upstream名称"><a href="#2-2-4-3-添加minio的upstream名称" class="headerlink" title="2.2.4.3 添加minio的upstream名称"></a>2.2.4.3 添加minio的upstream名称</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">location</span> /minio</span> <span class="token punctuation">{</span>
-    <span class="token directive"><span class="token keyword">proxy_set_header</span> Host <span class="token variable">$http_host</span></span><span class="token punctuation">;</span>
-    <span class="token directive"><span class="token keyword">proxy_pass</span> http://minio_server</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-2-4-4-最终配置文件布局"><a href="#2-2-4-4-最终配置文件布局" class="headerlink" title="2.2.4.4 最终配置文件布局"></a>2.2.4.4 最终配置文件布局</h4><pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">http</span></span><span class="token punctuation">{</span>
-  	...
-    <span class="token directive"><span class="token keyword">upstream</span> minio_server</span><span class="token punctuation">{</span>
-		...
-    <span class="token punctuation">}</span>
-    <span class="token directive"><span class="token keyword">server</span></span><span class="token punctuation">{</span>
-        ...
-       	<span class="token directive"><span class="token keyword">location</span> /minio</span><span class="token punctuation">{</span>
-            ...
-     	<span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="2-2-5-启动nginx及所有节点的minio"><a href="#2-2-5-启动nginx及所有节点的minio" class="headerlink" title="2.2.5 启动nginx及所有节点的minio"></a>2.2.5 启动nginx及所有节点的minio</h3><h3 id="2-2-6-验证"><a href="#2-2-6-验证" class="headerlink" title="2.2.6 验证"></a>2.2.6 验证</h3><h4 id="2-2-6-1-验证各节点minio是否正常"><a href="#2-2-6-1-验证各节点minio是否正常" class="headerlink" title="2.2.6.1 验证各节点minio是否正常"></a>2.2.6.1 验证各节点minio是否正常</h4><blockquote>
-<p>进入 <a href="http://ip:port/minio">http://ip:port/minio</a></p>
-</blockquote>
-<h4 id="2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089"><a href="#2-2-6-2-通过nginx进入minio查看分发是否正常-本文配置nginx的minio端口为8089" class="headerlink" title="2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089"></a>2.2.6.2 通过nginx进入minio查看分发是否正常,本文配置nginx的minio端口为8089</h4><blockquote>
-<p>通过nginx进入minio <a href="http://ip:8089/minio">http://ip:8089/minio</a></p>
-</blockquote>
-<h1 id="3-MinIO页面"><a href="#3-MinIO页面" class="headerlink" title="3. MinIO页面"></a>3. MinIO页面</h1><h2 id="3-1-新建桶（Bucket）及上传文件"><a href="#3-1-新建桶（Bucket）及上传文件" class="headerlink" title="3.1 新建桶（Bucket）及上传文件"></a>3.1 新建桶（Bucket）及上传文件</h2><img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/06/29/minio/MinIO-1.png" alt="MinIO-1.png">]]></content>
-      <categories>
-        <category>中间件</category>
-      </categories>
-      <tags>
-        <tag>MinIO</tag>
-        <tag>分布式</tag>
-        <tag>存储</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用GitHub Action自动同步代码到Gitee</title>
-    <url>/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。</strong></p>
-</blockquote>
-<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>在代码托管的过程中，我们有时候需要将GitHub的代码同步到其他托管平台(Gitee、GitLab等)的需求。主要关系是：以GiHub为主仓，并且定期自动同步到Gitee作为镜像仓库。GitHub Pages及Gitee Pages自动更新部署。</p>
-<h1 id="2-方案"><a href="#2-方案" class="headerlink" title="2. 方案"></a>2. 方案</h1><h2 id="2-1-Gitee手动同步"><a href="#2-1-Gitee手动同步" class="headerlink" title="2.1 Gitee手动同步"></a>2.1 Gitee手动同步</h2><p>Gitee本身是提供了其他平台仓库绑定及绑定仓库同步的功能。这个功能是可以满足需求的。<strong>但是</strong>，作为一个程序员，能自动完成的事情坚决不靠人力去完成。而且如果一个组织下发展到了几百上千个仓库后，手动同步的缺陷就十分明显了。这个时候就需要某种计算机资源<strong>自动的完成同步操作</strong>。所以这个方案排除。</p>
-<h2 id="2-2-GitHub-Action"><a href="#2-2-GitHub-Action" class="headerlink" title="2.2 GitHub Action"></a>2.2 GitHub Action</h2><p>其实GitHub Action是GitHub的持续集成服务。它能够在指定操作时触发脚本功能。就选这个方案了。GitHub Action的功能是很强大的。关于GiHub Action的详细内容可以看<a href="https://github.com/features/actions">GitHub Action官网</a>。</p>
-<blockquote>
-<p>持续集成在项目中有着很重要的地位，推荐大家去了解了解。</p>
-</blockquote>
-<h1 id="3-具体操作"><a href="#3-具体操作" class="headerlink" title="3. 具体操作"></a>3. 具体操作</h1><h2 id="3-1-准备工作"><a href="#3-1-准备工作" class="headerlink" title="3.1 准备工作"></a>3.1 准备工作</h2><h3 id="3-1-1-Github和Gitee的邮箱绑定"><a href="#3-1-1-Github和Gitee的邮箱绑定" class="headerlink" title="3.1.1 Github和Gitee的邮箱绑定"></a>3.1.1 Github和Gitee的邮箱绑定</h3><p>代码托管平台的邮箱在这里其实很重要，我在这里踩过一个坑。邮箱关系到ssh公钥私钥。<strong>推荐所有托管平台的邮箱统一。</strong></p>
-<h3 id="3-1-2-根据托管平台的邮箱生成ssh的公钥私钥"><a href="#3-1-2-根据托管平台的邮箱生成ssh的公钥私钥" class="headerlink" title="3.1.2 根据托管平台的邮箱生成ssh的公钥私钥"></a>3.1.2 根据托管平台的邮箱生成ssh的公钥私钥</h3><blockquote>
-<p>git bash 中敲入命令 会在 <code>~/.ssh</code> 文件夹下生成 <code>id_rsa.pub</code> 文件和 <code>id_rsa</code> 文件，分别存放公钥和私钥 </p>
-</blockquote>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">ssh-keygen <span class="token operator">-</span>t rsa <span class="token operator">-</span>C <span class="token string">"user@email.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<h2 id="3-2-将公钥添加到Gitee"><a href="#3-2-将公钥添加到Gitee" class="headerlink" title="3.2 将公钥添加到Gitee"></a>3.2 将公钥添加到Gitee</h2><blockquote>
-<p>Gitee：[设置] -&gt; [安全设置] -&gt; [SSH公钥]</p>
-</blockquote>
-<h2 id="3-3-将私钥添加到GitHub中需要备份的仓库的Secrets中"><a href="#3-3-将私钥添加到GitHub中需要备份的仓库的Secrets中" class="headerlink" title="3.3 将私钥添加到GitHub中需要备份的仓库的Secrets中"></a>3.3 将私钥添加到GitHub中需要备份的仓库的Secrets中</h2><blockquote>
-<p>GitHub Repository -&gt; [Settings] -&gt; [Secrets]</p>
-</blockquote>
-<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/GitHubAction-1.png" alt="GitHubAction-1.png">
-
-<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/GitHubAction-2.png" alt="GitHubAction-2.png">
-
-<p><strong>记住Name的值，将私钥填入Value中。</strong></p>
-<h2 id="3-4-配置GitHub-Action文件"><a href="#3-4-配置GitHub-Action文件" class="headerlink" title="3.4 配置GitHub Action文件"></a>3.4 配置GitHub Action文件</h2><h3 id="3-4-1-在需要备份的仓库的根目录下新建文件配置文件"><a href="#3-4-1-在需要备份的仓库的根目录下新建文件配置文件" class="headerlink" title="3.4.1 在需要备份的仓库的根目录下新建文件配置文件"></a>3.4.1 在需要备份的仓库的根目录下新建文件配置文件</h3><p>路径为：  <strong>.github/workflows/gitee_mirror.yml</strong> ，并在gitee_mirror.yml中添加以下内容。</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">'GitHub Actions Mirror'</span>
-
-<span class="token key atrule">on</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>push<span class="token punctuation">,</span> delete<span class="token punctuation">]</span>
-
-<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
-  <span class="token key atrule">mirror_to_gitee</span><span class="token punctuation">:</span>
-    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
-    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">'Checkout'</span>
-        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v1
-      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">'Mirror to gitee'</span>
-        <span class="token key atrule">uses</span><span class="token punctuation">:</span> pixta<span class="token punctuation">-</span>dev/repository<span class="token punctuation">-</span>mirroring<span class="token punctuation">-</span>action@v1
-        <span class="token key atrule">with</span><span class="token punctuation">:</span>
-          <span class="token key atrule">target_repo_url</span><span class="token punctuation">:</span>
-            git@gitee.com<span class="token punctuation">:</span>xxxxxx/xxxxxx.git
-          <span class="token key atrule">ssh_private_key</span><span class="token punctuation">:</span>
-            $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.GITEE_PRIVATE_KEY <span class="token punctuation">}</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>以上action中存在  <a href="https://github.com/marketplace/actions/mirroring-repository">repository-mirroring-action</a>，这个有兴趣的可以了解。</p>
-<h3 id="3-4-2-其中需要注意的有这几个配置"><a href="#3-4-2-其中需要注意的有这几个配置" class="headerlink" title="3.4.2 其中需要注意的有这几个配置"></a>3.4.2 其中需要注意的有这几个配置</h3><p>on : 该配置项表示在指定操作事进行同步</p>
-<p>target_repo_url ： 该配置项填代码备份目的平台仓库的ssh 地址</p>
-<p>ssh_private_key： 该配置填写在GitHub中配置的Secrets。在本文3.3步骤中提到记住的Name，我配置的Name是GITEE_PRIVATE_KEY。</p>
-<p>附上我配置的<a href="https://github.com/wind-hu/wind-hu.github.io/blob/master/.github/workflows/gitee_mirror.yml">workFlow</a>文件</p>
-<h2 id="3-5-提交配置文件"><a href="#3-5-提交配置文件" class="headerlink" title="3.5 提交配置文件"></a>3.5 提交配置文件</h2><p>在GitHub的Actions中可以看到生效的workflow</p>
-<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/GitHubAction-3.png" alt="GitHubAction-3.png">
-
-]]></content>
-      <categories>
-        <category>基础能力</category>
-      </categories>
-      <tags>
-        <tag>GitHub</tag>
-        <tag>GitHub Action</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DistributedLock-Redis</title>
     <url>/2020/05/27/fen-bu-shi-suo-redis-pian/</url>
     <content><![CDATA[<blockquote>
@@ -1392,6 +1325,73 @@ INFO 3816 --- [pool-1-thread-6] c.w.q.common.springawares.StartWare      : 0/2 *
       <tags>
         <tag>Java</tag>
         <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用GitHub Action自动同步代码到Gitee</title>
+    <url>/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>本blog的出现是为了能够分享个人所学的相关知识，检验自身学习成果。内容会和其他技术存在部分关联，如有任何描述错误或者说明有误的地方，还望指出。</strong></p>
+</blockquote>
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p>在代码托管的过程中，我们有时候需要将GitHub的代码同步到其他托管平台(Gitee、GitLab等)的需求。主要关系是：以GiHub为主仓，并且定期自动同步到Gitee作为镜像仓库。GitHub Pages及Gitee Pages自动更新部署。</p>
+<h1 id="2-方案"><a href="#2-方案" class="headerlink" title="2. 方案"></a>2. 方案</h1><h2 id="2-1-Gitee手动同步"><a href="#2-1-Gitee手动同步" class="headerlink" title="2.1 Gitee手动同步"></a>2.1 Gitee手动同步</h2><p>Gitee本身是提供了其他平台仓库绑定及绑定仓库同步的功能。这个功能是可以满足需求的。<strong>但是</strong>，作为一个程序员，能自动完成的事情坚决不靠人力去完成。而且如果一个组织下发展到了几百上千个仓库后，手动同步的缺陷就十分明显了。这个时候就需要某种计算机资源<strong>自动的完成同步操作</strong>。所以这个方案排除。</p>
+<h2 id="2-2-GitHub-Action"><a href="#2-2-GitHub-Action" class="headerlink" title="2.2 GitHub Action"></a>2.2 GitHub Action</h2><p>其实GitHub Action是GitHub的持续集成服务。它能够在指定操作时触发脚本功能。就选这个方案了。GitHub Action的功能是很强大的。关于GiHub Action的详细内容可以看<a href="https://github.com/features/actions">GitHub Action官网</a>。</p>
+<blockquote>
+<p>持续集成在项目中有着很重要的地位，推荐大家去了解了解。</p>
+</blockquote>
+<h1 id="3-具体操作"><a href="#3-具体操作" class="headerlink" title="3. 具体操作"></a>3. 具体操作</h1><h2 id="3-1-准备工作"><a href="#3-1-准备工作" class="headerlink" title="3.1 准备工作"></a>3.1 准备工作</h2><h3 id="3-1-1-Github和Gitee的邮箱绑定"><a href="#3-1-1-Github和Gitee的邮箱绑定" class="headerlink" title="3.1.1 Github和Gitee的邮箱绑定"></a>3.1.1 Github和Gitee的邮箱绑定</h3><p>代码托管平台的邮箱在这里其实很重要，我在这里踩过一个坑。邮箱关系到ssh公钥私钥。<strong>推荐所有托管平台的邮箱统一。</strong></p>
+<h3 id="3-1-2-根据托管平台的邮箱生成ssh的公钥私钥"><a href="#3-1-2-根据托管平台的邮箱生成ssh的公钥私钥" class="headerlink" title="3.1.2 根据托管平台的邮箱生成ssh的公钥私钥"></a>3.1.2 根据托管平台的邮箱生成ssh的公钥私钥</h3><blockquote>
+<p>git bash 中敲入命令 会在 <code>~/.ssh</code> 文件夹下生成 <code>id_rsa.pub</code> 文件和 <code>id_rsa</code> 文件，分别存放公钥和私钥 </p>
+</blockquote>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">ssh-keygen <span class="token operator">-</span>t rsa <span class="token operator">-</span>C <span class="token string">"user@email.com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="3-2-将公钥添加到Gitee"><a href="#3-2-将公钥添加到Gitee" class="headerlink" title="3.2 将公钥添加到Gitee"></a>3.2 将公钥添加到Gitee</h2><blockquote>
+<p>Gitee：[设置] -&gt; [安全设置] -&gt; [SSH公钥]</p>
+</blockquote>
+<h2 id="3-3-将私钥添加到GitHub中需要备份的仓库的Secrets中"><a href="#3-3-将私钥添加到GitHub中需要备份的仓库的Secrets中" class="headerlink" title="3.3 将私钥添加到GitHub中需要备份的仓库的Secrets中"></a>3.3 将私钥添加到GitHub中需要备份的仓库的Secrets中</h2><blockquote>
+<p>GitHub Repository -&gt; [Settings] -&gt; [Secrets]</p>
+</blockquote>
+<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/GitHubAction-1.png" alt="GitHubAction-1.png">
+
+<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/GitHubAction-2.png" alt="GitHubAction-2.png">
+
+<p><strong>记住Name的值，将私钥填入Value中。</strong></p>
+<h2 id="3-4-配置GitHub-Action文件"><a href="#3-4-配置GitHub-Action文件" class="headerlink" title="3.4 配置GitHub Action文件"></a>3.4 配置GitHub Action文件</h2><h3 id="3-4-1-在需要备份的仓库的根目录下新建文件配置文件"><a href="#3-4-1-在需要备份的仓库的根目录下新建文件配置文件" class="headerlink" title="3.4.1 在需要备份的仓库的根目录下新建文件配置文件"></a>3.4.1 在需要备份的仓库的根目录下新建文件配置文件</h3><p>路径为：  <strong>.github/workflows/gitee_mirror.yml</strong> ，并在gitee_mirror.yml中添加以下内容。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">'GitHub Actions Mirror'</span>
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>push<span class="token punctuation">,</span> delete<span class="token punctuation">]</span>
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mirror_to_gitee</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">'Checkout'</span>
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v1
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">'Mirror to gitee'</span>
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> pixta<span class="token punctuation">-</span>dev/repository<span class="token punctuation">-</span>mirroring<span class="token punctuation">-</span>action@v1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">target_repo_url</span><span class="token punctuation">:</span>
+            git@gitee.com<span class="token punctuation">:</span>xxxxxx/xxxxxx.git
+          <span class="token key atrule">ssh_private_key</span><span class="token punctuation">:</span>
+            $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.GITEE_PRIVATE_KEY <span class="token punctuation">}</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>以上action中存在  <a href="https://github.com/marketplace/actions/mirroring-repository">repository-mirroring-action</a>，这个有兴趣的可以了解。</p>
+<h3 id="3-4-2-其中需要注意的有这几个配置"><a href="#3-4-2-其中需要注意的有这几个配置" class="headerlink" title="3.4.2 其中需要注意的有这几个配置"></a>3.4.2 其中需要注意的有这几个配置</h3><p>on : 该配置项表示在指定操作事进行同步</p>
+<p>target_repo_url ： 该配置项填代码备份目的平台仓库的ssh 地址</p>
+<p>ssh_private_key： 该配置填写在GitHub中配置的Secrets。在本文3.3步骤中提到记住的Name，我配置的Name是GITEE_PRIVATE_KEY。</p>
+<p>附上我配置的<a href="https://github.com/wind-hu/wind-hu.github.io/blob/master/.github/workflows/gitee_mirror.yml">workFlow</a>文件</p>
+<h2 id="3-5-提交配置文件"><a href="#3-5-提交配置文件" class="headerlink" title="3.5 提交配置文件"></a>3.5 提交配置文件</h2><p>在GitHub的Actions中可以看到生效的workflow</p>
+<img style="margin:auto 0;border:1px solid #cce5ff;" src="/2020/08/19/shi-yong-github-action-zi-dong-tong-bu-dai-ma-dao-gitee/GitHubAction-3.png" alt="GitHubAction-3.png">
+
+]]></content>
+      <categories>
+        <category>基础能力</category>
+      </categories>
+      <tags>
+        <tag>GitHub</tag>
+        <tag>GitHub Action</tag>
       </tags>
   </entry>
 </search>
