@@ -52,3 +52,10 @@
     background-image: linear-gradient(to top right, #2CD8D5 0%, #C5C1FF 70%, #FFBAC3 100%) !important;
     border: 1px solid #2CD8D5;
 }
+
+.bg-cover .description {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.4em;
+    color: #eee;
+}

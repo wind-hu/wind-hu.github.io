@@ -215,7 +215,7 @@
         <div class="brand">
             <div class="title center-align">
                 
-                Wind-Hu
+                凡事过往, 皆为序章
                 
             </div>
 
@@ -230,7 +230,9 @@
 
 
 <script>
-    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
 
@@ -484,7 +486,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["Java","SpringBoot","AOP","AspectJ","ArrayList","Hello World","线程池","MinIO","分布式","存储"]
+                data: ["Java","SpringBoot","AOP","AspectJ","ArrayList","线程池","Hello World","MinIO","分布式","存储"]
             }
         ],
         yAxis: [
@@ -635,14 +637,14 @@
             
             
             
-            <a href="/tags/Hello-World/">
-                <span class="chip center-align waves-effect waves-light chip-default">Hello World</span>
+            <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                <span class="chip center-align waves-effect waves-light chip-default">线程池</span>
             </a>
             
             
             
-            <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
-                <span class="chip center-align waves-effect waves-light chip-default">线程池</span>
+            <a href="/tags/Hello-World/">
+                <span class="chip center-align waves-effect waves-light chip-default">Hello World</span>
             </a>
             
             
@@ -695,10 +697,16 @@
             
             
             
-            
-            
             <a href="/tags/Mybatis/">
                 <span class="chip center-align waves-effect waves-light chip-default">Mybatis</span>
+            </a>
+            
+            
+            
+            
+            
+            <a href="/tags/Redis/">
+                <span class="chip center-align waves-effect waves-light chip-default">Redis</span>
             </a>
             
             
@@ -711,12 +719,6 @@
             
             <a href="/tags/GitHub-Action/">
                 <span class="chip center-align waves-effect waves-light chip-default">GitHub Action</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Redis/">
-                <span class="chip center-align waves-effect waves-light chip-default">Redis</span>
             </a>
             
             
